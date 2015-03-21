@@ -1,0 +1,75 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require sweet-alert
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background: url("images/bg-img.png") no-repeat center fixed;
+  background-size: 100% 100%;
+  width:      100%;
+  height:     100%;
+  z-index:    10;
+  top:        0;
+  left:       0;
+  position:   fixed;
+}
+
+.navbar-fixed-top {
+	background-color: rgba(255,255,255,0.2);
+	border-color: transparent;
+	min-height: 75px;
+}
+
+.login-btn {
+	background: url("images/login-btn.png") no-repeat center;
+	height: 50px;
+	width: 105px;
+	border: none;
+	margin-top: 10px;
+}
+
+.cs-header-menu {
+	margin-top: 20px;
+	font-family: "Century Gothic";
+
+    li a {
+      color: #fff!important;
+    }
+}
+
+.cs-menu-icon {
+  margin-top: 20px;
+}
+
+.cs-logo {
+	margin-top: 20px;
+}
+
+.cs-menu-icon-bar {
+  background-color: #fff!important;
+}
+
+.cs-m-logo {
+  border: none;
+}
+
+@media screen and (max-width: 480px) {
+  .cs-logo {
+    display: none;
+  }
+}

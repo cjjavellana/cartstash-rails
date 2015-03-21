@@ -1,0 +1,1212 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ce",
+				"centered"
+			],
+			[
+				"log",
+				"login"
+			],
+			[
+				"pu",
+				"public"
+			],
+			[
+				"yood",
+				"yoodler"
+			],
+			[
+				"String",
+				"StringBuilder"
+			],
+			[
+				"inc",
+				"incrementValueInObject"
+			],
+			[
+				"Pass",
+				"PassByValAndRef"
+			],
+			[
+				"Al",
+				"AlertService"
+			],
+			[
+				"dis",
+				"displayMsg"
+			],
+			[
+				"error",
+				"errorMsg"
+			],
+			[
+				"field",
+				"fieldname"
+			],
+			[
+				"set",
+				"setValidity"
+			],
+			[
+				"e",
+				"has-error"
+			],
+			[
+				"jobSchedule",
+				"jobScheduleDialog"
+			],
+			[
+				"erro",
+				"errorClass"
+			],
+			[
+				"Em",
+				"EmbeddedModelField"
+			],
+			[
+				"th",
+				"thead	Tag"
+			],
+			[
+				"se",
+				"serializer	statement"
+			],
+			[
+				"seria",
+				"serializer_class"
+			],
+			[
+				"su",
+				"supplier"
+			],
+			[
+				"count",
+				"country_code"
+			],
+			[
+				"coun",
+				"country_code"
+			],
+			[
+				"addre",
+				"address_line_2"
+			],
+			[
+				"add",
+				"address_line_2"
+			],
+			[
+				"isin",
+				"isinstance	function"
+			],
+			[
+				"last",
+				"last_dot_index"
+			],
+			[
+				"get",
+				"get_list"
+			],
+			[
+				"ser",
+				"serializer_class_name"
+			],
+			[
+				"time",
+				"time_param"
+			],
+			[
+				"task",
+				"task_queue"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"nav",
+				"navbar"
+			],
+			[
+				"is",
+				"is_merchant_login"
+			],
+			[
+				"is_me",
+				"is_merchant_login"
+			],
+			[
+				"seri",
+				"serializer"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"country",
+				"country_code"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"HTTP",
+				"HTTP_200_OK"
+			],
+			[
+				"salesTran",
+				"SalesTransactionSerializer"
+			],
+			[
+				"cach",
+				"cached_data"
+			],
+			[
+				"cache",
+				"cache_key"
+			],
+			[
+				"sales",
+				"sales_txn"
+			],
+			[
+				"get_sa",
+				"get_sales_transaction"
+			],
+			[
+				"merchant",
+				"merchant_id"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"pas",
+				"past_twelve_hours"
+			],
+			[
+				"date_",
+				"date_added"
+			],
+			[
+				"merc",
+				"merchant_id"
+			],
+			[
+				"ran",
+				"range_limit"
+			],
+			[
+				"thread",
+				"thread_id"
+			],
+			[
+				"p_txn",
+				"p_txn_count,p_txn_amount"
+			],
+			[
+				"date",
+				"date_time"
+			],
+			[
+				"job",
+				"job_name"
+			],
+			[
+				"JOb",
+				"JobSettings"
+			],
+			[
+				"regi",
+				"registration_ref"
+			],
+			[
+				"name",
+				"name_of_business"
+			],
+			[
+				"Decima",
+				"DecimalField"
+			],
+			[
+				"shipp",
+				"shipping_address"
+			],
+			[
+				"billing",
+				"billing_address_id"
+			],
+			[
+				"payment",
+				"payment_method"
+			],
+			[
+				"Job",
+				"JobSettings"
+			],
+			[
+				"last_",
+				"last_exec_date"
+			],
+			[
+				"bi",
+				"billing_addr"
+			],
+			[
+				"str",
+				"street_address"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"house",
+				"house_number"
+			],
+			[
+				"local",
+				"localStorageService"
+			],
+			[
+				"middle",
+				"middle_name"
+			],
+			[
+				"birt",
+				"birth_date"
+			],
+			[
+				"UserInfoS",
+				"UserInfoSerializer"
+			],
+			[
+				"contact",
+				"contact_number"
+			],
+			[
+				"pay",
+				"payment_method"
+			],
+			[
+				"seriali",
+				"serializers"
+			],
+			[
+				"ojec",
+				"objects"
+			],
+			[
+				"Paym",
+				"PaymentMethodSerializer"
+			],
+			[
+				"alert",
+				"alertService"
+			],
+			[
+				"getPay",
+				"getPaymentMethodsList"
+			],
+			[
+				"Account",
+				"AccountService"
+			],
+			[
+				"bill_add",
+				"bill_address_data"
+			],
+			[
+				"billin",
+				"billing_addr"
+			],
+			[
+				"angular",
+				"angularjsApp"
+			],
+			[
+				"Does",
+				"ObjectDoesNotExist"
+			],
+			[
+				"biling",
+				"billingAddress"
+			],
+			[
+				"pa",
+				"paymentMethod"
+			],
+			[
+				"created",
+				"created_by"
+			],
+			[
+				"bil",
+				"billing_address"
+			],
+			[
+				"Countr",
+				"CountryList"
+			],
+			[
+				"current",
+				"currentYear"
+			],
+			[
+				"user",
+				"user_serializer"
+			],
+			[
+				"s",
+				"serializer"
+			],
+			[
+				"obe",
+				"objects"
+			],
+			[
+				"Customer",
+				"CustomerSerializer"
+			],
+			[
+				"Cuso",
+				"CustomerSerializer"
+			],
+			[
+				"read",
+				"read_only"
+			],
+			[
+				"first",
+				"first_name"
+			],
+			[
+				"assert",
+				"assertContains"
+			],
+			[
+				"mer",
+				"merchant_id"
+			],
+			[
+				"Gr",
+				"Group"
+			],
+			[
+				"resp",
+				"response_json"
+			],
+			[
+				"model",
+				"models"
+			],
+			[
+				"respo",
+				"response"
+			],
+			[
+				"passw",
+				"password"
+			],
+			[
+				"di",
+				"dictionary"
+			],
+			[
+				"per",
+				"permission_classes"
+			],
+			[
+				"datetime",
+				"datetime"
+			],
+			[
+				"address",
+				"address_line_1"
+			],
+			[
+				"Test",
+				"TestCase"
+			],
+			[
+				"MerchantS",
+				"MerchantSupportDoc"
+			],
+			[
+				"API",
+				"APIView"
+			],
+			[
+				"Pagi",
+				"PaginationSerializer"
+			],
+			[
+				"Supp",
+				"SupplierProduct"
+			],
+			[
+				"supp",
+				"suppliers"
+			],
+			[
+				"Ware",
+				"WarehouseItem"
+			],
+			[
+				"uni",
+				"unit_of_measure"
+			],
+			[
+				"For",
+				"ForeignKey"
+			],
+			[
+				"ware",
+				"warehouse_inventory"
+			],
+			[
+				"Char",
+				"CharField"
+			],
+			[
+				"phone",
+				"phone_number"
+			],
+			[
+				"credit",
+				"credit_card"
+			],
+			[
+				"pre",
+				"prefetch_related"
+			],
+			[
+				"paymen",
+				"payment_ref_number"
+			],
+			[
+				"ver",
+				"verify_sales_order"
+			],
+			[
+				"pur",
+				"purchased_item"
+			],
+			[
+				"ve",
+				"verify_sales_order"
+			],
+			[
+				"tota",
+				"total"
+			],
+			[
+				"shi",
+				"shipping"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "config/environments/development.rb",
+			"settings":
+			{
+				"buffer_size": 1682,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/stylesheets/application.css.scss",
+			"settings":
+			{
+				"buffer_size": 1262,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/layouts/application.html.erb",
+			"settings":
+			{
+				"buffer_size": 797,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/cjavellana/Library/Application Support/Sublime Text 2/Packages/User/DashDoc.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 4122,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"package contro",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: Install",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"package controll ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"git push ",
+				"Git: Push"
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git fetch",
+				"Git: Fetch"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"Git",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/cjavellana/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/cjavellana/Projects/java/ibens-logs-parser/scripts/tarsplit.sh",
+		"/Users/cjavellana/Projects/java/ocp/package com.cjavellana.ocp.modifiers",
+		"/Users/cjavellana/Projects/java/ibens-logs-parser/target/classes/config.properties",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/src/main/java/com/techmahindra/citrus/configurations/CommonJpaConfigurations.java",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/src/main/resources/application.properties",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/src/main/resources/META-INF/spring/app-config.properties",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/src/main/java/com/techmahindra/citrus/configurations/OracleJpaConfiguration.java",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/src/main/resources/logback.xml",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/src/main/java/com/techmahindra/citrus/CitrusApplication.java",
+		"/Users/cjavellana/Downloads/Nov142014/WDALog.log.3",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/src/main/java/com/techmahindra/citrus/antlr/scheduleexpr/ScheduleExprGrammar_v2BaseListener.java",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/src/main/java/com/techmahindra/citrus/antlr/scheduleexpr/ScheduleExprGrammar_v2.g4",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/samples/initial_data.sql",
+		"/Users/cjavellana/Projects/ecommerce/odoo/projects/.gitignore",
+		"/Users/cjavellana/Projects/java/citrus/front-end/app/scripts/controllers/jobs.js",
+		"/Users/cjavellana/Projects/java/citrus/front-end/app/scripts/services/jobs_service.js",
+		"/Users/cjavellana/Projects/java/citrus/front-end/app/scripts/app.js",
+		"/Users/cjavellana/Projects/java/citrus/front-end/app/views/jobs/create_jobs.html",
+		"/Users/cjavellana/Projects/java/citrus/front-end/app/views/console/console.html",
+		"/Users/cjavellana/Projects/java/citrus/front-end/app/views/autosysjobs/autosysjobs.html",
+		"/Users/cjavellana/Projects/java/citrus/front-end/README.md",
+		"/Users/cjavellana/Projects/java/citrus/README.md",
+		"/Users/cjavellana/Projects/java/citrus/front-end/app/scripts/services/config.js",
+		"/Users/cjavellana/Projects/ecommerce/odoo/projects/odoo/setup.py",
+		"/Users/cjavellana/Projects/ecommerce/odoo/provisioning/postgresql_setup.yml",
+		"/Users/cjavellana/Projects/ecommerce/odoo/README.md",
+		"/Users/cjavellana/Projects/ecommerce/odoo/provisioning/create_postgresql_db.sh",
+		"/Users/cjavellana/Projects/ecommerce/odoo/provisioning/install_python.yml",
+		"/Users/cjavellana/Projects/ecommerce/odoo/provisioning/virtualenv_setup.yml",
+		"/Users/cjavellana/Projects/java/citrus/front-end/app/scripts/controllers/login.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/foodnearby/api/models/product.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/foodnearby/foodsnearby/settings.py",
+		"/Users/cjavellana/Projects/java/citrus/front-end/app/views/login.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/foodnearby/api/models/restau.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/foodnearby/api/models/accounts.py",
+		"/Users/cjavellana/Projects/java/citrus/citrus-back-end/untitled folder/sample_json.txt",
+		"/Applications/play-2.2.2/samples/scala/zentasks/app/controllers/Application.scala",
+		"/Applications/play-2.2.2/samples/scala/zentasks/app/views/login.scala.html",
+		"/Users/cjavellana/Projects/tests/untitled folder/applog_template.html",
+		"/Applications/play-2.2.2/samples/scala/zentasks/conf/application.conf",
+		"/Applications/play-2.2.2/samples/scala/zentasks/app/models/Project.scala",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/pagination.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/initial_data.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/initdb.sql",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/suppliers.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/recreatedb.sh",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/admin.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/merchants.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/pytest.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/scheduled_jobs/sales_job.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/stored_procs.sql",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/items.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/suppliers.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/test_utils.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/test_suppliers.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/utils.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/Vagrantfile",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/test_useraccount.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/__init__.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/serializers.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/groceryapi.sublime-project",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/paypal.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/grocery.sql",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/header.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/login.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/controllers/merchant.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/authservice.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/salesorder.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/projectmarket/urls.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/views.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/reports.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/reports.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/authentication.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/merchantservice.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/product.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/permissions.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/settings.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/manytomany.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/test_merchant.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/__init__.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/pydev/styles/rwd.css",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/pydev/rwd.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/merchant_report.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/login.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/styles/main.css",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/.tmp/styles/main.css",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/merchant_menu.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/item_management.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/users/creditcards.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/controllers/manageaccount.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/productsservice.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/app.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/alertservice.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/manageaccount.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/addressservice.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/myservice.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/authinterceptor.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/merchants.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/files/httpd/conf.d/vhost.conf",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/projectmarket/settings.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/dashboard.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/ngGoogleCharts.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/index.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/merchant_header.html",
+		"/Users/cjavellana/Downloads/jb.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/registration.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/footer.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/bower_components/angular-wizard/dist/angular-wizard.css",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/choices.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/orders.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/menu.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/backends.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/admin_dashboard.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/users/manageaccount.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/test_runner.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/accounts.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/menu.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/users/leftmenu.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/report.pdf",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/test_paymentmethod.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/customers.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/users/changepassword.html",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/test_salesorder.py",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/README.md",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/controllers/login.js",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/TODOs",
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/admin.py"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"*.py",
+			"*.js",
+			"*.py",
+			"*.js",
+			"initial_data.py",
+			"*.py",
+			"*.pp"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"RSA",
+			"Memory",
+			"Exception",
+			";\n",
+			"Paginator",
+			"luhn_checksum",
+			"merchant_id,",
+			"merchant",
+			"SalesTxnSummary",
+			"navbar",
+			"PaginatedItemSerializer",
+			"min.map",
+			"map",
+			"tableParams",
+			"stock",
+			"_username",
+			"username",
+			"*_username",
+			"c",
+			"UserInfoJSONWebTokenSerializer",
+			"merchant",
+			"lennon@thebeatles.com",
+			"put",
+			"base",
+			"each",
+			"MerchantSalesTxnSummary",
+			"merc",
+			"MerchantSupportDocSerializer",
+			"test_create_creditcard_w_billing_addr",
+			"merchant",
+			"address",
+			"CustomerSerializer",
+			"updatePaymentMethods",
+			"restore",
+			"deletePaymentMethod",
+			"    	\n",
+			"danger",
+			"country.json",
+			"countries.json",
+			"AlertService",
+			"    ",
+			"manage-account-section-title",
+			"form-group",
+			"manage-account-row",
+			".manage-account-menu ul li a",
+			"        \n",
+			"PaginatedItemSerializer",
+			"		}",
+			"rest_framework",
+			" %",
+			"'",
+			"u'",
+			"intent",
+			"\")",
+			"\\t",
+			"initial_data",
+			"\\t",
+			"xml",
+			"\\t",
+			"ModeOfPayment",
+			"OrderSerializer",
+			"AuthorizeNetSalesOrderProcessor",
+			"p_amount_before_discount",
+			"p_amount_after_tax",
+			"p_amount_before_tax",
+			"force",
+			"p_shipping_amount",
+			"ShippingAddress",
+			"ChangePasswordModel",
+			"i",
+			"PaymentMethodSerializer",
+			"CustomerSi",
+			"CustomerSerializer",
+			"Successfully",
+			">\n",
+			"#;\n",
+			"000",
+			";\n",
+			"marketing",
+			"menu_right",
+			"hover",
+			"dd",
+			")\n",
+			"ItemTypeSerializer",
+			"models",
+			"Boolean",
+			"login-signup",
+			"password",
+			"time-grunt",
+			"require",
+			"python-setuptools"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"\\t",
+			"\"",
+			"'",
+			"\\s\\s\\s\\s",
+			"PaypalSalesOrderProcessor",
+			"p_prediscount_amount",
+			"p_posttax_amount",
+			"p_pretax_amount"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "config/environments/development.rb",
+					"settings":
+					{
+						"buffer_size": 1682,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/assets/stylesheets/application.css.scss",
+					"settings":
+					{
+						"buffer_size": 1262,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1257,
+								1257
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/layouts/application.html.erb",
+					"settings":
+					{
+						"buffer_size": 797,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								474,
+								474
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/cjavellana/Library/Application Support/Sublime Text 2/Packages/User/DashDoc.sublime-settings",
+					"settings":
+					{
+						"buffer_size": 4122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4122,
+								4122
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 25.0
+	},
+	"output.find_results":
+	{
+		"height": 150.0
+	},
+	"output.git":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"development.r",
+				"config/environments/development.rb"
+			],
+			[
+				"recreate",
+				"groceryapi/recreatedb.sh"
+			],
+			[
+				"init",
+				"djangocentos/projects/groceryapi/initial_data.py"
+			],
+			[
+				"supplie",
+				"groceryapi/api/models/suppliers.py"
+			],
+			[
+				"merchant",
+				"groceryapi/api/models/merchants.py"
+			],
+			[
+				"url",
+				"djangocentos/projects/groceryapi/projectmarket/urls.py"
+			],
+			[
+				"ini",
+				"groceryapi/initial_data.py"
+			],
+			[
+				"app.js",
+				"groceryjs/app/scripts/app.js"
+			],
+			[
+				"sales",
+				"groceryapi/api/scheduled_jobs/sales_job.py"
+			],
+			[
+				"index",
+				"groceryjs/app/index.html"
+			],
+			[
+				"projectmarket",
+				"groceryapi/projectmarket/settings.py"
+			],
+			[
+				"initia",
+				"groceryapi/initial_data.py"
+			],
+			[
+				"choice",
+				"groceryapi/api/choices.py"
+			],
+			[
+				"sales_jo",
+				"djangocentos/projects/groceryapi/api/scheduled_jobs/sales_job.py"
+			],
+			[
+				"index.html",
+				"djangocentos/projects/groceryjs/app/index.html"
+			],
+			[
+				"index.t",
+				"groceryjs/app/index.html"
+			],
+			[
+				"grocery",
+				"groceryapi/grocery.sql"
+			],
+			[
+				"customer",
+				"groceryapi/api/models/customers.py"
+			],
+			[
+				"reports",
+				"groceryapi/api/models/reports.py"
+			],
+			[
+				"index.",
+				"groceryjs/app/index.html"
+			],
+			[
+				"test_pay",
+				"groceryapi/api/tests/test_paymentmethod.py"
+			],
+			[
+				"cho",
+				"groceryapi/api/choices.py"
+			],
+			[
+				"address.js",
+				"groceryjs/app/scripts/services/addressservice.js"
+			],
+			[
+				"urls",
+				"groceryapi/projectmarket/urls.py"
+			],
+			[
+				"paymentmet",
+				"djangocentos/projects/groceryapi/api/tests/test_paymentmethod.py"
+			],
+			[
+				"test_payment",
+				"djangocentos/projects/groceryapi/api/tests/test_paymentmethod.py"
+			],
+			[
+				"app.",
+				"groceryjs/app/scripts/app.js"
+			],
+			[
+				"test_pa",
+				"groceryapi/api/tests/test_paymentmethod.py"
+			],
+			[
+				"customerserializer",
+				"groceryjs/node_modules/grunt-contrib-imagemin/node_modules/jpegtran-bin/node_modules/bin-wrapper/node_modules/mout/string/normalizeLineBreaks.js"
+			],
+			[
+				"menu.css",
+				"groceryjs/app/styles/menu.css"
+			],
+			[
+				"serializ",
+				"groceryapi/api/serializers.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 393.0,
+	"status_bar_visible": true
+}
