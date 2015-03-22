@@ -1,3 +1,12 @@
-<div class="main">
-  <span><%= @message %></span>
+<div class="container main">
+
+  <% @products.each_with_index do |product, index |   %>
+      <% if index % 4 == 0 %>
+          <div class="row">
+      <% end %>
+      <div class="col-md-3 product-box"><%= product.name %></div>
+      <% if index % 4 == 3 %>
+        </div>
+      <% end %>
+  <% end %>
 </div>
