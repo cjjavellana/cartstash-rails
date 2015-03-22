@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Food Items",
+    "description": "Food Items Category"
+  },
+  {
+    "name": "Non-Food Items",
+    "description": "Non-Food Items Category"
+  },
+  {
+    "name": "Babies",
+    "description": "Babies Category"
+  },
+  {
+    "name": "Pets",
+    "description": "Pets Category"
+  },
+  {
+    "name": "Appliances",
+    "description": "Appliances Category"
+  }
+]
