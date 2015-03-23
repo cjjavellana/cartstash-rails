@@ -1,6 +1,6 @@
 class MainController < ApplicationController
   def index
-    page = params[:pageNo]
+    page = params[:page]
     if page.nil?
       page = 1
     end
