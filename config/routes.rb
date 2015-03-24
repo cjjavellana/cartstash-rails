@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'main#index'
+  root to: 'preregister#index'
 
   devise_for :users
 
