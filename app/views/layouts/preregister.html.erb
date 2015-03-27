@@ -6,33 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Cartstash</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-<div class="container row centered-container">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="collapse navbar-collapse" id="menu-collapse-1">
-        <div class="cs-logo pull-left">
-          <%= link_to image_tag("images/cs-white-orange-logo.png", alt: "CartStash Logo"), root_path%>
+<div class="outer-div container-fluid">
+  <div class="container row centered-container">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="menu-collapse-1">
+          <div class="cs-logo pull-left">
+            <%= link_to image_tag("images/cs-white-orange-logo.png", alt: "CartStash Logo"), root_path %>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
-</div>
-
-<!-- Main Content Area -->
-<%= yield %>
+    </nav>
+  </div>
 
 
-<div class="container row centered-container">
-  <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-    <div class="container">
-    </div>
-  </nav>
+  <div class="container main">
+    <%= yield %>
+  </div>
+
+
+  <footer class="container row centered-container">
+    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+      <div class="container">
+      </div>
+    </nav>
+  </footer>
 </div>
 </body>
 </html>
