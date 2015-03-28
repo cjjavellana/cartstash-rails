@@ -6,4 +6,7 @@ class PreregisterController < ApplicationController
     render :layout => 'preregister'
   end
 
+  def show
+    
+  end
 end

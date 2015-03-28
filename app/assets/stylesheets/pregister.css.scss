@@ -3,10 +3,18 @@
   margin-top: 20px;
 }
 
-.launch-countdown {
-  font-family: "Century Gothic";
-  font-size: 40px;
+.centered {
   text-align: center;
+}
+
+.launch-countdown {
+  font-size: 40px;
+  @extend .centered;
+}
+
+.reg-header {
+  font-size: 16px;
+  @extend .centered;
 }
 
 .main {
@@ -31,5 +39,9 @@
 }
 
 .cs-description {
-  margin-top: 50px;
+  margin-top: 25px;
+}
+
+.launch-countdown {
+  margin-top: 110px!important;
 }
