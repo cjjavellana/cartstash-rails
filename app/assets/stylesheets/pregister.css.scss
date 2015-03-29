@@ -46,14 +46,14 @@
   margin-top: 110px!important;
 }
 
-.checkbox label a {
+.checkbox label a, .reg-links {
   color: #fff;
 }
 
-.new_user_registration_form {
+.new_user_registration_form, .new_user {
   margin-top: 50px;
 
-  input[type='text'], input[type='password'], .input-ctrl {
+  input[type='email'], input[type='password'], .input-ctrl {
     height: 50px;
     border-radius: 4px;
   }

@@ -12,6 +12,7 @@ class PreregisterController < ApplicationController
   def create
     @registration_form = UserRegistrationForm.new(user_params)
     if @registration_form.valid?
+      @registration_form.save
       flash[:success] = 'Account Successfully Created'
     else
       render 'new'
