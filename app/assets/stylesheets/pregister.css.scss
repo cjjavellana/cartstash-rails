@@ -1,6 +1,5 @@
 .row {
   color: #fff;
-  margin-top: 20px;
 }
 
 .centered {
@@ -8,11 +7,21 @@
 }
 
 .launch-countdown {
+  margin-top: 90px!important;
   font-size: 40px;
   @extend .centered;
 }
 
+.invitation-text {
+  margin-top: 50px;
+}
+
+.footer-row {
+  margin-top: 20px;
+}
+
 .reg-header {
+  margin-top: 50px;
   font-size: 16px;
   @extend .centered;
 }
@@ -36,14 +45,11 @@
 
 .signup-btn-row {
   text-align: center;
+  margin-top: 50px;
 }
 
 .cs-description {
-  margin-top: 25px;
-}
-
-.launch-countdown {
-  margin-top: 110px!important;
+  margin-top: 50px;
 }
 
 .checkbox label a, .reg-links {
@@ -66,7 +72,25 @@
 }
 
 .vertical-divider {
-  margin-top: 40px;
-  height: 300px;
+  @extend .reg-margin-top;
+  height: 270px;
   border-right: 1px solid #fff;
+}
+
+.social-signin {
+  margin-top: 10px;
+}
+
+.sign-up-forms {
+  margin-top: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .reg-margin-top {
+    margin-top: 150px;
+  }
+
+  .social-signin-btns {
+    padding-top: 120px;
+  }
 }

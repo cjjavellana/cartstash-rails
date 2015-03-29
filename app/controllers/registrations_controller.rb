@@ -2,10 +2,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
     def after_sign_up_path_for(resource)
-      'membership'
+      '/users/registrations/membership'
     end
 
     def after_inactive_sign_up_path_for(resource)
-      'unconfirmed'
+      '/users/registrations/unconfirmed'
     end
 end

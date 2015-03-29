@@ -2,8 +2,8 @@
   Thank you for choosing to be a member of CartStash. This wizard will guide you through the registration process.
 </div>
 
-<div class="row">
-  <div class="col-md-1 col-xs-12">
+<div class="row sign-up-forms">
+  <div class="col-md-2 col-xs-12">
   </div>
   <div class="col-md-4 col-xs-12">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'reg-form') do |f| %>
@@ -25,11 +25,16 @@
     <%= render 'users/shared/links' %>
   </div>
   <div class="col-md-1 col-xs-12">
-    <div class="vertical-divider">
-      &nbsp;
+    <div class="reg-margin-top centered">- OR -</div>
+  </div>
+  <div class="col-md-4 col-xs-12 social-signin-btns">
+    <div class="social-signin">
+      <%= link_to image_tag('images/login-facebook.png', alt:  "Facebook Login"), 'https://www.facebook.com/login' %>
+    </div>
+    <div class="social-signin">
+      <%= link_to image_tag('images/login-twitter.png', alt:  "Twitter Login"), 'https://www.twitter.com/login' %>
     </div>
   </div>
-  <div class="col-md-6 col-xs-12">
-
+  <div class="col-md-2 col-xs-12">
   </div>
 </div>
