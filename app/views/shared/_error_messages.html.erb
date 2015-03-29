@@ -1,0 +1,9 @@
+<% if @registration_form.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @registration_form.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

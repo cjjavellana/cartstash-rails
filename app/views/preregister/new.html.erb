@@ -1,0 +1,42 @@
+<div class="row reg-header">
+  Thank you for choosing to be a member of CartStash. This wizard will guide you through the registration process.
+</div>
+
+<div class="row">
+    <div class="col-md-1 col-xs-12">
+    </div>
+    <div class="col-md-4 col-xs-12">
+        <%= form_for @registration_form, url: {action: 'create'}, class: 'reg-form' do |f| %>
+            <%= render 'shared/error_messages' %>
+
+            <div class="form-group">
+                <%= f.text_field :email, class: 'form-control', placeholder: 'Email Address' %>
+            </div>
+            <div class="form-group">
+                <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+            </div>
+            <div class="form-group">
+                <%= f.password_field :confirm_password, class: 'form-control', placeholder: 'Confirm Password' %>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                    <%= f.check_box :terms_of_service, class: 'checkbox' %>
+                    <%= link_to 'I agree with the terms and conditions', '#'%>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <%= f.submit 'Create Account', class: 'btn' %>
+            </div>
+        <% end %>
+    </div>
+    <div class="col-md-1 col-xs-12">
+        <div class="vertical-divider">
+            &nbsp;
+        </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+
+    </div>
+</div>

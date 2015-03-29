@@ -45,3 +45,28 @@
 .launch-countdown {
   margin-top: 110px!important;
 }
+
+.checkbox label a {
+  color: #fff;
+}
+
+.new_user_registration_form {
+  margin-top: 50px;
+
+  input[type='text'], input[type='password'], .input-ctrl {
+    height: 50px;
+    border-radius: 4px;
+  }
+
+  .btn {
+    width: 100%;
+    background-color: rgba(184, 233, 134, 0.8);
+    @extend .input-ctrl
+  }
+}
+
+.vertical-divider {
+  margin-top: 40px;
+  height: 300px;
+  border-right: 1px solid #fff;
+}
