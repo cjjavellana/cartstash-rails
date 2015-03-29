@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
-  root to: 'preregister#index'
+  root to: 'prelaunch#index'
 
-  get 'register', to: 'preregister#new'
-  post 'create_user', to: 'preregister#create'
-
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'registrations' }
 
 end
