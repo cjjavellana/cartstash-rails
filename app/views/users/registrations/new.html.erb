@@ -19,6 +19,14 @@
           <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm Password', autocomplete: 'off' %>
         </div>
         <div class="form-group">
+          <div class="checkbox">
+              <label>
+              <%= f.check_box :terms_of_service, class: 'checkbox' %>
+              <%= link_to 'I agree with the terms and conditions', '#'%>
+              </label>
+          </div>
+         </div>
+        <div class="form-group">
           <%= f.submit 'Create Account', class: 'btn' %>
         </div>
     <% end %>

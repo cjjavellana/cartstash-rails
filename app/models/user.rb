@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable
+
+  validates :terms_of_service, :acceptance => true
 end
 
 class UserRegistrationForm
