@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable
 
-  validates :terms_of_service, :acceptance => true
+  validates :terms_of_service, :acceptance => {:accept => true}
 end
 
 class UserRegistrationForm

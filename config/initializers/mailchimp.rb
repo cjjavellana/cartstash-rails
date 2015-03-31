@@ -1,0 +1,1 @@
+Rails.configuration.mailchimp = Gibbon::API.new(Rails.application.secrets.mailchimp_api_key)
