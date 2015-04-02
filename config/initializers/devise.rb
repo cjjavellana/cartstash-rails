@@ -259,7 +259,12 @@ Devise.setup do |config|
 
   Rails.application.config.to_prepare do
     Devise::SessionsController.layout "devise"
-    Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? "application" : "prelaunch" }
+    # This layout is to be used once live
+    # Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? "application" : "prelaunch" }
+
+    # This layout is to be used during sign up period
+    Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? "prelaunch" : "prelaunch" }
+
     Devise::ConfirmationsController.layout "devise"
     Devise::UnlocksController.layout "devise"
     Devise::PasswordsController.layout "devise"

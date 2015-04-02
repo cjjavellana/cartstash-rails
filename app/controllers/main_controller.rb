@@ -6,6 +6,5 @@ class MainController < ApplicationController
     end
 
     @products = Product.page(page)
-
   end
 end

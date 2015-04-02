@@ -7,7 +7,6 @@
 }
 
 .launch-countdown {
-  margin-top: 90px!important;
   font-size: 40px;
   @extend .centered;
 }
@@ -24,10 +23,6 @@
   margin-top: 50px;
   font-size: 16px;
   @extend .centered;
-}
-
-.main {
-  margin-top: 90px!important;
 }
 
 .outer-div {
@@ -97,5 +92,30 @@
 
 .confirm-acct-msg {
   margin-top: 100px;
-  background-color: #D4ECE6;
+
+  div {
+    background-color: #D4ECE6;
+    width: 500px;
+    margin-left: 350px;
+
+  }
+}
+
+.prelaunch-flash-area {
+
+  position: relative;
+
+  .notice {
+    color: rgba(184, 233, 134, 0.8);
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .alert {
+    color: rgba(184, 233, 134, 0.8);
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+  }
 }
