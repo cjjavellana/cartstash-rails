@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330131427) do
+ActiveRecord::Schema.define(version: 20150402094128) do
 
   create_table "product_categories", force: :cascade do |t|
     t.string   "name"
@@ -91,6 +91,13 @@ ActiveRecord::Schema.define(version: 20150330131427) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.boolean  "terms_of_service"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "contact_number"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "country"
+    t.string   "zip"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

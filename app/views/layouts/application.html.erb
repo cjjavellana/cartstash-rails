@@ -41,7 +41,25 @@
               <% unless signed_in? %>
                 <button class="login-btn pull-right"></button>
               <% else %>
-                
+                <div class="user-info pull-right">
+                  <div class="dropdown">
+                    <button class="btn user-info-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                      <%= "Welcome, #{current_user.first_name != nil ? current_user.first_name : current_user.email}" %>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-list"></span> Orders</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-heart"></span> Wish List</a></li>
+                      <li role="presentation" class="divider"></li>
+                      <li role="presentation">
+                        <%= link_to destroy_user_session_path, :method => 'delete' do %>
+                            <span class="glyphicon glyphicon-log-out"></span> Logout
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               <% end %>
             </div>
         </div>

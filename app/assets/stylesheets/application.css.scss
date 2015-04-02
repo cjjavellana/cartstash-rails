@@ -44,6 +44,25 @@ body {
 	margin-top: 10px;
 }
 
+.user-info-btn {
+  background: none;
+  color: #fff!important;
+  margin-top: 15px;
+}
+
+.user-info-btn:hover {
+  color: #fff;
+}
+
+.user-info {
+  margin-top: 10px;
+  margin-right: 110px;
+
+  a {
+    color: #fff;
+  }
+}
+
 .cs-header-menu {
 	margin-top: 20px;
 	font-family: "Century Gothic";
@@ -124,5 +143,3 @@ body {
     padding-bottom: 10px;
   }
 }
-
-
