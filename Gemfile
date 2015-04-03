@@ -43,6 +43,7 @@ gem 'devise', '3.4.1'
 gem 'kaminari', '~> 0.16.3'
 gem 'time_difference', '0.4.2'
 gem 'gibbon'
+gem 'credit_card_validator'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -48,4 +48,5 @@ Rails.application.configure do
       :password  => ENV["MANDRILL_API_KEY"]
   }
 
+  config.redis_url = '192.168.1.21'
 end
