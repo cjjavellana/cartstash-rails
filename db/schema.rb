@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402094128) do
+ActiveRecord::Schema.define(version: 20150403073113) do
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "country_code"
+    t.string   "name"
+    t.string   "short_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "credit_card_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "product_categories", force: :cascade do |t|
     t.string   "name"

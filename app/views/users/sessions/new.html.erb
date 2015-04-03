@@ -1,26 +1,48 @@
-<h2>Log in</h2>
+<div class="sign-in-forms">
+  <div class="row">
+      <div class="col-md-2 col-xs-12">
+      </div>
+      <div class="col-md-4 col-xs-12">
+        <h1>Log In</h1>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'reg-form') do |f| %>
+          <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+          <div class="form-group">
+              <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>
+          </div>
+           <div class="form-group">
+              <%= f.password_field :password, class: 'form-control', placeholder: 'Password', autocomplete: 'off' %>
+          </div>
+           <% if devise_mapping.rememberable? -%>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                <%= f.check_box :remember_me, class: 'checkbox' %>
+                Remember me
+                </label>
+              </div>
+            </div>
+          <% end -%>
+           <div class="form-group">
+              <%= f.submit 'Log in', class: 'btn' %>
+            </div>
+            <%= render "users/shared/links" %>
+        <% end %>
+      </div>
+      <div class="col-md-1 col-xs-12">
+        <div class="reg-margin-top centered">- OR -</div>
+      </div>
+      <div class="col-md-4 col-xs-12 social-signin-btns">
+        <div class="social-signin">
+          <%= link_to image_tag('images/login-facebook.png', alt:  "Facebook Login"), 'https://www.facebook.com/login' %>
+        </div>
+        <div class="social-signin">
+          <%= link_to image_tag('images/login-twitter.png', alt:  "Twitter Login"), 'https://www.twitter.com/login' %>
+        </div>
+      </div>
+      <div class="col-md-1 col-xs-12">
+      </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>

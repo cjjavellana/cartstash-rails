@@ -38,3 +38,19 @@ products_json.each do |data|
   product.cs_sku = data['cs_sku']
   product.save
 end
+
+credit_card_types_json = ActiveSupport::JSON::decode(File.read('db/seeds/credit_card_types.json'))
+credit_card_types_json.each do |data|
+  cc_type = CreditCardType.new
+  cc_type.name = data['name']
+  cc_type.save
+end
+
+countries_json = ActiveSupport::JSON::decode(File.read('db/seeds/countries.json'))
+countries_json.each do |data|
+  country = Country.new
+  country.name = data['name']['common']
+  country.country_code = data['callingCode'][0]
+  country.short_name = data['cca2']
+  country.save
+end

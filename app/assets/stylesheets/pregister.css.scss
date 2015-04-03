@@ -64,6 +64,10 @@
     background-color: rgba(184, 233, 134, 0.8);
     @extend .input-ctrl
   }
+
+  a {
+    color: #fff;
+  }
 }
 
 .vertical-divider {
@@ -76,7 +80,7 @@
   margin-top: 10px;
 }
 
-.sign-up-forms {
+.sign-up-forms, .sign-in-forms {
   margin-top: 30px;
 }
 
@@ -102,7 +106,7 @@
 }
 
 .prelaunch-flash-area {
-
+  margin-top: 30px;
   position: relative;
 
   .notice {
@@ -118,4 +122,8 @@
     width: 100%;
     text-align: center;
   }
+}
+
+.mem-fee-msg {
+  margin-top: 30px;
 }
