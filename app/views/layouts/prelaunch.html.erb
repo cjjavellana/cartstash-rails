@@ -23,7 +23,6 @@
       </div>
     </nav>
 
-
     <div class="container">
       <div class="row prelaunch-flash-area">
         <% if !flash.empty? %>
@@ -31,7 +30,6 @@
               <% flash.each do |key, value| %>
                   <%= content_tag :div, value, class: "row flash #{key}" %>
               <% end %>
-
         <% end %>
       </div>
 
