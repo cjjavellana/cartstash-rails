@@ -34,7 +34,9 @@ rake db:seed
 ```
 
 ### How to run the test suite
-
+```
+rake spec
+```
 ### Services (job queues, cache servers, search engines, etc.)
 
 ### Deployment instructions
