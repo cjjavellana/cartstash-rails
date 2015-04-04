@@ -7,71 +7,107 @@
 </section>
 <section class="row mem-fee-form">
   <%= form_for(:form, method: 'post', class: 'reg-form') do |f| %>
-      <div class="col-md-4">
+      <div class="col-md-5 pay-by-card-col">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :pay_by_card, class: 'checkbox' %> Pay By Credit Card
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <%=f.text_field :name, class: 'form-control', placeholder: 'Name as it appears on your card' %>
+            </div>
+          </div>
+          <div class="row col-md-6 no-pad-left">
+            <div class="form-group">
+              <%= f.select :card_type,
+                           options_for_select(@cc_types.collect {|c| [ c['name'], c['name'] ]}),
+                           {:include_blank => false},
+                           {:class => 'form-control'}
+              %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <%= f.text_field :credit_card_no, class: 'form-control', placeholder: 'Credit card number' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6 no-pad-left">
+              <%= f.text_field :security_code, class: 'form-control', placeholder: 'Security Code' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6 no-pad-left">
+              <%= f.text_field :expiry_date, class: 'form-control', placeholder: 'Expiry Date (mm/yyyy)' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <%= f.text_field :address_line_1, class: 'form-control', placeholder: 'Address Line 1' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <%= f.text_field :address_line_2, class: 'form-control', placeholder: 'Address Line 2' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-5 no-pad-left">
+              <%= f.text_field :zip_code, class: 'form-control', placeholder: 'Zip Code' %>
+            </div>
+            <div class="form-group col-md-7 no-pad-left no-pad-right">
+              <%= f.select :country,
+                           options_for_select(@countries.collect {|c| [ c['name'], c['short_name'] ]}, 'PH'),
+                           {:include_blank => false},
+                           {:class => 'form-control'}
+              %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9">
+            </div>
+            <div class="col-md-3 no-pad-right">
+              <%= f.submit "Pay Now", class: 'pay-by-card-btn'%>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
         <div class="row">
           <div class="form-group">
-            <div class="checkbox">
+            <div class="checkbox pad-left-15">
               <label>
-                <%= f.check_box :pay_by_card, class: 'checkbox' %> Pay By Credit Card
+                <%= f.check_box :pay_by_bank_deposit, class: 'checkbox' %> Pay By Bank Deposit
               </label>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="form-group">
-            <%=f.text_field :name, class: 'form-control', placeholder: 'Name as it appears on your card' %>
-          </div>
+        <div class="row pad-left-15">
+          Please deposit your payment at one of the following bank accounts:
         </div>
-        <div class="row col-md-6 no-pad-left">
-          <div class="form-group">
-            <%= f.select :card_type,
-                         options_for_select(@cc_types.collect {|c| [ c['name'], c['name'] ]}),
-                         {:include_blank => false},
-                         {:class => 'form-control'}
-            %>
-          </div>
+        <div class="row pad-left-15 margin-top-15">
+          - BPI, CartStash Inc, Bank Acct #: 071-8888888, Paseo de Roxas Branch
         </div>
-        <div class="row">
-          <div class="form-group">
-            <%= f.text_field :credit_card_no, class: 'form-control', placeholder: 'Credit card number' %>
-          </div>
+        <div class="row pad-left-15 margin-top-15">
+          - BDO, CartStash Inc, Bank Acct #: 088-8888888, SM Delgado, Iloilo Branch
+        </div>
+        <div class="row pad-left-15 margin-top-15">
+          After making your deposit, please send us the receipt number through SMS at +63 917 CRTSTSH or +63 917 1676763
+          or through email at membership@cartstash.com and we will send your membership confirmation through your email.
         </div>
         <div class="row">
-          <div class="form-group col-md-6 no-pad-left">
-            <%= f.text_field :security_code, class: 'form-control', placeholder: 'Security Code' %>
+          <div class="col-md-10">
+          </div>
+          <div class="col-md-2 no-pad-right">
+            <%= f.submit "Complete", class: 'pay-by-card-btn'%>
           </div>
         </div>
-        <div class="row">
-          <div class="form-group col-md-6 no-pad-left">
-            <%= f.text_field :expiry_date, class: 'form-control', placeholder: 'Expiry Date (mm/yyyy)' %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group">
-            <%= f.text_field :address_line_1, class: 'form-control', placeholder: 'Address Line 1' %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group">
-            <%= f.text_field :address_line_2, class: 'form-control', placeholder: 'Address Line 2' %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-md-5 no-pad-left">
-            <%= f.text_field :zip_code, class: 'form-control', placeholder: 'Zip Code' %>
-          </div>
-          <div class="form-group col-md-7 no-pad-left no-pad-right">
-            <%= f.select :country,
-                         options_for_select(@countries.collect {|c| [ c['name'], c['short_name'] ]}, 'PH'),
-                         {:include_blank => false},
-                         {:class => 'form-control'}
-            %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-6">
       </div>
   <% end %>
 </section>
