@@ -46,7 +46,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def credit_card_params
-      params.require(:form).permit(:name, :card_type, :credit_card_no, :security_code,
+      params.require(:form).permit(:first_name, :last_name, :card_type, :credit_card_no, :security_code,
                                    :expiry_date, :address_line_1,  :address_line_2, :zip_code, :country)
     end
 

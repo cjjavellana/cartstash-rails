@@ -43,6 +43,7 @@ credit_card_types_json = ActiveSupport::JSON::decode(File.read('db/seeds/credit_
 credit_card_types_json.each do |data|
   cc_type = CreditCardType.new
   cc_type.name = data['name']
+  cc_type.description = data['description']
   cc_type.save
 end
 
