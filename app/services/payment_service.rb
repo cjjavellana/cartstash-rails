@@ -5,7 +5,15 @@ class PaymentService
   include PayPal::SDK::REST
   include CartstashError
 
-  def charge_credit_card(payment_form, purchased_items, transaction_id, currency='PHP')
+  # Processes the credit card payment request through paypal
+  # === Argument
+  # * <tt>payment_form</tt> - An instance of CreditCardPaymentForm
+  # * <tt>purchased_items</tt> - An array containing an instance of PurchasedItem
+  # * <tt>transaction_id</tt> - A string identifying this payment request
+  # * <tt>currency</tt> - A string indicating the currency to be used; Defaults to Philippine Peso (PHP)
+  # === Exceptions
+  # * <tt>CartstashError::PaymentError</tt> when the payment is unsuccessful
+  def charge_credit_card!(payment_form, purchased_items, transaction_id, currency='PHP')
     payment_request = PaymentRequestHelper.new payment_form, purchased_items, transaction_id, currency
     @payment = Payment.new(payment_request.create_payment_request)
 

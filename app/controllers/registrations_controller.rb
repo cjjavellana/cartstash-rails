@@ -13,6 +13,22 @@ class RegistrationsController < Devise::RegistrationsController
     # TODO: Process credit card payment
     @form = CreditCardPaymentForm.new credit_card_params
     if @form.valid?
+      line_item = PurchasedItem.new
+      line_item.name = 'Membership Fee'
+      line_item.sku = 'memfee'
+      line_item.quantity = 1
+      line_item.price = 999.99
+      items = [line_item]
+
+      payment_service = PaymentService.new
+      begin
+        payment_service.charge_credit_card! @form, items, 'MEM-00001', 'USD'
+      rescue
+
+      end
+
+
+
       redirect_to after_membership_payment
     else
       init_lists

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404091157) do
+ActiveRecord::Schema.define(version: 20150405115424) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "country_code"
@@ -26,6 +26,33 @@ ActiveRecord::Schema.define(version: 20150404091157) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "description"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "duration"
+    t.datetime "start_date"
+    t.string   "expiry_date"
+    t.string   "member_id"
+    t.decimal  "amount_paid", precision: 10, scale: 2
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "status"
+  end
+
+  add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "request_ref"
+    t.string   "payment_ref"
+    t.string   "description"
+    t.decimal  "amount",        precision: 10, scale: 2
+    t.string   "status"
+    t.datetime "cancelled_on"
+    t.string   "cancelled_by"
+    t.string   "cancel_reason"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "product_categories", force: :cascade do |t|

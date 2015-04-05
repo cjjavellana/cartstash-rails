@@ -7,7 +7,6 @@ class CreditCardPaymentForm
   attr_accessor :first_name, :last_name, :card_type, :credit_card_no, :security_code, :expiry_date
   attr_accessor :address_line_1, :address_line_2, :city, :zip_code, :country
 
-
   validates :first_name, :last_name, presence: true
   validates :credit_card_no, length: {minimum: 16, maximum: 16}
   validates :card_type, :address_line_1, :city, :zip_code, :country, presence: true
