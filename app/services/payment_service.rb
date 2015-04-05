@@ -27,79 +27,82 @@ class PaymentRequestHelper
   end
 
   def create_payment_request
-    billing_address = {
-        :line1 => @payment_form.address_line_1,
-        :line2 => @payment_form.address_line_2,
-        :city => @payment_form.city,
-        :country_code => @payment_form.country,
-        :postal_code => @payment_form.zip_code
-    }
+    if @payment_form.valid?
+      billing_address = {
+          :line1 => @payment_form.address_line_1,
+          :line2 => @payment_form.address_line_2,
+          :city => @payment_form.city,
+          :country_code => @payment_form.country,
+          :postal_code => @payment_form.zip_code
+      }
 
-    credit_card = {
-        :type => @payment_form.card_type,
-        :number => @payment_form.credit_card_no,
-        :expire_month => @payment_form.expiry_month,
-        :expire_year => @payment_form.expiry_year,
-        :cvv2 => @payment_form.security_code,
-        :first_name => @payment_form.first_name,
-        :last_name => @payment_form.last_name,
-        :billing_address => billing_address
-    }
+      credit_card = {
+          :type => @payment_form.card_type,
+          :number => @payment_form.credit_card_no,
+          :expire_month => @payment_form.expiry_month,
+          :expire_year => @payment_form.expiry_year,
+          :cvv2 => @payment_form.security_code,
+          :first_name => @payment_form.first_name,
+          :last_name => @payment_form.last_name,
+          :billing_address => billing_address
+      }
 
-    payer = {
-        :payment_method => "credit_card",
-        :funding_instruments => [{:credit_card => credit_card}]
-    }
+      payer = {
+          :payment_method => "credit_card",
+          :funding_instruments => [{:credit_card => credit_card}]
+      }
 
-    items = []
-    discount_amount = 0
-    total_amount = 0;
+      items = []
+      discount_amount = 0
+      total_amount = 0;
 
-    # Construct the items list and calculate the relevant charges i.e. discount, total amount
-    @purchased_items.each do |item|
-      items.push({
-                     :name => item.name,
-                     :sku => item.sku,
-                     :price => item.price.to_s,
-                     :currency => @currency,
-                     :quantity => item.quantity
-                 })
-      total_amount += item.price
-      if item.discount
-        discount_amount += (item.price * item.discount)
-      end
-    end
-
-    if discount_amount > 0
-      items.insert({
-                       :name => 'Discount',
-                       :sku => 'discount',
-                       :price => discount_amount.to_s,
+      # Construct the items list and calculate the relevant charges i.e. discount, total amount
+      @purchased_items.each do |item|
+        items.push({
+                       :name => item.name,
+                       :sku => item.sku,
+                       :price => item.price.to_s,
                        :currency => @currency,
-                       :quantity => "1"
+                       :quantity => item.quantity
                    })
+        total_amount += item.price
+        if item.discount
+          discount_amount += (item.price * item.discount)
+        end
+      end
+
+      if discount_amount > 0
+        items.insert({
+                         :name => 'Discount',
+                         :sku => 'discount',
+                         :price => discount_amount.to_s,
+                         :currency => @currency,
+                         :quantity => "1"
+                     })
+      end
+
+      amount = {
+          :total => (total_amount - discount_amount).to_s,
+          :currency => @currency
+      }
+
+      {
+          :intent => "sale",
+          :payer => payer,
+          :transactions => [
+              {
+                  :items_list => {
+                      :items => items
+                  },
+                  :amount => amount,
+                  :description => "Payment for transaction #{@transaction_id}"
+              }
+          ]
+      }
+    else
+      raise PaymentError, @payment_form.error
     end
 
-    amount = {
-        :total => (total_amount - discount_amount).to_s,
-        :currency => @currency
-    }
-
-    {
-        :intent => "sale",
-        :payer => payer,
-        :transactions => [
-            {
-                :items_list => {
-                    :items => items
-                },
-                :amount => amount,
-                :description => "Payment for transaction #{@transaction_id}"
-            }
-        ]
-    }
   end
-
-  private
 
 end
