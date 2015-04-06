@@ -1,0 +1,7 @@
+membership:
+  name: membership
+  value: 1
+
+payment:
+  name: payment
+  value: 1
