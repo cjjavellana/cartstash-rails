@@ -35,9 +35,15 @@ describe PaymentService do
 
     it "is able to process the transaction and return the payment id" do
       payment_service = PaymentService.new
-      payment_id = payment_service.charge_credit_card! @payment_form, @items, 'Unit Test', 'USD'
-      print "Payment Id: #{payment_id}"
+      payment_id = payment_service.charge_credit_card!(@payment_form, @items, 'Unit Test', 'USD')
+
       expect(payment_id).to_not eq(nil)
+
+      p = Payment.find_by_request_ref('Unit Test')
+      expect(p.status).to eq('PAID')
+      expect(p.payment_ref).to eq(payment_id)
+
+      print "Payment Id: #{payment_id} - #{p.status}"
     end
   end
 

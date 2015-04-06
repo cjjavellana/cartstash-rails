@@ -2,7 +2,6 @@ require 'paypal-sdk-rest'
 require './lib/cartstash_error'
 
 class PaymentService
-  include PayPal::SDK::REST
   include CartstashError
 
   # Processes the credit card payment request through paypal
@@ -15,9 +14,16 @@ class PaymentService
   # * <tt>CartstashError::PaymentError</tt> when the payment is unsuccessful
   def charge_credit_card!(payment_form, purchased_items, transaction_id, currency='PHP')
     payment_request = PaymentRequestHelper.new payment_form, purchased_items, transaction_id, currency
-    @payment = Payment.new(payment_request.create_payment_request)
+    @payment = PayPal::SDK::REST::Payment.new(payment_request.create_payment_request)
+
+    p = Payment.new
+    p.amount = BigDecimal(payment_request.amount[:total])
+    p.description = "Payment for #{transaction_id}"
+    p.request_ref = transaction_id
+    p.save
 
     if @payment.create
+      p.update({:status => 'PAID',:payment_ref => @payment.id})
       @payment.id
     else
       raise PaymentError, @payment.error
@@ -26,6 +32,8 @@ class PaymentService
 end
 
 class PaymentRequestHelper
+
+  attr_reader :amount
 
   def initialize(payment_form, purchased_items, transaction_id, currency='PHP')
     @payment_form = payment_form
@@ -89,7 +97,7 @@ class PaymentRequestHelper
                      })
       end
 
-      amount = {
+      @amount = {
           :total => (total_amount - discount_amount).to_s,
           :currency => @currency
       }
@@ -102,7 +110,7 @@ class PaymentRequestHelper
                   :items_list => {
                       :items => items
                   },
-                  :amount => amount,
+                  :amount => @amount,
                   :description => "Payment for transaction #{@transaction_id}"
               }
           ]
@@ -110,7 +118,6 @@ class PaymentRequestHelper
     else
       raise PaymentError, @payment_form.error
     end
-
   end
 
 end

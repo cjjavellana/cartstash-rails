@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def credit_card_payment
     # TODO: Process credit card payment
-    @form = CreditCardPaymentForm.new credit_card_params
+    @form = CreditCardPaymentForm.new(credit_card_params)
     if @form.valid?
       line_item = PurchasedItem.new
       line_item.name = 'Membership Fee'
@@ -22,14 +22,15 @@ class RegistrationsController < Devise::RegistrationsController
 
       payment_service = PaymentService.new
       begin
-        payment_service.charge_credit_card! @form, items, 'MEM-00001', 'USD'
-      rescue
-
+        seq = SeqGenerator.instance.generate_sequence('membership', 'MEM')
+        payment_service.charge_credit_card!(@form, items, seq, 'USD')
+        redirect_to after_membership_payment
+      rescue CartstashError::PaymentError => e
+        # if payment processing fails
+        @form.errors = e.errors
+        init_lists
+        render after_sign_up_path_for resource
       end
-
-
-
-      redirect_to after_membership_payment
     else
       init_lists
       render after_sign_up_path_for resource
@@ -69,24 +70,24 @@ class RegistrationsController < Devise::RegistrationsController
   private
     def init_lists
       # Try to get list of countries from the cache
-      @countries = $redis.get 'countries'
+      @countries = $redis.get('countries')
       if @countries.nil?
         # A cache-miss, retrieve it from db
         @countries = Country.all.to_json
-        $redis.set 'countries', @countries
+        $redis.set('countries', @countries)
       else
         # A cache-hit, since redis can only store strings
         # We serialize active record to json when storing
         # and convert from json when retrieving from redis
-        @countries = JSON.parse @countries
+        @countries = JSON.parse(@countries)
       end
 
-      @cc_types = $redis.get 'cc_types'
+      @cc_types = $redis.get('cc_types')
       if @cc_types.nil?
         @cc_types = CreditCardType.all.to_json
-        $redis.set 'cc_types', @cc_types
+        $redis.set('cc_types', @cc_types)
       else
-        @cc_types = JSON.parse @cc_types
+        @cc_types = JSON.parse(@cc_types)
       end
     end
 end
