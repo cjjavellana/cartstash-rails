@@ -1,18 +1,19 @@
 require 'rails_helper'
 
-describe SequenceService do
+describe SeqGenerator do
   fixtures :sequences
 
   describe "Sequence generation" do
 
     it "succeeds when there is no duplicate" do
+      seq_generator = SeqGenerator.instance
       sequences = []
       threads = (1..5).map do |i|
-        Thread.new(i) do |i|
+        Thread.new(i) do
           val = []
           (1..10).each do |j|
             type = ((j % 2) == 0) ? "payment" : "membership"
-            seq = SequenceService.generate_sequence type
+            seq = seq_generator.generate_sequence type
             val.push("#{type}-#{seq}")
           end
           sequences.push(val)
@@ -28,19 +29,24 @@ describe SequenceService do
         final_seq_list.concat seq
       end
 
+      # Ensure that we have generated 50 items
+      expect(final_seq_list.length).to eq(50)
+
+      # Ensure that there is no duplicate
       result = final_seq_list.detect { |e| final_seq_list.rindex(e) != final_seq_list.index(e) }
       expect(result).to eq(nil)
 
     end # it ... do
 
     it "fails when there is a duplicate" do
+      seq_generator = SeqGenerator.instance
       sequences = []
       threads = (1..5).map do |i|
-        Thread.new(i) do |i|
+        Thread.new(i) do
           val = []
           (1..10).each do |j|
             type = ((j % 2) == 0) ? "payment" : "membership"
-            seq = SequenceService.generate_sequence type
+            seq = seq_generator.generate_sequence type
             val.push("#{type}-#{seq}")
           end
           sequences.push(val)

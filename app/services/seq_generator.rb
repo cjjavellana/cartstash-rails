@@ -1,7 +1,11 @@
-class  SequenceService
-  @semaphore = Mutex.new
+class SeqGenerator
+  include Singleton
 
-  def self.generate_sequence(type, prefix=nil)
+  def initialize
+    @semaphore = Mutex.new
+  end
+  
+  def generate_sequence(type, prefix=nil)
     @semaphore.synchronize {
      seq = Sequence.find_by_name(type)
      seq.value += 1
