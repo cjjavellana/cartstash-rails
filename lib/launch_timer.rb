@@ -1,5 +1,5 @@
 class TimeDiffComponent
-  attr_accessor :days, :hours, :minutes, :secs
+  attr_reader :days, :hours, :minutes, :secs
 
   def initialize(days, hours, minutes, secs)
     @days = days
