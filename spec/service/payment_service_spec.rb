@@ -17,7 +17,7 @@ describe PaymentService do
       @items.push(purchased_item)
     end
 
-    it "is able to construct the payment request" do
+    it "is able to create the payment request when parameters are valid" do
       payment_helper = PaymentRequestHelper.new @payment_form, @items, 'Unit Test', 'USD'
       expect(payment_helper.create_payment_request[:transactions][0][:amount][:total]).to eq(100.to_s)
     end

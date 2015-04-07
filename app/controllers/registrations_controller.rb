@@ -17,13 +17,22 @@ class RegistrationsController < Devise::RegistrationsController
       line_item.name = 'Membership Fee'
       line_item.sku = 'memfee'
       line_item.quantity = 1
-      line_item.price = 999.99
+      line_item.price = Constants::Membership::FEE_DEFAULT
       items = [line_item]
 
       payment_service = PaymentService.new
       begin
+        mem_fee = Membership.new
+        mem_fee.user = current_user
+        mem_fee.status = Constants::Membership::PENDING
+        mem_fee.duration = 1
+        mem_fee.amount_paid = Constants::Membership::FEE_DEFAULT
+        mem_fee.start_date = Date.now
+        mem_fee.expiry_date = mem_fee + 366
+        mem_fee.save
+
         seq = SeqGenerator.instance.generate_sequence('membership', 'MEM')
-        payment_service.charge_credit_card!(@form, items, seq, 'USD')
+        payment_service.charge_credit_card!(@form, items, seq, Constants::Currency::USD)
         redirect_to after_membership_payment
       rescue CartstashError::PaymentError => e
         # if payment processing fails
@@ -64,7 +73,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     def credit_card_params
       params.require(:form).permit(:first_name, :last_name, :card_type, :credit_card_no, :security_code,
-                                   :expiry_date, :address_line_1,  :address_line_2, :zip_code, :country)
+                                   :expiry_date, :address_line_1,  :address_line_2, :city, :zip_code, :country)
     end
 
   private
