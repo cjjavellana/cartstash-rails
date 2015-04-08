@@ -30,8 +30,8 @@ class RegistrationsController < Devise::RegistrationsController
         mem_fee.amount_paid = Constants::Membership::FEE_DEFAULT
         mem_fee.start_date = Date.today
         mem_fee.expiry_date = mem_fee.start_date + 366
-        mem_fee.save
         mem_fee.member_id = seq
+        mem_fee.save
 
         payment_service.charge_credit_card!(@form, items, seq, Constants::Currency::USD)
 

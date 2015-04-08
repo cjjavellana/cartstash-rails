@@ -12,7 +12,7 @@ describe PaymentService do
       purchased_item = PurchasedItem.new
       purchased_item.name = 'Test 001'
       purchased_item.sku = '001'
-      purchased_item.price = 100
+      purchased_item.price = 10
       purchased_item.quantity = 10
       @items.push(purchased_item)
     end

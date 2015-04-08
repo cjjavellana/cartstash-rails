@@ -13,20 +13,30 @@ class PaymentService
   # === Exceptions
   # * <tt>CartstashError::PaymentError</tt> when the payment is unsuccessful
   def charge_credit_card!(payment_form, purchased_items, transaction_id, currency='PHP')
-    payment_request = PaymentRequestHelper.new payment_form, purchased_items, transaction_id, currency
-    @payment = PayPal::SDK::REST::Payment.new(payment_request.create_payment_request)
+    Payment.transaction do
+      payment_request = PaymentRequestHelper.new payment_form, purchased_items, transaction_id, currency
+      @payment = PayPal::SDK::REST::Payment.new(payment_request.create_payment_request)
 
-    p = Payment.new
-    p.amount = BigDecimal(payment_request.amount[:total])
-    p.description = "Payment for #{transaction_id}"
-    p.request_ref = transaction_id
-    p.save
+      # Create the payment header
+      p = Payment.new
+      p.amount = BigDecimal(payment_request.amount[:total])
+      p.description = "Payment for #{transaction_id}"
+      p.request_ref = transaction_id
+      p.save
 
-    if @payment.create
-      p.update({:status => 'PAID',:payment_ref => @payment.id})
-      @payment.id
-    else
-      raise PaymentError, @payment.error
+      # Create the payment detail
+      purchased_items.each do |t|
+        payment_detail = PaymentDetail.new(:name => t.name, :sku => t.sku, :price => BigDecimal(t.price),
+          :quantity => Float(t.quantity), :discount => t.discount, :payment => p)
+        payment_detail.save
+      end
+
+      if @payment.create
+        p.update({:status => 'PAID', :payment_ref => @payment.id})
+        @payment.id
+      else
+        raise PaymentError, @payment.error
+      end
     end
   end
 end
@@ -74,16 +84,17 @@ class PaymentRequestHelper
 
       # Construct the items list and calculate the relevant charges i.e. discount, total amount
       @purchased_items.each do |item|
+        price = item.price * item.quantity
         items.push({
                        :name => item.name,
                        :sku => item.sku,
-                       :price => item.price.to_s,
+                       :price => price.to_s,
                        :currency => @currency,
                        :quantity => item.quantity
                    })
-        total_amount += item.price
+        total_amount += price
         if item.discount
-          discount_amount += (item.price * item.discount)
+          discount_amount += (price * item.discount)
         end
       end
 

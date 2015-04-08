@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405142857) do
+ActiveRecord::Schema.define(version: 20150408134102) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "country_code"
@@ -41,6 +41,20 @@ ActiveRecord::Schema.define(version: 20150405142857) do
   end
 
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id"
+
+  create_table "payment_details", force: :cascade do |t|
+    t.integer  "payment_id"
+    t.string   "name"
+    t.string   "sku"
+    t.decimal  "price",      precision: 10, scale: 2
+    t.decimal  "amount",     precision: 10, scale: 2
+    t.float    "quantity"
+    t.float    "discount"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "payment_details", ["payment_id"], name: "index_payment_details_on_payment_id"
 
   create_table "payments", force: :cascade do |t|
     t.string   "request_ref"
