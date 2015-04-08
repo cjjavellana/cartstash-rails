@@ -23,5 +23,4 @@ class SeqGenerator
      end
     }
   end
-
 end

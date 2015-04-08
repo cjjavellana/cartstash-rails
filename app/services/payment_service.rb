@@ -26,7 +26,7 @@ class PaymentService
 
       # Create the payment detail
       purchased_items.each do |t|
-        payment_detail = PaymentDetail.new(:name => t.name, :sku => t.sku, :price => BigDecimal(t.price),
+        payment_detail = PaymentDetail.new(:name => t.name, :sku => t.sku, :price => BigDecimal(t.price, 2),
           :quantity => Float(t.quantity), :discount => t.discount, :payment => p)
         payment_detail.save
       end
