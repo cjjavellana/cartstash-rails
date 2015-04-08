@@ -10,7 +10,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def credit_card_payment
-    # TODO: Process credit card payment
     @form = CreditCardPaymentForm.new(credit_card_params)
     if @form.valid?
       line_item = PurchasedItem.new
@@ -22,19 +21,26 @@ class RegistrationsController < Devise::RegistrationsController
 
       payment_service = PaymentService.new
       begin
+        seq = SeqGenerator.instance.generate_sequence(Constants::SequenceGenerator::MEMBERSHIP, 'MEM')
+
         mem_fee = Membership.new
         mem_fee.user = current_user
         mem_fee.status = Constants::Membership::PENDING
         mem_fee.duration = 1
         mem_fee.amount_paid = Constants::Membership::FEE_DEFAULT
-        mem_fee.start_date = Date.now
-        mem_fee.expiry_date = mem_fee + 366
+        mem_fee.start_date = Date.today
+        mem_fee.expiry_date = mem_fee.start_date + 366
+        mem_fee.save
+        mem_fee.member_id = seq
+
+        payment_service.charge_credit_card!(@form, items, seq, Constants::Currency::USD)
+
+        mem_fee.status = Constants::Membership::PAID
         mem_fee.save
 
-        seq = SeqGenerator.instance.generate_sequence('membership', 'MEM')
-        payment_service.charge_credit_card!(@form, items, seq, Constants::Currency::USD)
-        redirect_to after_membership_payment
+        redirect_to registration_complete
       rescue CartstashError::PaymentError => e
+        byebug
         # if payment processing fails
         @form.errors = e.errors
         init_lists
@@ -47,7 +53,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def bank_deposit
-    redirect_to after_membership_payment
+    redirect_to registration_complete
+  end
+
+  def complete
   end
 
   protected
@@ -67,13 +76,13 @@ class RegistrationsController < Devise::RegistrationsController
       '/shop/browse'
     end
 
-    def after_membership_payment
-      '/users/registrations/thankyou'
+    def registration_complete
+      '/users/registrations/complete'
     end
 
     def credit_card_params
       params.require(:form).permit(:first_name, :last_name, :card_type, :credit_card_no, :security_code,
-                                   :expiry_date, :address_line_1,  :address_line_2, :city, :zip_code, :country)
+                                   :expiry_date, :address_line_1, :address_line_2, :city, :zip_code, :country)
     end
 
   private
@@ -84,19 +93,15 @@ class RegistrationsController < Devise::RegistrationsController
         # A cache-miss, retrieve it from db
         @countries = Country.all.to_json
         $redis.set('countries', @countries)
-      else
-        # A cache-hit, since redis can only store strings
-        # We serialize active record to json when storing
-        # and convert from json when retrieving from redis
-        @countries = JSON.parse(@countries)
       end
 
       @cc_types = $redis.get('cc_types')
       if @cc_types.nil?
         @cc_types = CreditCardType.all.to_json
         $redis.set('cc_types', @cc_types)
-      else
-        @cc_types = JSON.parse(@cc_types)
       end
+
+      @countries = JSON.parse(@countries)
+      @cc_types = JSON.parse(@cc_types)
     end
 end

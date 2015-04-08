@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get '/users/registrations/membership' => 'registrations#membership'
     post '/users/registrations/membership' => 'registrations#credit_card_payment'
     post '/users/registrations/bankdeposit' => 'registrations#bank_deposit'
+    get '/users/registrations/complete' => 'registrations#complete'
   end
 
   get '/shop/browse', to: 'main#index'

@@ -1,5 +1,5 @@
 [
-  {"name": "master_card", "description": "Mastercard"},
+  {"name": "mastercard", "description": "Mastercard"},
   {"name": "visa", "description": "Visa"},
   {"name": "amex", "description": "American Express"}
 ]

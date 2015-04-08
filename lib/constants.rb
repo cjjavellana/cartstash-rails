@@ -17,4 +17,8 @@ module Constants
     DELETED = 'deleted'
   end
 
+  module SequenceGenerator
+    MEMBERSHIP = 'membership'
+    PAYMENT = 'payment'
+  end
 end

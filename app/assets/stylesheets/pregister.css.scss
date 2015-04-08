@@ -11,7 +11,12 @@
   @extend .centered;
 }
 
-.invitation-text {
+.reg-complete {
+  @extend .launch-countdown;
+  color: rgba(184, 233, 134, 0.8);
+}
+
+.invitation-text, .reg-complete-text {
   margin-top: 50px;
 }
 
@@ -159,4 +164,8 @@
 
 .margin-top-15 {
   margin-top: 15px;
+}
+
+.user-profile {
+  margin-top: 10px;
 }
