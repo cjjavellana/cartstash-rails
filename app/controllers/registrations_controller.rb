@@ -12,32 +12,8 @@ class RegistrationsController < Devise::RegistrationsController
   def credit_card_payment
     @form = CreditCardPaymentForm.new(credit_card_params)
     if @form.valid?
-      line_item = PurchasedItem.new
-      line_item.name = 'Membership Fee'
-      line_item.sku = 'memfee'
-      line_item.quantity = 1
-      line_item.price = Constants::Membership::FEE_DEFAULT
-      items = [line_item]
-
-      payment_service = PaymentService.new
       begin
-        seq = SeqGenerator.instance.generate_sequence(Constants::SequenceGenerator::MEMBERSHIP, 'MEM')
-
-        mem_fee = Membership.new
-        mem_fee.user = current_user
-        mem_fee.status = Constants::Membership::PENDING
-        mem_fee.duration = 1
-        mem_fee.amount_paid = Constants::Membership::FEE_DEFAULT
-        mem_fee.start_date = Date.today
-        mem_fee.expiry_date = mem_fee.start_date + 366
-        mem_fee.member_id = seq
-        mem_fee.save
-
-        payment_service.charge_credit_card!(@form, items, seq, Constants::Currency::USD)
-
-        mem_fee.status = Constants::Membership::PAID
-        mem_fee.save
-
+        MembershipService.instance.create_membership(current_user, @form)
         redirect_to registration_complete
       rescue CartstashError::PaymentError => e
         byebug

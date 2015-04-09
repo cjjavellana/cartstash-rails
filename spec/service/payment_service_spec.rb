@@ -34,7 +34,7 @@ describe PaymentService do
     end
 
     it "is able to process the transaction and return the payment id" do
-      payment_service = PaymentService.new
+      payment_service = PaymentService.instance
       payment_id = payment_service.charge_credit_card!(@payment_form, @items, 'Unit Test', 'USD')
 
       expect(payment_id).to_not eq(nil)

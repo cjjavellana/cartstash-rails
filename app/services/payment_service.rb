@@ -2,6 +2,7 @@ require 'paypal-sdk-rest'
 require './lib/cartstash_error'
 
 class PaymentService
+  include Singleton
   include CartstashError
 
   # Processes the credit card payment request through paypal
