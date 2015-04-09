@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  around_filter :transactions_filter, :only => [:credit_card_payment]
   include FormValidationHelper
 
   def confirm_account
@@ -14,9 +15,14 @@ class RegistrationsController < Devise::RegistrationsController
     if @form.valid?
       begin
         MembershipService.instance.create_membership(current_user, @form)
+        sha256 = Digest::SHA256.new
+        session[:access_token] = Digest.hexencode(sha256.digest(current_user.email))[0..10]
+
+        user = User.find_by_email(current_user.email)
+        user.update({:invitation_token => session[:access_token]})
+
         redirect_to registration_complete
       rescue CartstashError::PaymentError => e
-        byebug
         # if payment processing fails
         @form.errors = e.errors
         init_lists

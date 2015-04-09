@@ -7,7 +7,7 @@ class MembershipService
   def create_membership(current_user, payment_method = nil)
 
     seq = SeqGenerator.instance.generate_sequence(Constants::SequenceGenerator::MEMBERSHIP, 'MEM')
-
+    
     membership = Membership.new
     membership.user = current_user
     membership.status = Constants::Membership::PENDING
@@ -23,23 +23,19 @@ class MembershipService
     else
       items = [create_membership_fee_line_item]
 
-      begin
-        PaymentService.instance.charge_credit_card!(payment_method, items, seq, Constants::Currency::USD)
-        membership.status = Constants::Membership::PAID
-        membership.save
-      rescue PaymentError => e
-        raise e
-      end
+      PaymentService.instance.charge_credit_card!(payment_method, items, seq, Constants::Currency::USD)
+      membership.status = Constants::Membership::PAID
+      membership.save
     end
   end
 
   private
-    def create_membership_fee_line_item
-      line_item = PurchasedItem.new
-      line_item.name = 'Membership Fee'
-      line_item.sku = 'memfee'
-      line_item.quantity = 1
-      line_item.price = Constants::Membership::FEE_DEFAULT
-      line_item
-    end
+  def create_membership_fee_line_item
+    line_item = PurchasedItem.new
+    line_item.name = 'Membership Fee'
+    line_item.sku = 'memfee'
+    line_item.quantity = 1
+    line_item.price = Constants::Membership::FEE_DEFAULT
+    line_item
+  end
 end

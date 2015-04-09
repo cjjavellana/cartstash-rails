@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          # :confirmable
 
   validates :terms_of_service, :acceptance => {:accept => true}
+
 end
 
 class UserRegistrationForm

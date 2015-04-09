@@ -20,6 +20,13 @@
   margin-top: 50px;
 }
 
+.invite-token {
+  @extend .invitation-text;
+  text-align: center;
+  color: #fff;
+  font-size: 36px;
+}
+
 .footer-row {
   margin-top: 20px;
 }
