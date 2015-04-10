@@ -18,6 +18,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+html {
+  height:100%;
+}
+
 body {
   background: url("images/bg-img.png") no-repeat center fixed;
   background-size: 100% 100%;
@@ -28,6 +32,11 @@ body {
   left:       0;
   font-family: "Century Gothic";
   padding-top: 75px;
+  padding-bottom: 70px;
+}
+
+.container{
+  min-height:100%;
 }
 
 .navbar-fixed-top {
@@ -126,7 +135,20 @@ body {
   }
 }
 
+.content {
+  padding-bottom: 30px;
+}
+
+.footer{
+  height:40px;
+  min-height: 100px;
+  background-color: rgba(255,255,255,0.2);
+  border-color: transparent;
+}
+
 .footer-row {
+
+  margin-top: 25px;
 
   a {
     color: #fff;

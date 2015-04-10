@@ -12,7 +12,8 @@
 }
 
 .reg-complete {
-  @extend .launch-countdown;
+  font-size: 36px;
+  @extend .centered;
   color: rgba(184, 233, 134, 0.8);
 }
 
@@ -25,10 +26,6 @@
   text-align: center;
   color: #fff;
   font-size: 36px;
-}
-
-.footer-row {
-  margin-top: 20px;
 }
 
 .reg-header {
