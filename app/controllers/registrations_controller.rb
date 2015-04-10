@@ -23,7 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
 
         redirect_to registration_complete
       rescue CartstashError::PaymentError => e
-        # if payment processing fails
+        # TODO handle errors properly
         @form.errors = e.errors
         init_lists
         render after_sign_up_path_for resource

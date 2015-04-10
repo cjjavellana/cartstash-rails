@@ -20,7 +20,7 @@ describe MembershipService do
       mem = Membership.find_by_user_id(current_user.id)
 
       expect(mem).to_not be_nil
-      expect(mem.status).to eq(Constants::Membership::PAID)
+      expect(mem.status).to eq(Constants::Membership::ACTIVE)
     end
 
     it "is able to create membership with pending status when there is no payment method" do

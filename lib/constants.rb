@@ -6,11 +6,10 @@ module Constants
   end
 
   module Membership
-    FEE_DEFAULT = 999.99
+    FEE_DEFAULT = 888.88
 
     # Membership status
     PENDING = 'pending'
-    PAID = 'paid'
     ACTIVE = 'active'
     EXPIRED = 'expired'
     CANCELLED = 'cancelled'

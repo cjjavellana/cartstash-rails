@@ -24,7 +24,7 @@ class MembershipService
       items = [create_membership_fee_line_item]
 
       PaymentService.instance.charge_credit_card!(payment_method, items, seq, Constants::Currency::USD)
-      membership.status = Constants::Membership::PAID
+      membership.status = Constants::Membership::ACTIVE
       membership.save
     end
   end
