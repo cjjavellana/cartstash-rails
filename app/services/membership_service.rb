@@ -7,7 +7,7 @@ class MembershipService
   def create_membership(current_user, payment_method = nil)
 
     seq = SeqGenerator.instance.generate_sequence(Constants::SequenceGenerator::MEMBERSHIP, 'MEM')
-    
+
     membership = Membership.new
     membership.user = current_user
     membership.status = Constants::Membership::PENDING
