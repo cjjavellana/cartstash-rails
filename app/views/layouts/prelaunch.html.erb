@@ -19,9 +19,11 @@
           <div class="cs-logo pull-left">
             <%= link_to image_tag("images/cs-white-orange-logo.png", alt: "CartStash Logo"), root_path %>
           </div>
-          <% unless signed_in? or request.original_url.include? 'sign_in' %>
-              <%= button_to '', new_user_session_path, :class => 'login-btn2 pull-right', :method => 'get' %>
-          <% end %>
+          <div class="signup-login-btn pull-right">
+            <% unless signed_in? or request.original_url.include? 'sign_in' %>
+                <%= button_to '', new_user_session_path, :class => 'login-btn2 pull-right', :method => 'get' %>
+            <% end %>
+          </div>
           <% if current_user %>
           <div class="dropdown pull-right user-profile">
             <button class="btn user-info-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">

@@ -60,8 +60,17 @@ body {
 .login-btn2 {
   background: url("images/login-btn2.png") no-repeat center;
   width: 100px;
-  margin-top: 15px;
+  margin-top: 13px;
   @extend .login;
+}
+
+.add2cart-btn {
+  height: 30px;
+  width: 85px;
+  border: none;
+  background: url("images/redcart.png") no-repeat center;
+  margin-top: 35px;
+  margin-left: -45px;
 }
 
 .user-info-btn {
@@ -120,7 +129,7 @@ body {
 
 .product-box {
   background-color: rgba(255,255,255,0.5);
-  height: 250px;
+  height: 150px;
   width: 250px;
   margin: 10px 10px 0px 0px;
   border-radius: 8px;
@@ -175,4 +184,17 @@ body {
   .info-links {
     padding-bottom: 10px;
   }
+}
+
+.product-img {
+  margin-top: 5px;
+}
+
+.product-description {
+  color: #000;
+  margin-top: 5px;
+}
+
+.pad-left-none {
+  padding-left: 5px!important;
 }

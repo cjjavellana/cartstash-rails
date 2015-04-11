@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   belongs_to :ProductCategory
 
   # Pagination parameter
-  paginates_per 8
+  paginates_per 12
 
   # Callbacks
   before_save :generate_slug
