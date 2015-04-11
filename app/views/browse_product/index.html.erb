@@ -16,7 +16,8 @@
             <%= product.name.length > 50 ?  "#{product.name[0..50]}..." : product.name %>
           </div>
           <div class="col-md-2">
-            <%= button_to '', '#', :class => 'add2cart-btn', :remote => true %>
+            <%= button_to '', {:controller => "cart", :action => "add2cart" ,:sku => product.cs_sku},
+                          :class => 'add2cart-btn', :remote => true, :form_class => 'add2cart-form' %>
           </div>
         </div>
       </div>

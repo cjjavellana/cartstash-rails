@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     get '/users/registrations/complete' => 'registrations#complete'
   end
 
-  get '/shop/browse', to: 'main#index'
+  post '/shop/add2cart', to: 'cart#add2cart'
+  get '/shop/browse', to: 'browse_product#index'
 
 
 end

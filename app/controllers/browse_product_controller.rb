@@ -1,4 +1,4 @@
-class MainController < ApplicationController
+class BrowseProductController < CartController
   def index
     page = params[:page]
     if page.nil?
