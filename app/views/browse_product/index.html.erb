@@ -4,20 +4,22 @@
       <% if index % 3 == 0 %>
           <div class="row">
       <% end %>
-      <div class="col-md-3 col-xs-3 product-box">
-        <div class="row">
-          <div class="col-md-12 img-holder">
-            <%= image_tag 'safeguard.png', :class => 'product-img pull-left' %>
-            <span class="pull-right product-description">Php <%= product.price %> </span>
+      <div class="col-md-4 col-xs-12">
+        <div class="product-box">
+          <div>
+            <div class="col-md-12 img-holder">
+              <%= image_tag 'safeguard.png', :class => 'product-img pull-left' %>
+              <span class="pull-right product-description">Php <%= product.price %> </span>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-10 product-description pull-left">
-            <%= product.name.length > 50 ?  "#{product.name[0..50]}..." : product.name %>
-          </div>
-          <div class="col-md-2">
-            <%= button_to '', {:controller => "cart", :action => "add2cart" ,:sku => product.cs_sku},
-                          :class => 'add2cart-btn', :remote => true, :form_class => 'add2cart-form' %>
+          <div>
+            <div class="col-md-10 product-description pull-left">
+              <%= product.name.length > 50 ? "#{product.name[0..50]}..." : product.name %>
+            </div>
+            <div class="col-md-2">
+              <%= button_to '', {:controller => 'browse_product', :action => "add2cart"},
+                            {:class => 'add2cart-btn', :remote => true, :form_class => 'add2cart-form', :params => {:sku => product.cs_sku}} %>
+            </div>
           </div>
         </div>
       </div>

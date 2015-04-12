@@ -1,5 +1,39 @@
 <div class="main">
-  <div class="row">
-    <span>Cart Summary</span>
+  <div class="line-items">
+    <div class="row">
+      <div class="col-md-12 tx-summary">Transaction Summary</div>
+    </div>
+    <div class="row costing-info">
+      <div class="col-md-5 total-cost">Total Cost:</div>
+      <div class="col-md-7 total-cost">Php 4500.00</div>
+    </div>
+    <div class="row checkout-row">
+      <div class="col-md-5"></div>
+      <div class="col-md-7">
+        <%= button_to 'Checkout', '#', class: "btn checkout-btn" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 tx-summary">Items List</div>
+    </div>
+    <% unless session[:cart_items].nil? %>
+        <% session[:cart_items].each do |key, purchased_item| %>
+            <div class="line-item">
+              <div class="row">
+                <div class="col-md-12 item-desc">
+                  <%= purchased_item["name"].length > 30 ? purchased_item["name"][0..30] : purchased_item["name"] %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 item-desc form-group">
+                  <%= text_field(:order, :qty, {:class => "form-control input-sm", :value => purchased_item["quantity"]}) %>
+                </div>
+                <div class="col-md-8 item-desc">
+                  <%= "Price: #{number_to_currency(Float(purchased_item["price"]) * Float(purchased_item["quantity"]), unit: 'Php ')}" %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+    <% end %>
   </div>
 </div>

@@ -130,7 +130,6 @@ body {
 .product-box {
   background-color: rgba(255,255,255,0.5);
   height: 150px;
-  width: 250px;
   margin: 10px 10px 0px 0px;
   border-radius: 8px;
 }
@@ -197,4 +196,44 @@ body {
 
 .pad-left-none {
   padding-left: 5px!important;
+}
+
+.line-items {
+  background-color: rgba(255,255,255,0.5);
+  overflow-y: auto;
+  height: 630px;
+  margin-top: 50px;
+  border-radius: 4px;
+  padding: 0 15px 15px;
+}
+
+.line-item {
+  font-size: 12px;
+  padding-bottom: 5px;
+}
+
+.item-desc {
+  color: #000;
+}
+
+.tx-summary {
+  color: #000;
+  font-weight: bold;
+}
+
+.total-cost {
+  @extend .tx-summary;
+  margin-top: 15px;
+}
+
+.checkout-btn {
+  height: 40px;
+  border-radius: 4px;
+  background-color: rgba(184, 233, 134, 0.8);
+  color: #000;
+}
+
+.checkout-row {
+  border-bottom: 1px solid #000;
+  padding-bottom: 5px;
 }

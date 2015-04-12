@@ -44,6 +44,7 @@ gem 'time_difference', '0.4.2'
 gem 'gibbon'
 gem 'credit_card_validator'
 gem 'paypal-sdk-rest'
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
