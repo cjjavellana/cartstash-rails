@@ -6,8 +6,10 @@ class CartController < ApplicationController
     # check if we already have that sku in the cart
     item = cart_items[params[:sku].to_sym]
     unless item.nil?
+      qty = params[:qty].nil? ? 1 : params[:qty]
+
       # item already in cart
-      item["quantity"] = Integer(item["quantity"]) + 1
+      item["quantity"] = Integer(qty)
     else
       # item not in cart yet. retrieve details from database
       product = Product.find_by_cs_sku(params[:sku])
@@ -27,7 +29,7 @@ class CartController < ApplicationController
 
   private
     def secure_params
-      params.permit(:sku)
+      params.permit(:sku, :qty)
     end
 
 end

@@ -26,7 +26,7 @@
               </div>
               <div class="row">
                 <div class="col-md-4 item-desc form-group">
-                  <%= text_field(:order, :qty, {:class => "form-control input-sm", :value => purchased_item["quantity"]}) %>
+                  <%= text_field(:order, :qty, {:class => "form-control input-sm item-qty", :value => purchased_item["quantity"], :sku => key}) %>
                 </div>
                 <div class="col-md-8 item-desc">
                   <%= "Price: #{number_to_currency(Float(purchased_item["price"]) * Float(purchased_item["quantity"]), unit: 'Php ')}" %>
