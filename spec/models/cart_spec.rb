@@ -1,11 +1,26 @@
 describe Cart do
 
-  let(:empty_cart) {
+  let(:cart) {
     Cart.new
   }
 
-  it "returns an empty cart when there are no items" do
-    expect(empty_cart).to be_empty
+  before(:all) do
+    create(:breeze_detergent)
+    create(:tide_liquid_detergent)
   end
 
+  it "returns an empty cart when there are no items" do
+    expect(cart).to be_empty
+  end
+
+  it "can add an item into the cart" do
+    cart.add_item("40-100-01")
+    cart.add_item("40-120-01", 3)
+
+    expect(cart.unique_items).to eq(2)
+  end
+
+  it "raises an error when it cannot find the item"  do
+    expect{cart.add_item("fake-sku")}.to raise_error
+  end
 end

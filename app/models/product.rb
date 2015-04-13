@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   include Utilities::Slug
 
   # Relationships
-  belongs_to :ProductCategory
+  belongs_to :product_category
 
   # Pagination parameter
   paginates_per 12
