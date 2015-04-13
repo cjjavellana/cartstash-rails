@@ -1,9 +1,14 @@
 require 'rails_helper'
 
 describe SeqGenerator do
-  fixtures :sequences
 
   describe "Sequence generation" do
+
+    before(:all) do
+      # create the sequences
+      create(:membership_sequence)
+      create(:payment_sequence)
+    end
 
     it "succeeds when there is no duplicate" do
       seq_generator = SeqGenerator.instance

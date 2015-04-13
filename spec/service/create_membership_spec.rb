@@ -15,6 +15,12 @@ describe MembershipService do
                                 :city => 'Unknown City', :zip_code => '5000', :country => 'PH')
     }
 
+    before(:all) do
+      # create the sequences
+      create(:membership_sequence)
+      create(:payment_sequence)
+    end
+
     it "is able to create membership, payment and payment detail entries" do
       MembershipService.instance.create_membership(current_user, payment_form)
       mem = Membership.find_by_user_id(current_user.id)
