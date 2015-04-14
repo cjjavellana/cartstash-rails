@@ -5,7 +5,11 @@ class PurchasedItem
     @name = params[:name]
     @sku = params[:sku]
     @price = params[:price]
-    @discount = params[:quantity]
-    @quantity = params[:discount]
+    @discount = params[:discount]
+    @quantity = params[:quantity]
+  end
+
+  def total_price
+    @quantity * @price
   end
 end

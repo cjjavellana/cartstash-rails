@@ -21,6 +21,10 @@ class Cart
     @item_map.length
   end
 
+  def price
+    @item_map.inject(0) { |total, (k, v)| total += v.total_price }
+  end
+
   def empty?
     @item_map.empty?
   end

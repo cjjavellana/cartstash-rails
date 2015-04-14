@@ -23,4 +23,11 @@ describe Cart do
   it "raises an error when it cannot find the item"  do
     expect{cart.add_item("fake-sku")}.to raise_error
   end
+
+  it "can calculate the price of all items in the cart" do
+    cart.add_item("40-100-01")
+    cart.add_item("40-120-01", 3)
+
+    expect(cart.price).to eq(910.96)
+  end
 end
