@@ -1,5 +1,10 @@
 class SessionsController < Devise::SessionsController
 
+  def destroy
+    $redis.del("cart_#{session.id}")
+    super
+  end
+
   protected
     def after_sign_in_path_for(resources)
       # Check if the user has an active membership

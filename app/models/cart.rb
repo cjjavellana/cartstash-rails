@@ -14,6 +14,8 @@ class Cart
       raise "#{sku} not found" if product.nil?
       item = PurchasedItem.new({:name => product.name, :price => product.price, :sku => product.cs_sku, :quantity => qty})
       @item_map[sku.to_sym] = item
+    else
+      item.quantity += Float(qty)
     end
   end
 
@@ -28,4 +30,15 @@ class Cart
   def empty?
     @item_map.empty?
   end
+
+  # Restores a json encoded string to Cart object
+  def self.restore(cart_json)
+    cart = Cart.new
+    cart_json["item_map"].map().each do |k,v|
+      cart.item_map[k.to_sym] = PurchasedItem.new({:name => v["name"], :price => Float(v["price"]),
+                                        :sku => v["sku"], :quantity => Float(v["quantity"])})
+    end
+    cart
+  end
+
 end

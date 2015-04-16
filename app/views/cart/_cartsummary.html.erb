@@ -5,7 +5,7 @@
     </div>
     <div class="row costing-info">
       <div class="col-md-5 total-cost">Total Cost:</div>
-      <div class="col-md-7 total-cost">Php 4500.00</div>
+      <div class="col-md-7 total-cost"><%= @cart.nil? ? "Php 0.00" : number_to_currency(@cart.price, unit: 'Php ')%></div>
     </div>
     <div class="row checkout-row">
       <div class="col-md-5"></div>
@@ -16,20 +16,21 @@
     <div class="row">
       <div class="col-md-12 tx-summary">Items List</div>
     </div>
-    <% unless session[:cart_items].nil? %>
-        <% session[:cart_items].each do |key, purchased_item| %>
+
+    <% unless @cart.nil? %>
+        <% @cart.item_map.each do |sku, purchased_item| %>
             <div class="line-item">
               <div class="row">
                 <div class="col-md-12 item-desc">
-                  <%= purchased_item["name"].length > 30 ? purchased_item["name"][0..30] : purchased_item["name"] %>
+                  <%= purchased_item.name.length > 30 ? purchased_item.name[0..30] : purchased_item.name %>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4 item-desc form-group">
-                  <%= text_field(:order, :qty, {:class => "form-control input-sm item-qty", :value => purchased_item["quantity"], :sku => key}) %>
+                  <%= text_field(:order, :qty, {:class => "form-control input-sm item-qty", :value => purchased_item.quantity, :sku => sku}) %>
                 </div>
                 <div class="col-md-8 item-desc">
-                  <%= "Price: #{number_to_currency(Float(purchased_item["price"]) * Float(purchased_item["quantity"]), unit: 'Php ')}" %>
+                  <%= "Price: #{number_to_currency(purchased_item.price, unit: 'Php ')}" %>
                 </div>
               </div>
             </div>
