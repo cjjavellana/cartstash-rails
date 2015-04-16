@@ -19,6 +19,15 @@ class Cart
     end
   end
 
+  def update_item(sku, qty)
+    item = @item_map[sku.to_sym]
+    if item.nil?
+      add_item sku, qty
+    else
+      item.quantity = Float(qty)
+    end
+  end
+
   def unique_items
     @item_map.length
   end

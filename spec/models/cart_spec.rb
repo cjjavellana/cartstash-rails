@@ -31,10 +31,18 @@ describe Cart do
     expect(cart.price).to eq(910.96)
   end
 
-  it "is able to update the quantity of an item in the cart" do
+  it "can increase the quantity of an item in the cart" do
     cart.add_item("40-100-01")
     cart.add_item("40-100-01")
 
     expect(cart.item_map["40-100-01".to_sym].quantity).to eq(2)
+  end
+
+  it "can revise the quantity of an item in the cart" do
+    cart.add_item("40-100-01", 2)
+    expect(cart.item_map["40-100-01".to_sym].quantity).to eq(2)
+
+    cart.update_item("40-100-01", 5)
+    expect(cart.item_map["40-100-01".to_sym].quantity).to eq(5)
   end
 end
