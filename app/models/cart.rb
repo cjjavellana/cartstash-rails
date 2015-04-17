@@ -28,6 +28,10 @@ class Cart
     end
   end
 
+  def remove_item(sku)
+    @item_map.delete sku.to_sym
+  end
+
   def unique_items
     @item_map.length
   end

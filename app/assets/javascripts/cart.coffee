@@ -15,10 +15,11 @@ $(document).on "keyup", ".item-qty", ->
           sku: sku
           qty: qty
         success: (data, status, response) ->
-          # data is the object that contains all info returned
+          # set focus and move cursor to the end
+          text_box = $('#' + text_box.attr('id'))
+          text_box.focus().val(text_box.val())
         error: ->
           # an error has occurred
-      text_box.focus
       return
     else
       # highlight the box

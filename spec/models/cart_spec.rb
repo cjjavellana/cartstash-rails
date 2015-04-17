@@ -45,4 +45,13 @@ describe Cart do
     cart.update_item("40-100-01", 5)
     expect(cart.item_map["40-100-01".to_sym].quantity).to eq(5)
   end
+
+  it "can remove an item from the cart" do
+    cart.add_item("40-100-01")
+    expect(cart.unique_items).to eq(1)
+
+    cart.remove_item("40-100-01")
+    expect(cart).to be_empty
+  end
+
 end
