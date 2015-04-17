@@ -18,6 +18,7 @@ $(document).on "keyup", ".item-qty", ->
           # data is the object that contains all info returned
         error: ->
           # an error has occurred
+      text_box.focus
       return
     else
       # highlight the box

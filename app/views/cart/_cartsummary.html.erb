@@ -30,7 +30,7 @@
                   <%= text_field(:order, :qty, {:class => "form-control input-sm item-qty", :value => purchased_item.quantity, :sku => sku}) %>
                 </div>
                 <div class="col-md-8 item-desc">
-                  <%= "Price: #{number_to_currency(purchased_item.price, unit: 'Php ')}" %>
+                  <%= "Price: #{number_to_currency(purchased_item.total_price, unit: 'Php ')}" %>
                 </div>
               </div>
             </div>
