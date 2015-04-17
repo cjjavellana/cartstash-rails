@@ -1,6 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+
 $(document).on "keyup", ".item-qty", ->
   text_box = $(this)
   sku = $(this).attr('sku')

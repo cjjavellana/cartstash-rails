@@ -33,7 +33,7 @@ class CartController < ApplicationController
       yield
       $redis.set("cart_#{session.id}", @cart.to_json)
       respond_to do |format|
-        format.js {}
+        format.js {render 'cart'}
       end
     end
 

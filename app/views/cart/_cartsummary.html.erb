@@ -22,7 +22,9 @@
             <div class="line-item">
               <div class="row">
                 <div class="col-md-10 item-desc">
-                  <%= purchased_item.name.length > 30 ? purchased_item.name[0..30] : purchased_item.name %>
+                  <span data-toggle=tooltip data-placement=right title="<%=purchased_item.name%>">
+                    <%= purchased_item.name.length > 20 ? "#{purchased_item.name[0..20]}..." : purchased_item.name %>
+                  </span>
                 </div>
                 <div class="col-md-2">
                     <%= button_to '', {:controller => 'browse_product', :action => 'remove_item'},
