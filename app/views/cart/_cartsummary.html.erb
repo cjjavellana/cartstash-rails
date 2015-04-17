@@ -21,8 +21,12 @@
         <% @cart.item_map.each do |sku, purchased_item| %>
             <div class="line-item">
               <div class="row">
-                <div class="col-md-12 item-desc">
+                <div class="col-md-10 item-desc">
                   <%= purchased_item.name.length > 30 ? purchased_item.name[0..30] : purchased_item.name %>
+                </div>
+                <div class="col-md-2">
+                    <%= button_to '', {:controller => 'browse_product', :action => 'remove_item'},
+                                  {:method => 'delete', :class => 'removeitem-btn', :remote => true, :form_class => 'removeitem-form', :params => {:sku => purchased_item.sku}}%>
                 </div>
               </div>
               <div class="row">

@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   end
 
   post '/shop/add2cart', to: 'browse_product#add2cart'
-  post 'shop/updatecart', to: 'browse_product#update_cart'
+  post '/shop/updatecart', to: 'browse_product#update_cart'
+  delete '/shop/removeitem', to: 'browse_product#remove_item'
   get '/shop/browse', to: 'browse_product#index'
 
 
