@@ -17,8 +17,8 @@
               <%= product.name.length > 50 ? "#{product.name[0..50]}..." : product.name %>
             </div>
             <div class="col-md-2">
-              <%= button_to '', {:controller => 'browse_product', :action => "add2cart"},
-                            {:class => 'add2cart-btn', :remote => true, :form_class => 'add2cart-form', :params => {:sku => product.cs_sku}} %>
+              <%= button_to '', shop_index_path, {:class => 'add2cart-btn', :remote => true, :method => 'post',
+                                                  :form_class => 'add2cart-form', :params => {:sku => product.cs_sku}} %>
             </div>
           </div>
         </div>

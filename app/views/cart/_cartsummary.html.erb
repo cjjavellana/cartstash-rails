@@ -35,7 +35,7 @@
                   </span>
                 </div>
                 <div class="col-md-2">
-                    <%= button_to '', {:controller => 'browse_product', :action => 'remove_item'},
+                    <%= button_to '', {:controller => 'shop', :action => 'destroy', :id => purchased_item.sku},
                                   {:method => 'delete', :class => 'removeitem-btn', :remote => true, :form_class => 'removeitem-form', :params => {:sku => purchased_item.sku}}%>
                 </div>
               </div>

@@ -10,8 +10,8 @@ $(document).on "keyup", ".item-qty", ->
   delay(->
     if isNumber(qty)
       $.ajax
-        url: '/shop/updatecart'
-        type: 'POST'
+        url: '/shop/' + sku
+        type: 'PUT'
         data:
           sku: sku
           qty: qty

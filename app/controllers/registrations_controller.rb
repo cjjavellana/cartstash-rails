@@ -55,7 +55,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def after_sign_in_path_for(resources)
-      '/shop/browse'
+      '/shop'
     end
 
     def registration_complete
