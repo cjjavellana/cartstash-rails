@@ -12,7 +12,7 @@ class SessionsController < Devise::SessionsController
       if mem.nil? or !mem.status.eql?(Constants::Membership::ACTIVE)
         '/users/registrations/membership'
       else
-        '/shop/browse'
+        '/shop'
       end
 
 

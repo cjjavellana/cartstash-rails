@@ -26,6 +26,7 @@ FactoryGirl.define do
     description   "Breeze Washing Machine Detergent, 5kg"
     price         "175.99"
     cs_sku        "40-100-01"
+    uom           "ea"
     association :product_category, factory: :household
   end
 
@@ -34,6 +35,7 @@ FactoryGirl.define do
     description   "Tide Liquid Detergent, 5L"
     price         "244.99"
     cs_sku        "40-120-01"
+    uom           "ea"
     association :product_category, factory: :household
   end
 end

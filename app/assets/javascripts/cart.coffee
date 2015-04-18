@@ -19,6 +19,7 @@ $(document).on "keyup", ".item-qty", ->
           # set focus and move cursor to the end
           text_box = $('#' + text_box.attr('id'))
           text_box.focus().val(text_box.val())
+          $(".cart-summary").animate({ scrollTop: $('.cart-summary').height()}, 1000);
         error: ->
           # an error has occurred
       return

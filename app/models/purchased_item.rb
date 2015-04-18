@@ -1,5 +1,5 @@
 class PurchasedItem
-  attr_accessor :name, :sku, :price, :discount, :quantity
+  attr_accessor :name, :sku, :price, :discount, :quantity, :uom
 
   def initialize(params = {})
     @name = params[:name]
@@ -7,6 +7,7 @@ class PurchasedItem
     @price = params[:price]
     @discount = params[:discount]
     @quantity = params[:quantity]
+    @uom = params[:uom]
   end
 
   def total_price
