@@ -28,7 +28,7 @@ describe Cart do
     cart.add_item("40-100-01")
     cart.add_item("40-120-01", 3)
 
-    expect(cart.price).to eq(910.96)
+    expect(cart.sub_total).to eq(910.96)
   end
 
   it "can increase the quantity of an item in the cart" do
@@ -52,6 +52,14 @@ describe Cart do
 
     cart.remove_item("40-100-01")
     expect(cart).to be_empty
+  end
+
+  it "will calculate the sales tax" do
+    cart.add_item("40-100-01")
+    cart.add_item("40-120-01", 3)
+
+    expect(cart.sub_total).to eq(910.96)
+    expect(cart.sales_tax).to eq(109.32)
   end
 
 end

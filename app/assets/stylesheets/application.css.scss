@@ -220,16 +220,33 @@ body {
 
 .item-desc {
   color: #000;
+  padding-left: 0px;
 }
 
 .tx-summary {
   color: #000;
+  font-size: 14px;
   font-weight: bold;
+  padding: 5px 0px 5px;
+  font-family: Verdana, Geneva, sans-serif;
+  border-bottom: 1px solid #625B64;
+}
+
+.items-list-hdr {
+  @extend .tx-summary;
+  margin-bottom: 10px;
 }
 
 .total-cost {
-  @extend .tx-summary;
   margin-top: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 0px;
+  color: #000;
+}
+
+.total-cost-amt {
+  border-bottom: 1px solid #625B64;
 }
 
 .checkout-btn {
@@ -239,7 +256,10 @@ body {
   color: #000;
 }
 
+.checkout-btn-row {
+  padding-left: 5px;
+}
+
 .checkout-row {
-  border-bottom: 1px solid #000;
   padding-bottom: 5px;
 }

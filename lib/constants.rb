@@ -1,5 +1,9 @@
 module Constants
 
+  module Tax
+    RATE = 0.12
+  end
+
   module Currency
     USD = 'USD'
     PHP = 'PHP'

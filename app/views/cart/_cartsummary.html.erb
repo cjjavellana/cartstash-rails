@@ -1,27 +1,35 @@
 <div class="main">
   <div class="line-items">
     <div class="row">
-      <div class="col-md-12 tx-summary">Transaction Summary</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-10 tx-summary">SUMMARY</div>
+      <div class="col-md-1"></div>
     </div>
     <div class="row costing-info">
-      <div class="col-md-5 total-cost">Total Cost:</div>
-      <div class="col-md-7 total-cost"><%= @cart.nil? ? "Php 0.00" : number_to_currency(@cart.price, unit: 'Php ')%></div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5 total-cost">TOTAL</div>
+      <div class="col-md-5 total-cost total-cost-amt"><%= @cart.nil? ? "Php 0.00" : number_to_currency(@cart.sub_total, unit: 'Php ')%></div>
+      <div class="col-md-1 total-cost"></div>
     </div>
     <div class="row checkout-row">
-      <div class="col-md-5"></div>
-      <div class="col-md-7">
+      <div class="col-md-6"></div>
+      <div class="col-md-5 checkout-btn-row">
         <%= button_to 'Checkout', '#', class: "btn checkout-btn" %>
       </div>
+      <div class="col-md-1"></div>
     </div>
     <div class="row">
-      <div class="col-md-12 tx-summary">Items List</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-10 items-list-hdr">ITEMS LIST</div>
+      <div class="col-md-1"></div>
     </div>
 
     <% unless @cart.nil? %>
         <% @cart.item_map.each do |sku, purchased_item| %>
             <div class="line-item">
               <div class="row">
-                <div class="col-md-10 item-desc">
+                <div class="col-md-1"></div>
+                <div class="col-md-8 item-desc">
                   <span data-toggle=tooltip data-placement=right title="<%=purchased_item.name%>">
                     <%= purchased_item.name.length > 20 ? "#{purchased_item.name[0..20]}..." : purchased_item.name %>
                   </span>
@@ -32,10 +40,11 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-md-1"></div>
                 <div class="col-md-4 item-desc form-group">
                   <%= text_field(:order, :qty, {:class => "form-control input-sm item-qty", :value => purchased_item.quantity, :sku => sku, :id => sku}) %>
                 </div>
-                <div class="col-md-8 item-desc">
+                <div class="col-md-6 item-desc">
                   <%= "Price: #{number_to_currency(purchased_item.total_price, unit: 'Php ')}" %>
                 </div>
               </div>

@@ -10,6 +10,6 @@ class PurchasedItem
   end
 
   def total_price
-    @quantity * @price
+    (@quantity * @price).round(2)
   end
 end

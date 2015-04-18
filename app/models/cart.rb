@@ -1,5 +1,5 @@
 class Cart
-
+  include Constants
   attr_accessor :item_map
 
   def initialize
@@ -36,8 +36,12 @@ class Cart
     @item_map.length
   end
 
-  def price
+  def sub_total
     @item_map.inject(0) { |total, (k, v)| total += v.total_price }
+  end
+
+  def sales_tax
+    (sub_total * Tax::RATE).round(2)
   end
 
   def empty?
