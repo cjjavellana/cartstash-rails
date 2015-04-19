@@ -21,7 +21,14 @@
 
   .total-price-row {
     border-top: 1px solid #fff;
+    .total-price {
+      font-weight: bold;
+    }
   }
+}
+
+.review-order-table {
+  margin-bottom: 0px!important;
 }
 
 .pm-header-label {
@@ -35,4 +42,13 @@
     font-size: 12px;
     text-align: right;
   }
+}
+
+.pm-options .row {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.chkout-action-top {
+  padding-bottom: 5px;
 }

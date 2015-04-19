@@ -15,6 +15,7 @@ class PaymentMethod < ActiveRecord::Base
 
   validate :credit_card_number
 
+  before_validation :assemble_expiry_date
   after_validation :split_expiry_date_to_components
 
   def masked_credit_card
@@ -41,4 +42,11 @@ class PaymentMethod < ActiveRecord::Base
       self.expiry_month, self.expiry_year = match.captures
     end
   end
+
+  def assemble_expiry_date
+    unless self.expiry_month.nil? and self.expiry_year.nil?
+      self.expiry_date = "#{self.expiry_month}/#{self.expiry_year}"
+    end
+  end
+
 end

@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require 'json'
+require 'factory_girl_rails'
 
 supplier_json = ActiveSupport::JSON.decode(File.read('db/seeds/supplier.json'))
 supplier_json.each do |data|
@@ -55,3 +56,5 @@ countries_json.each do |data|
   country.short_name = data['cca2']
   country.save
 end
+
+FactoryGirl.create :foobar_visa

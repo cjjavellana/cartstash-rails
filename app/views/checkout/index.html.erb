@@ -1,20 +1,20 @@
 <div class="main">
   <div class="row">
-    <div class="col-md-12 review-order">
+    <div class="col-md-10 review-order">
       Review Order
     </div>
   </div>
   <div class="row">
     <div class="col-md-12 no-pad-left review-order-table">
-      <table class="table">
+      <table class="table review-order-table">
         <thead>
         <tr>
           <td>Item No</td>
           <td>Description</td>
           <td>Unit</td>
-          <td>Price</td>
-          <td>Quantity</td>
-          <td>Sub-Total</td>
+          <td class="text-right">Price</td>
+          <td class="text-right">Quantity</td>
+          <td class="text-right">Sub-Total</td>
         </tr>
         </thead>
         <tbody>
@@ -24,17 +24,17 @@
                   <td><%= purchased_item.sku %></td>
                   <td><%= purchased_item.name %></td>
                   <td><%= purchased_item.uom.nil? ? "-" : purchased_item.uom %></td>
-                  <td><%= purchased_item.price %></td>
-                  <td><%= purchased_item.quantity %></td>
-                  <td><%= number_to_currency(purchased_item.total_price, unit: 'Php ') %></td>
+                  <td class="text-right"><%= number_to_currency(purchased_item.price, unit: 'Php ') %></td>
+                  <td class="text-right"><%= purchased_item.quantity %></td>
+                  <td class="text-right"><%= number_to_currency(purchased_item.total_price, unit: 'Php ') %></td>
                 </tr>
             <% end %>
-            <!-- total price -->
+            <!-- total price  -->
             <tr class="total-price-row">
-              <td colspan="4"></td>
-              <td>Total</td>
-              <td><%= number_to_currency(@cart.sub_total, unit: 'Php ') %></td>
+              <td colspan="5"></td>
+              <td class="text-right">Total <span class="total-price"><%= number_to_currency(@cart.sub_total, unit: 'Php ') %></span></td>
             </tr>
+
         <% else %>
             <tr>
               <td colspan="6">
@@ -47,27 +47,46 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 pm-header-label">
-      <div class="row">
-        <div class="col-md-8 pm-choose-label no-pad-left">
+    <div class="col-md-4">
+      <div class="row pm-header-label">
+        <div class="col-md-7 pm-choose-label no-pad-left">
           Choose Payment Method
         </div>
-        <div class="col-md-4 pm-add-label no-pad-right">
+        <div class="col-md-5 pm-add-label no-pad-right">
           Add Payment Method
         </div>
       </div>
-      <div class="row">
+      <div class="row pm-options">
         <div class="col-md-12">
           <% unless @payment_methods.nil? %>
-            No payment methods found. Please add a payment method
-          <% else %>
-
+              <% @payment_methods.each do |payment_method| %>
+                  <div class="row">
+                    <div class="col-md-1">
+                      <%= check_box :selected_method, {class: 'checkbox'} %>
+                    </div>
+                    <div class="col-md-11">
+                      <%= "#{payment_method.credit_card_type.upcase} #{payment_method.masked_credit_card}" %>
+                    </div>
+                  </div>
+              <% end %>
           <% end %>
+          <div class="row">
+            <div class="col-md-1">
+              <%= check_box :selected_method, {class: 'checkbox'} %>
+            </div>
+            <div class="col-md-11">
+              Cash on delivery
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-
+    <div class="col-md-5"></div>
+    <div class="col-md-3">
+      <div class="pull-right">
+        <%= link_to image_tag('images/chkout-back.png', alt:  "Back"), shop_index_path %>
+        <%= link_to image_tag('images/chkout-next.png', alt:  "Next"), shop_index_path %>
+      </div>
     </div>
   </div>
 </div>
