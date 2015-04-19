@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main col-md-9">
 
   <% @products.each_with_index do |product, index| %>
       <% if index % 3 == 0 %>
@@ -28,4 +28,7 @@
       <% end %>
   <% end %>
   <%= paginate @products %>
+</div>
+<div class="col-md-3 cart-summary">
+  <%= render 'cart/cartsummary' %>
 </div>

@@ -7,11 +7,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def membership
     init_lists
-    @form = CreditCardPaymentForm.new
+    @form = PaymentMethod.new
   end
 
   def credit_card_payment
-    @form = CreditCardPaymentForm.new(credit_card_params)
+    @form = PaymentMethod.new(credit_card_params)
     if @form.valid?
       begin
         MembershipService.instance.create_membership(current_user, @form)
@@ -63,8 +63,8 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def credit_card_params
-      params.require(:form).permit(:first_name, :last_name, :card_type, :credit_card_no, :security_code,
-                                   :expiry_date, :address_line_1, :address_line_2, :city, :zip_code, :country)
+      params.require(:form).permit(:first_name, :last_name, :credit_card_type, :credit_card_no, :security_code,
+                                   :expiry_date, :address_line1, :address_line2, :city, :zip_code, :country)
     end
 
   private

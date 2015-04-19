@@ -4,4 +4,59 @@
       Review Order
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12 no-pad-left review-order-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <td>Item No</td>
+          <td>Description</td>
+          <td>Unit</td>
+          <td>Price</td>
+          <td>Quantity</td>
+          <td>Sub-Total</td>
+        </tr>
+        </thead>
+        <tbody>
+        <% unless @cart.nil? %>
+            <% @cart.item_map.each do |sku, purchased_item| %>
+                <tr>
+                  <td><%= purchased_item.sku %></td>
+                  <td><%= purchased_item.name %></td>
+                  <td><%= purchased_item.uom.nil? ? "-" : purchased_item.uom %></td>
+                  <td><%= purchased_item.price %></td>
+                  <td><%= purchased_item.quantity %></td>
+                  <td><%= number_to_currency(purchased_item.total_price, unit: 'Php ') %></td>
+                </tr>
+            <% end %>
+            <!-- total price -->
+            <tr class="total-price-row">
+              <td colspan="4"></td>
+              <td>Total</td>
+              <td><%= number_to_currency(@cart.sub_total, unit: 'Php ') %></td>
+            </tr>
+        <% else %>
+            <tr>
+              <td colspan="6">
+                No line items to display
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 pm-header-label">
+        <div class="col-md-8 pm-choose-label no-pad-left">
+          Choose Payment Method
+        </div>
+        <div class="col-md-4 pm-add-label no-pad-right">
+          Add Payment Method
+        </div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
 </div>

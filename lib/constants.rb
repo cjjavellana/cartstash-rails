@@ -24,4 +24,10 @@ module Constants
     MEMBERSHIP = 'membership'
     PAYMENT = 'payment'
   end
+
+  module PaymentMethod
+    ACTIVE = 'active'
+    DELETED = 'deleted'
+    EXPIRED = 'expired'
+  end
 end

@@ -56,15 +56,15 @@ class PaymentRequestHelper
   def create_payment_request
     if @payment_form.valid?
       billing_address = {
-          :line1 => @payment_form.address_line_1,
-          :line2 => @payment_form.address_line_2,
+          :line1 => @payment_form.address_line1,
+          :line2 => @payment_form.address_line2,
           :city => @payment_form.city,
           :country_code => @payment_form.country,
           :postal_code => @payment_form.zip_code
       }
 
       credit_card = {
-          :type => @payment_form.card_type,
+          :type => @payment_form.credit_card_type,
           :number => @payment_form.credit_card_no,
           :expire_month => @payment_form.expiry_month,
           :expire_year => @payment_form.expiry_year,

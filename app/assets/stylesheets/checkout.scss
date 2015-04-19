@@ -1,3 +1,38 @@
 // Place all the styles related to the Checkout controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.review-order {
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.table {
+
+  border-top: 1px solid #fff;
+
+  thead tr td {
+    font-weight: bold;
+  }
+
+  tbody tr td {
+    border-top: none!important;
+    font-size: 12px;
+  }
+
+  .total-price-row {
+    border-top: 1px solid #fff;
+  }
+}
+
+.pm-header-label {
+  border-bottom: 1px solid #fff;
+
+  .pm-choose-label {
+    font-size: 16px;
+  }
+
+  .pm-add-label {
+    font-size: 12px;
+    text-align: right;
+  }
+}
