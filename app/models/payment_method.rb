@@ -17,6 +17,12 @@ class PaymentMethod < ActiveRecord::Base
 
   after_validation :split_expiry_date_to_components
 
+  def masked_credit_card
+    if is_credit_card_no_valid
+      "####-####-####-#{self.credit_card_no[12..16]}"
+    end
+  end
+
   private
   def credit_card_number
     Validator.options[:allowed_card_types] = [:visa, :master_card]

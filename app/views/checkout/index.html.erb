@@ -48,12 +48,23 @@
   </div>
   <div class="row">
     <div class="col-md-6 pm-header-label">
+      <div class="row">
         <div class="col-md-8 pm-choose-label no-pad-left">
           Choose Payment Method
         </div>
         <div class="col-md-4 pm-add-label no-pad-right">
           Add Payment Method
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <% unless @payment_methods.nil? %>
+            No payment methods found. Please add a payment method
+          <% else %>
+
+          <% end %>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
 
