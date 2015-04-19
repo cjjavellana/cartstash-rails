@@ -5,6 +5,7 @@ require 'support/factory_girl'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
+require 'capybara/rspec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -53,4 +54,8 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  config.include Warden::Test::Helpers
+  config.before :suite do
+    Warden.test_mode!
+  end
 end
