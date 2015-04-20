@@ -67,7 +67,7 @@
                         <div class="col-md-12 no-pad-left">
                           <div class="checkbox payment-method-checkbox">
                             <label>
-                                <%= check_box_tag :payment_method, method.id, false, {class: 'checkbox'}  %> <%= "#{method.credit_card_type.upcase} #{method.masked_credit_card}" %>
+                                <%= check_box_tag :payment_method, method.id, false, {class: 'checkbox pm-checkbox'}  %> <%= "#{method.credit_card_type.upcase} #{method.masked_credit_card}" %>
                             </label>
                           </div>
                         </div>
@@ -78,7 +78,7 @@
                 <div class="col-md-12 no-pad-left">
                   <div class="checkbox payment-method-checkbox">
                     <label>
-                        <%= check_box_tag :payment_method, 'COD', false, {class: 'checkbox'} %> Cash on delivery
+                        <%= check_box_tag :payment_method, 'COD', false, {class: 'checkbox pm-checkbox'} %> Cash on delivery
                     </label>
                   </div>
                 </div>
