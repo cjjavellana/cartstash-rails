@@ -1,4 +1,5 @@
 <div class="main">
+
   <div class="row">
     <div class="col-md-10 review-order">
       Review Order
@@ -32,7 +33,8 @@
             <!-- total price  -->
             <tr class="total-price-row">
               <td colspan="5"></td>
-              <td class="text-right">Total <span class="total-price"><%= number_to_currency(@cart.sub_total, unit: 'Php ') %></span></td>
+              <td class="text-right">Total
+                <span class="total-price"><%= number_to_currency(@cart.sub_total, unit: 'Php ') %></span></td>
             </tr>
 
         <% else %>
@@ -58,34 +60,38 @@
       </div>
       <div class="row pm-options">
         <div class="col-md-12">
-          <% unless @payment_methods.nil? %>
-              <% @payment_methods.each do |payment_method| %>
-                  <div class="row">
-                    <div class="col-md-1">
-                      <%= check_box :selected_method, {class: 'checkbox'} %>
-                    </div>
-                    <div class="col-md-11">
-                      <%= "#{payment_method.credit_card_type.upcase} #{payment_method.masked_credit_card}" %>
-                    </div>
-                  </div>
+            <%= form_tag delivery_and_schedule_path, method: 'post' do |f| %>
+              <% unless @payment_methods.nil? %>
+                  <% @payment_methods.each do |method| %>
+                      <div class="row">
+                        <div class="col-md-12 no-pad-left">
+                          <div class="checkbox payment-method-checkbox">
+                            <label>
+                                <%= check_box_tag :payment_method, method.id, false, {class: 'checkbox'}  %> <%= "#{method.credit_card_type.upcase} #{method.masked_credit_card}" %>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                  <% end %>
               <% end %>
-          <% end %>
-          <div class="row">
-            <div class="col-md-1">
-              <%= check_box :selected_method, {class: 'checkbox'} %>
-            </div>
-            <div class="col-md-11">
-              Cash on delivery
-            </div>
-          </div>
+              <div class="row">
+                <div class="col-md-12 no-pad-left">
+                  <div class="checkbox payment-method-checkbox">
+                    <label>
+                        <%= check_box_tag :payment_method, 'COD', false, {class: 'checkbox'} %> Cash on delivery
+                    </label>
+                  </div>
+                </div>
+              </div>
+            <% end %>
         </div>
       </div>
     </div>
     <div class="col-md-5"></div>
     <div class="col-md-3">
       <div class="pull-right">
-        <%= link_to image_tag('images/chkout-back.png', alt:  "Back"), shop_index_path %>
-        <%= link_to image_tag('images/chkout-next.png', alt:  "Next"), shop_index_path %>
+        <%= link_to image_tag('images/chkout-back.png', alt: "Back"), shop_index_path %>
+        <%= link_to image_tag('images/chkout-next.png', alt: "Next"), shop_index_path %>
       </div>
     </div>
   </div>

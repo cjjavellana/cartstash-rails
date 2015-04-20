@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     get '/users/registrations/complete' => 'registrations#complete'
   end
 
-  resources :shop
-  resources :checkout
+  resources :shop, only: [:index, :create, :update, :destroy]
+  scope '/shop' do
+    resources :checkout, only: [:index, :create]
+    post '/delivery_and_schedule', to: 'checkout#delivery_and_schedule'
+  end
+
+
 end
