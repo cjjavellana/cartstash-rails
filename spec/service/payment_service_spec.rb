@@ -42,6 +42,12 @@ describe PaymentService do
     end
 
     it "is able to process the transaction and return the payment id" do
+      fake_payment = instance_double(PayPal::SDK::REST::Payment)
+      allow(fake_payment).to receive(:create).and_return(true)
+      allow(fake_payment).to receive(:id).and_return("PAY-12345678")
+
+      expect(PayPal::SDK::REST::Payment).to receive(:new).and_return(fake_payment)
+
       payment_service = PaymentService.instance
       payment_id = payment_service.charge_credit_card!(payment_form, items, 'Unit Test', 'USD')
 
