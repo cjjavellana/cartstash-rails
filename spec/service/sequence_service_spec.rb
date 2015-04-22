@@ -17,23 +17,23 @@ describe SeqGenerator do
       expect(seq_list.length).to eq(50)
 
       # Ensure that there is no duplicate
-      result = seq_list.detect { |e| seq_list.rindex(e) != seq_list.index(e) }
-      expect(result).to be_nil
+      expect(has_duplicate(seq_list)).to be_nil
 
     end # it ... do
 
     it "fails when there is a duplicate" do
       seq_list = generate_sequences
-
       #disrupt the sequences by inserting a duplicate
       seq_list.push(seq_list[seq_list.length - 1])
-
-      result = seq_list.detect { |e| seq_list.rindex(e) != seq_list.index(e) }
-      expect(result).to_not be_nil
+      expect(has_duplicate(seq_list)).to_not be_nil
     end
   end
 
   private
+    def has_duplicate(seq_list)
+      seq_list.detect { |e| seq_list.rindex(e) != seq_list.index(e) }
+    end
+
     def generate_sequences
       seq_generator = SeqGenerator.instance
       sequences = []
@@ -53,12 +53,12 @@ describe SeqGenerator do
         t.join
       end # threads.each
 
-      final_seq_list = []
+      seq_aggregator = []
       sequences.each do |seq|
-        final_seq_list.concat seq
+        seq_aggregator.concat seq
       end
 
-      final_seq_list
+      seq_aggregator
     end
 
 end
