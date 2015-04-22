@@ -77,7 +77,7 @@
     <% if !flash.empty? %>
         <!-- Flash message area -->
         <% flash.each do |key, value| %>
-            <%= content_tag :div, value, class: "row flash #{key}" %>
+            <%= content_tag :div, value, class: "row flash alert #{key}" %>
         <% end %>
 
     <% end %>

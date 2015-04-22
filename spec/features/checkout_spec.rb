@@ -12,6 +12,12 @@ describe PaymentMethod do
     expect(page).to have_selector(".review-order", text: "Review Order")
   end
 
+  it "requires atleast one payment method" do
+    visit checkout_index_path
+    click_button 'checkout-next-btn'
+    expect(page).to have_selector(".alert-danger", text: "Please select a payment method")
+  end
+
   it "allows the user to choose the delivery location and schedule" do
     visit checkout_index_path
     find(:css, ".pm-checkbox:last-child").set(true)

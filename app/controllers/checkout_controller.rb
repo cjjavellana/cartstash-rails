@@ -8,7 +8,13 @@ class CheckoutController < CartController
 
   def delivery_and_schedule
     @checkout_form = CheckoutForm.new
-    @checkout_form.payment_method = params[:payment_method]
+
+    if params[:payment_method].nil?
+      flash[:"alert-danger"] = "Please select a payment method"
+      redirect_to checkout_index_path
+    else
+      @checkout_form.payment_method = params[:payment_method]
+    end
   end
 
   private

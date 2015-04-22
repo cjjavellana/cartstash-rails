@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419031745) do
+ActiveRecord::Schema.define(version: 20150422142538) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "country_code"
@@ -27,6 +27,23 @@ ActiveRecord::Schema.define(version: 20150419031745) do
     t.datetime "updated_at",  null: false
     t.string   "description"
   end
+
+  create_table "delivery_addresses", force: :cascade do |t|
+    t.string   "recipient_name"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "zip_code"
+    t.string   "country"
+    t.string   "contact_no"
+    t.string   "alternate_no"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "status"
+  end
+
+  add_index "delivery_addresses", ["user_id"], name: "index_delivery_addresses_on_user_id"
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"

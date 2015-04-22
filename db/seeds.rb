@@ -57,4 +57,6 @@ countries_json.each do |data|
   country.save
 end
 
+FactoryGirl.create :user
 FactoryGirl.create :foobar_visa
+FactoryGirl.create :foobar_delivery_address

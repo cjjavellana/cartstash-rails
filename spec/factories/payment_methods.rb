@@ -14,7 +14,7 @@ FactoryGirl.define do
     country           "PH"
     status            Constants::PaymentMethod::ACTIVE
 
-    association :user, factory: :user
+    association :user, factory: :user, strategy: :build
   end
 
 end

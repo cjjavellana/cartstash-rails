@@ -30,4 +30,9 @@ module Constants
     DELETED = 'deleted'
     EXPIRED = 'expired'
   end
+
+  module AddressStatus
+    ACTIVE = 'active'
+    DELETED = 'deleted'
+  end
 end
