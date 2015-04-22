@@ -57,7 +57,7 @@ describe PaymentService do
       expect(p.status).to eq('PAID')
       expect(p.payment_ref).to eq(payment_id)
 
-      print "Payment Id: #{payment_id} - #{p.status}"
+      #print "Payment Id: #{payment_id} - #{p.status}"
     end
   end
 

@@ -39,7 +39,7 @@ describe SeqGenerator do
 
       # Ensure that there is no duplicate
       result = final_seq_list.detect { |e| final_seq_list.rindex(e) != final_seq_list.index(e) }
-      expect(result).to eq(nil)
+      expect(result).to be_nil
 
     end # it ... do
 
@@ -71,7 +71,7 @@ describe SeqGenerator do
       final_seq_list.push(final_seq_list[final_seq_list.length - 1])
 
       result = final_seq_list.detect { |e| final_seq_list.rindex(e) != final_seq_list.index(e) }
-      expect(result).to_not eq(nil)
+      expect(result).to_not be_nil
     end
   end
 
