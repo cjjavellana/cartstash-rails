@@ -6,11 +6,6 @@
   padding-bottom: 5px;
 }
 
-.del-location {
-  font-size: 20px;
-  padding-bottom: 5px;
-}
-
 .table {
 
   border-top: 1px solid #fff;
@@ -73,7 +68,34 @@
   border: none;
 }
 
-.del-location {
+.checkout-section-header {
   padding-bottom: 5px;
   border-bottom: 1px solid #fff;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.del-address {
+  background-color: rgba(255,255,255,0.3);
+  height: 150px;
+  margin: 10px 10px 0px 0px;
+  border-radius: 8px;
+  padding-top: 5px;
+
+  .del-name {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .primary-num {
+    margin-top: 5px;
+  }
+}
+
+.del-address:hover {
+  cursor: pointer;
+}
+
+.checkout-del-schedule {
+  margin-top: 30px;
 }

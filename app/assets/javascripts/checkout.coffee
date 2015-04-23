@@ -4,3 +4,10 @@
 
 $(document).on 'change', '.pm-checkbox', ->
   $('.pm-checkbox').not(this).prop('checked', false)
+
+$(document).on 'click', '.del-address', ->
+  $('#delivery_address').val($(this).attr('del-id'))
+  # clear border first
+  $('.del-address').css({'border': ''})
+  #highlight the selected delivery address
+  $(this).css({'border': '2px solid rgba(184, 233, 134, 0.8)'})

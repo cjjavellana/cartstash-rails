@@ -1,7 +1,36 @@
 <div class="main">
   <div class="row">
-    <div class="col-md-12 del-location">
+    <div class="col-md-12 checkout-section-header">
       Choose Delivery Address
     </div>
   </div>
+
+  <%= form_tag confirm_order_path, method: 'post' do |f| %>
+      <%= hidden_field_tag :delivery_address %>
+      <div class="row">
+        <% @delivery_addresses.each do |address| %>
+            <div class="col-md-3 del-address" del-id="<%= "#{address.id}" %>">
+              <div class="del-name">
+                <%= "#{address.recipient_name}" %>
+              </div>
+              <div class="del-addr">
+                <%= "#{address.address}" %>
+              </div>
+              <div class="primary-num">
+                <%= "#{address.contact_no}" %>
+              </div>
+              <div class="alt-num">
+                <%= "#{address.alternate_no}" %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="row checkout-del-schedule">
+        <div class="col-md-12 checkout-section-header">
+          Choose Delivery Schedule
+        </div>
+      </div>
+  <% end %>
+
 </div>

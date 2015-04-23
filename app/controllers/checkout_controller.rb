@@ -13,9 +13,13 @@ class CheckoutController < CartController
       flash[:"alert-danger"] = "Please select a payment method"
       redirect_to checkout_index_path
     else
-      @delivery_addresses = DeliveryAddress.find_by_user_id(current_user.id)
+      @delivery_addresses = DeliveryAddress.where("user_id = ?", current_user.id)
       @checkout_form.payment_method = params[:payment_method]
     end
+  end
+
+  def confirm_order
+
   end
 
   private
