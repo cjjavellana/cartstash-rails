@@ -7,7 +7,12 @@ $(document).on 'change', '.pm-checkbox', ->
 
 $(document).on 'click', '.del-address', ->
   $('#delivery_address').val($(this).attr('del-id'))
-  # clear border first
+
+  # Clean up
   $('.del-address').css({'border': ''})
-  #highlight the selected delivery address
+  $(".glyphicon-check").remove()
+
+  # Highlight selected Delivery Address
   $(this).css({'border': '2px solid rgba(184, 233, 134, 0.8)'})
+  checkIcon = $("<span>").addClass("glyphicon glyphicon-check pull-right")
+  $(this).find('.del-name').append(checkIcon);
