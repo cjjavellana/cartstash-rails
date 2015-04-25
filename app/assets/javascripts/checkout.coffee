@@ -17,6 +17,9 @@ $(document).on 'click', '.del-address', ->
   checkIcon = $("<span>").addClass("greencheck pull-right")
   $(this).find('.del-name').append(checkIcon);
 
+$(document).on 'click', '.selectable-cell', ->
+  $('.selectable-cell').css({"background-color": ""})
+  $(this).css({"background-color": "rgba(184, 233, 134, 0.8)"})
 
 $(document).on 'page:change', ->
   $('.schedule-picker').schedulePicker()
