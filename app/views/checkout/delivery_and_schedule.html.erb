@@ -1,7 +1,10 @@
 <div class="main">
-  <div class="row">
-    <div class="col-md-12 checkout-section-header">
+  <div class="row delivery-address-header">
+    <div class="col-md-10 checkout-section-header">
       Choose Delivery Address
+    </div>
+    <div class="col-md-2 add-address-link">
+      <%= link_to 'Add Delivery Address', new_delivery_address_path %>
     </div>
   </div>
 
@@ -27,8 +30,8 @@
         <% end %>
       </div>
 
-      <div class="row checkout-del-schedule">
-        <div class="col-md-12 checkout-section-header">
+      <div class="row delivery-schedule-section">
+        <div class="col-md-12 header">
           Choose Delivery Schedule
         </div>
         <div class="schedule-picker">

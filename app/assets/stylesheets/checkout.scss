@@ -68,11 +68,32 @@
   border: none;
 }
 
-.checkout-section-header {
+.delivery-address-header {
   padding-bottom: 5px;
   border-bottom: 1px solid #fff;
-  font-size: 20px;
-  padding-bottom: 5px;
+
+  .checkout-section-header {
+    font-size: 20px;
+  }
+
+  .add-address-link {
+    margin-top: 5px;
+
+    a {
+      color: #fff!important;
+      font-size: 12px;
+    }
+  }
+}
+
+.delivery-schedule-section {
+  margin-top: 30px;
+
+  .header {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #fff;
+    font-size: 20px;
+  }
 }
 
 .del-address {
@@ -88,6 +109,10 @@
   }
 
   .primary-num {
+    margin-top: 5px;
+  }
+
+  .del-addr {
     margin-top: 5px;
   }
 }
@@ -114,4 +139,10 @@
 
 .selectable-cell:hover {
   background-color: rgba(184, 233, 134, 0.3);
+}
+
+.greencheck {
+  background: url("images/greencheck.png") no-repeat center;
+  height: 20px;
+  width: 30px;
 }

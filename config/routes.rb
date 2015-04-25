@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   resources :shop, only: [:index, :create, :update, :destroy]
+  resources :delivery_address, only: [:index, :new, :create, :update, :destroy, :show]
+
   scope '/shop' do
     resources :checkout, only: [:index, :create]
     post '/delivery-and-schedule', to: 'checkout#delivery_and_schedule'

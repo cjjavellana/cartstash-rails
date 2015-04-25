@@ -1,0 +1,2 @@
+class DeliveryAddressController < ApplicationController
+end

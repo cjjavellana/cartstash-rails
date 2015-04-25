@@ -14,7 +14,7 @@ $(document).on 'click', '.del-address', ->
 
   # Highlight selected Delivery Address
   $(this).css({'border': '2px solid rgba(184, 233, 134, 0.8)'})
-  checkIcon = $("<span>").addClass("glyphicon glyphicon-check pull-right")
+  checkIcon = $("<span>").addClass("greencheck pull-right")
   $(this).find('.del-name').append(checkIcon);
 
 
