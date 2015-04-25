@@ -22,7 +22,7 @@ describe PaymentMethod do
     visit checkout_index_path
     find(:css, ".pm-checkbox:last-child").set(true)
     click_button 'checkout-next-btn'
-    expect(page).to have_selector(".del-location", text: "Choose Delivery Address")
+    expect(page).to have_selector(".checkout-section-header", text: "Choose Delivery Address")
   end
 
 end

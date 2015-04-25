@@ -18,5 +18,6 @@ Rails.application.routes.draw do
     post '/confirm-order', to: 'checkout#confirm_order'
   end
 
+  get '/server-date', to: 'schedule_picker#current_datetime'
 
 end

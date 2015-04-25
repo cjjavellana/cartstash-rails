@@ -16,3 +16,7 @@ $(document).on 'click', '.del-address', ->
   $(this).css({'border': '2px solid rgba(184, 233, 134, 0.8)'})
   checkIcon = $("<span>").addClass("glyphicon glyphicon-check pull-right")
   $(this).find('.del-name').append(checkIcon);
+
+
+$(document).on 'page:change', ->
+  $('.schedule-picker').schedulePicker()

@@ -99,3 +99,19 @@
 .checkout-del-schedule {
   margin-top: 30px;
 }
+
+.schedule-picker {
+  .schedule-table {
+    .title {
+      font-size: 16px;
+    }
+  }
+}
+
+.schedule-table {
+  border-top: none!important;
+}
+
+.selectable-cell:hover {
+  background-color: rgba(184, 233, 134, 0.3);
+}
