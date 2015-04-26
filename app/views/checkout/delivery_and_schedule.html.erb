@@ -8,8 +8,10 @@
     </div>
   </div>
 
-  <%= form_tag confirm_order_path, method: 'post' do |f| %>
+  <%= form_tag confirm_order_path, method: 'post' do %>
       <%= hidden_field_tag :delivery_address %>
+      <%= hidden_field_tag :delivery_schedule %>
+
       <div class="row">
         <% @delivery_addresses.each do |address| %>
             <div class="col-md-3 del-address" del-id="<%= "#{address.id}" %>">
@@ -37,6 +39,16 @@
         <div class="schedule-picker">
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12 no-pad-right">
+          <div class="pull-right">
+          <%= link_to image_tag('images/chkout-back.png', alt: "Back"), checkout_index_path %>
+          <%= button_tag "Place Order", {class: "btn confirm-order-btn"} %>
+          </div>
+        </div>
+      </div>
   <% end %>
+
 
 </div>

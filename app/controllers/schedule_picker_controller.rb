@@ -7,7 +7,9 @@ class SchedulePickerController < ApplicationController
     date_choices = []
     date = Date.today
     (1..10).each do
-      date_choices.push date.strftime('%d %a')
+      date_choices.push({ :key => date.strftime('%d-%m-%Y'),
+                          :value => date.strftime('%d %a')
+                        })
       date += 1.day
     end
 

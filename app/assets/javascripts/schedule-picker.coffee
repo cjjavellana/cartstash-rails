@@ -54,7 +54,7 @@ do ($ = jQuery) ->
               row.append(cell)
             else if rowNum == 1 and cellNum > 1
               # The date choices
-              cellText = data.choices[cellNum - 2]
+              cellText = data.choices[cellNum - 2]['value']
               cell = $("<td>#{cellText}</td>")
               cell.css({'text-align': 'center'})
               row.append(cell)
@@ -66,7 +66,8 @@ do ($ = jQuery) ->
               row.append(cell)
               defaults.startTime += 2
             else
-              cell = $('<td class="selectable-cell">&nbsp;</td>')
+              dateValue = data.choices[cellNum - 2]['key']
+              cell = $("<td class=\"selectable-cell\" date-time=\"#{dateValue}\">&nbsp;</td>")
               row.append(cell)
 
           table.append(row)
