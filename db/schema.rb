@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422142538) do
+ActiveRecord::Schema.define(version: 20150426143853) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "country_code"
@@ -136,6 +136,29 @@ ActiveRecord::Schema.define(version: 20150422142538) do
   end
 
   add_index "products", ["product_category_id"], name: "index_products_on_product_category_id"
+
+  create_table "sales_orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "order_date"
+    t.decimal  "order_amount",          precision: 10, scale: 2
+    t.string   "payment_type"
+    t.integer  "payment_method_id"
+    t.datetime "delivery_date"
+    t.string   "time_range"
+    t.datetime "received_date"
+    t.datetime "order_dispatched_date"
+    t.string   "remarks"
+    t.string   "status"
+    t.integer  "delivery_address_id"
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
+    t.boolean  "paid",                                           default: false
+    t.string   "payment_ref"
+  end
+
+  add_index "sales_orders", ["delivery_address_id"], name: "index_sales_orders_on_delivery_address_id"
+  add_index "sales_orders", ["payment_method_id"], name: "index_sales_orders_on_payment_method_id"
+  add_index "sales_orders", ["user_id"], name: "index_sales_orders_on_user_id"
 
   create_table "sequences", force: :cascade do |t|
     t.string   "name"

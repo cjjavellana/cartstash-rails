@@ -47,7 +47,7 @@ RSpec.describe CheckoutController, type: :controller do
       post :confirm_order, {delivery_address: delivery_address.id, delivery_schedule: delivery_schedule}
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:delivery_and_schedule)
-      expect(flash[:alert]).to be_present
+      expect(flash[:"alert-danger"]).to be_present
     end
   end
 

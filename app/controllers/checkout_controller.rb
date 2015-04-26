@@ -25,7 +25,7 @@ class CheckoutController < CartController
       flash[:notice] = "Your order has been placed"
     else
       @delivery_addresses = DeliveryAddress.where("user_id = ?", current_user.id)
-      flash[:alert] = @checkout_form.errors
+      flash[:"alert-danger"] = @checkout_form.errors
       render "delivery_and_schedule"
     end
   end

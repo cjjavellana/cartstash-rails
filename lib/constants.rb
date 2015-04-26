@@ -35,4 +35,14 @@ module Constants
     ACTIVE = 'active'
     DELETED = 'deleted'
   end
+
+  module PaymentType
+    CREDIT_CARD = "credit_card"
+    CASH_ON_DELIVERY = "cod"
+  end
+
+  module SalesOrderStatus
+    ORDER_RECEIVED = "received"
+
+  end
 end
