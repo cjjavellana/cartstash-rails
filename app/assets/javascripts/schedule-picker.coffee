@@ -1,9 +1,13 @@
 do ($ = jQuery) ->
   $.fn.schedulePicker = (options) ->
 
-    # Some constants
-    LAST_DELIVERY_TIME = 21 # 9pm
-    LEAD_TIME = 4 # In hours
+    # === Some constants ===
+    # This is 9pm. Last delivery is between 9pm - 10pm
+    LAST_DELIVERY_TIME = 21
+    # Number of hours from now which you cannot select
+    LEAD_TIME = 4
+    # Number of days user can choose from
+    DELIVERY_DATE_CHOICES = 9
 
     defaults =
       startTime: 8
@@ -20,6 +24,31 @@ do ($ = jQuery) ->
 
     divContainer = $(this)
 
+    tableRowOperations =
+      shouldBeAnEmptyCell: (rowIndex, cellIndex) ->
+        rowIndex == 1 and cellIndex == 1
+      isDateHeaderCell: (rowIndex, cellIndex) ->
+        rowIndex == 1 and cellIndex > 1
+      isTimeRangeCell: (rowIndex, cellIndex) ->
+        cellIndex == 1 and rowIndex > 1
+      createEmptyCell: (row) ->
+        cell = $('<td>&nbsp;</td>')
+        cell.css({'border-right' : '1px solid #fff'})
+        row.append(cell)
+      createDateHeaderCell: (row, label) ->
+        cell = $("<td>#{label}</td>")
+        cell.css({'text-align': 'center'})
+        row.append(cell)
+        row.css({'border-bottom' : '1px solid #fff'})
+      createTimeRangeCell: (row, startTime) ->
+        cell = $("<td>#{startTime}:00 - #{startTime + 2}:00</td>")
+        cell.css({'border-right' : '1px solid #fff'})
+        row.append(cell)
+      createSelectableCell: (row, dateTimeAttribute) ->
+        cell = $("<td class=\"selectable-cell\" date-time=\"#{dateTimeAttribute}\">&nbsp;</td>")
+        row.append(cell)
+
+
     $.ajax
       url: '/server-date'
       type: 'get'
@@ -34,42 +63,30 @@ do ($ = jQuery) ->
         row = $('<tr>')
         row.append($('<td>'))
 
-        if daysToEndOfMonth < 10
+        if daysToEndOfMonth < DELIVERY_DATE_CHOICES + 1
           row.append($("<td class=\"title\" colspan=\"#{daysToEndOfMonth}\">#{data.current_month_year}</td>"))
-          row.append($("<td class=\"title\" colspan=\"#{9 - daysToEndOfMonth}\">#{data.next_month_year}</td>"))
+          row.append($("<td class=\"title\" colspan=\"#{DELIVERY_DATE_CHOICES - daysToEndOfMonth}\">#{data.next_month_year}</td>"))
         else
-          row.append($("<td class=\"title\" colspan=\"9\">#{data.current_month_year}</td>"))
+          row.append($("<td class=\"title\" colspan=\"#{DELIVERY_DATE_CHOICES}\">#{data.current_month_year}</td>"))
 
         table.append(row)
         table.css({'background-color': defaults.bgColor})
 
         # Time table
-        for rowNum in [1..8]
+        for rowIndex in [1..8]
           row = $('<tr>')
-          for cellNum in [1..10]
-            if rowNum == 1 and cellNum == 1
-              # Empty cell
-              cell = $('<td>&nbsp;</td>')
-              cell.css({'border-right' : '1px solid #fff'})
-              row.append(cell)
-            else if rowNum == 1 and cellNum > 1
-              # The date choices
-              cellText = data.choices[cellNum - 2]['value']
-              cell = $("<td>#{cellText}</td>")
-              cell.css({'text-align': 'center'})
-              row.append(cell)
-              row.css({'border-bottom' : '1px solid #fff'})
-            else if cellNum == 1 and rowNum > 1
-              # The time choices
-              cell = $("<td>#{defaults.startTime}:00 - #{defaults.startTime + 2}:00</td>")
-              cell.css({'border-right' : '1px solid #fff'})
-              row.append(cell)
+          for cellIndex in [1..DELIVERY_DATE_CHOICES + 1]
+            if tableRowOperations.shouldBeAnEmptyCell(rowIndex, cellIndex)
+              tableRowOperations.createEmptyCell(row)
+            else if tableRowOperations.isDateHeaderCell(rowIndex, cellIndex)
+              cellText = data.choices[cellIndex - 2]['value']
+              tableRowOperations.createDateHeaderCell(row, cellText)
+            else if tableRowOperations.isTimeRangeCell(rowIndex, cellIndex)
+              tableRowOperations.createTimeRangeCell(row, defaults.startTime)
               defaults.startTime += 2
             else
-              dateValue = data.choices[cellNum - 2]['key']
-              cell = $("<td class=\"selectable-cell\" date-time=\"#{dateValue}\">&nbsp;</td>")
-              row.append(cell)
-
+              dateValue = data.choices[cellIndex - 2]['key']
+              tableRowOperations.createSelectableCell(row, dateValue)
           table.append(row)
 
         divContainer.append(table)
@@ -94,10 +111,13 @@ do ($ = jQuery) ->
         currentHour = LAST_DELIVERY_TIME if currentHour > LAST_DELIVERY_TIME
 
         for num in [timeLookupTable[currentHour]..3]
-          $(".schedule-table tr:nth-child(#{num}) td:nth-child(2)").css({
-            "background-color": "#dfdfdf",
-            "border-bottom": "1px solid #fff"
-          }).addClass("invalid-time").removeClass("selectable-cell")
+          $(".schedule-table tr:nth-child(#{num}) td:nth-child(2)")
+            .css({
+              "background-color": "#dfdfdf",
+              "border-bottom": "1px solid #fff"
+            })
+            .addClass("invalid-time")
+            .removeClass("selectable-cell")
 
         return
       errror: ->
