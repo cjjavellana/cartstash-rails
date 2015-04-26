@@ -14,23 +14,31 @@ class CheckoutController < CartController
     else
       @delivery_addresses = DeliveryAddress.where("user_id = ?", current_user.id)
       @checkout_form.payment_method = params[:payment_method]
-      $redis.set("checkout_#{session.id}", @checkout_form.to_json)
+      RedisClient.set("checkout_#{session.id}", @checkout_form.to_json)
     end
   end
 
   def confirm_order
-
+    @checkout_form.delivery_address = params[:delivery_address]
+    @checkout_form.schedule = params[:delivery_schedule]
+    if @checkout_form.valid?
+      flash[:notice] = "Your order has been placed"
+    else
+      @delivery_addresses = DeliveryAddress.where("user_id = ?", current_user.id)
+      flash[:alert] = @checkout_form.errors
+      render "delivery_and_schedule"
+    end
   end
 
   private
     def restore_checkout_form
-      @checkout_form = $redis.get("checkout_#{session.id}")
+      @checkout_form = RedisClient.get("checkout_#{session.id}")
       @checkout_form = @checkout_form.nil? ?
           CheckoutForm.new :
           CheckoutForm.restore(JSON.parse(@checkout_form))
     end
 
     def secure_params
-      params.require(:checkout_form).permit(:payment_method)
+      params.require(:checkout_form).permit(:payment_method, :delivery_address, :delivery_schedule)
     end
 end

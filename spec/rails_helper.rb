@@ -2,6 +2,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require 'support/factory_girl'
+require 'devise'
+require 'support/controller_macros'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
@@ -58,4 +60,7 @@ RSpec.configure do |config|
   config.before :suite do
     Warden.test_mode!
   end
+
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
 end

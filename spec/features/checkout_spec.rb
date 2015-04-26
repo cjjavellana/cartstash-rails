@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PaymentMethod do
+describe "Check Out Process" do
 
   before do
     user = create(:user)
@@ -18,11 +18,16 @@ describe PaymentMethod do
     expect(page).to have_selector(".alert-danger", text: "Please select a payment method")
   end
 
-  it "allows the user to choose the delivery location and schedule" do
+  it "confirms the order" do
+    delivery_address = create(:foobar_delivery_address)
     visit checkout_index_path
     find(:css, ".pm-checkbox:last-child").set(true)
     click_button 'checkout-next-btn'
     expect(page).to have_selector(".checkout-section-header", text: "Choose Delivery Address")
+    find(:css, "#delivery_address").set delivery_address.id
+    find(:css, "#delivery_schedule").set "27-04-2015 8:00-10:00"
+    click_button "Place Order"
+    expect(page).to have_selector(".confirmation-number")
   end
 
 end
