@@ -13,7 +13,7 @@ class PaymentService
   # * <tt>currency</tt> - A string indicating the currency to be used; Defaults to Philippine Peso (PHP)
   # === Exceptions
   # * <tt>CartstashError::PaymentError</tt> when the payment is unsuccessful
-  def charge_credit_card!(payment_form, purchased_items, transaction_id, currency='PHP')
+  def process_membership_fee!(payment_form, purchased_items, transaction_id, currency='PHP')
     Payment.transaction do
       payment_request = PaymentRequestHelper.new payment_form, purchased_items, transaction_id, currency
       @payment = PayPal::SDK::REST::Payment.new(payment_request.create_payment_request)

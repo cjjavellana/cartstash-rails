@@ -41,7 +41,7 @@ describe PaymentService do
       expect(payment_request).to include({:total => 90.0.to_s, :currency => 'USD'})
     end
 
-    it "is able to process the transaction and return the payment id" do
+    it "can process a membership fee" do
       fake_payment = instance_double(PayPal::SDK::REST::Payment)
       allow(fake_payment).to receive(:create).and_return(true)
       allow(fake_payment).to receive(:id).and_return("PAY-12345678")
@@ -49,7 +49,7 @@ describe PaymentService do
       expect(PayPal::SDK::REST::Payment).to receive(:new).and_return(fake_payment)
 
       payment_service = PaymentService.instance
-      payment_id = payment_service.charge_credit_card!(payment_form, items, 'Unit Test', 'USD')
+      payment_id = payment_service.process_membership_fee!(payment_form, items, 'Unit Test', 'USD')
 
       expect(payment_id).to_not eq(nil)
 
