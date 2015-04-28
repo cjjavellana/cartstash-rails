@@ -59,6 +59,21 @@ describe PaymentService do
 
       #print "Payment Id: #{payment_id} - #{p.status}"
     end
+
+    it "can process a sales order" do
+      payment = instance_double(PayPal::SDK::REST::Payment)
+      allow(payment).to receive(:create).and_return(true)
+      allow(payment).to receive(:id).and_return("PAY-88888888")
+      expect(PayPal::SDK::REST::Payment).to receive(:new).and_return(payment)
+
+
+      sales_order = build(:sales_order)
+      if sales_order.valid?
+        payment_service = PaymentService.instance
+        payment_ref = payment_service.process_sales_order!(sales_order, sales_order_items, sales_order.transaction_ref, 'USD')
+      end
+
+    end    
   end
 
 end

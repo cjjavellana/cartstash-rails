@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427143445) do
+ActiveRecord::Schema.define(version: 20150428142333) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "country_code"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(version: 20150427143445) do
     t.datetime "updated_at",                                                     null: false
     t.boolean  "paid",                                           default: false
     t.string   "payment_ref"
+    t.string   "transaction_ref"
   end
 
   add_index "sales_orders", ["delivery_address_id"], name: "index_sales_orders_on_delivery_address_id"
