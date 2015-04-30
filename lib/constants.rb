@@ -43,6 +43,11 @@ module Constants
 
   module SalesOrderStatus
     ORDER_RECEIVED = "received"
-
+    PENDING_PACKING = "pending_packing"
+    PACKING = "packing"
+    DISPATCHED = "dispatched"
+    CUSTOMER_RECEIVED = "customer_recieved"
+    RETURNED = "returned"
+    CANCELLED = "cancelled"
   end
 end

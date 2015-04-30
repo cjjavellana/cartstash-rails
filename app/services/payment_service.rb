@@ -44,8 +44,8 @@ class PaymentService
     end
   end
 
-  def process_sales_order!(credit_card, sales_order_items, currency='PHP')
-    request = PaypalPaymentRequest.new(credit_card, sales_order_items, currency)
+  def process_sales_order!(credit_card, sales_order_items, description, currency='PHP')
+    request = PaypalPaymentRequest.new(credit_card, sales_order_items, description, currency)
     paypal_payment = PayPal::SDK::REST::Payment.new(request)
     if paypal_payment.create
       paypal_payment.id
