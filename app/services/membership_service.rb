@@ -21,11 +21,11 @@ class MembershipService
     if payment_method.nil?
       # user opted to pay through bank deposit
     else
-      items = [create_membership_fee_line_item]
-
-      PaymentService.instance.process_membership_fee!(payment_method, items, seq, Constants::Currency::USD)
-      membership.status = Constants::Membership::ACTIVE
-      membership.save
+      if payment_method.valid?
+        PaymentService.instance.process_membership_fee!(payment_method, [create_membership_fee_line_item], seq, Constants::Currency::USD)
+        membership.status = Constants::Membership::ACTIVE
+        membership.save
+      end
     end
   end
 

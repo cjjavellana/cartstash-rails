@@ -22,6 +22,10 @@ describe MembershipService do
     end
 
     it "is able to create membership, payment and payment detail entries" do
+      payment_service = instance_double(PaymentService)
+      allow(payment_service).to receive(:process_membership_fee!)
+      expect(PaymentService).to receive(:instance).and_return(payment_service)
+
       MembershipService.instance.create_membership(current_user, payment_form)
       mem = Membership.find_by_user_id(current_user.id)
 

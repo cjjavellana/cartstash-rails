@@ -4,6 +4,7 @@ require './lib/cartstash_error'
 class PaymentService
   include Singleton
   include CartstashError
+  include PaymentRequest
 
   # Processes the credit card payment request through paypal
   # === Argument
@@ -15,12 +16,14 @@ class PaymentService
   # * <tt>CartstashError::PaymentError</tt> when the payment is unsuccessful
   def process_membership_fee!(payment_form, purchased_items, transaction_id, currency='PHP')
     Payment.transaction do
-      payment_request = PaymentRequestHelper.new payment_form, purchased_items, transaction_id, currency
-      @payment = PayPal::SDK::REST::Payment.new(payment_request.create_payment_request)
+      payment_request = PaypalPaymentRequest.new(payment_form, purchased_items,
+                                                 "Payment for #{transaction_id}", currency)
+      request_hash = payment_request.create_payment_request
+      @payment = PayPal::SDK::REST::Payment.new(request_hash)
 
       # Create the payment header
       p = Payment.new
-      p.amount = BigDecimal(payment_request.amount[:total])
+      p.amount = get_amount_from_request_hash(request_hash)
       p.description = "Payment for #{transaction_id}"
       p.request_ref = transaction_id
       p.save
@@ -40,96 +43,17 @@ class PaymentService
       end
     end
   end
-end
 
-class PaymentRequestHelper
+  def process_sales_order!(sales_order, sales_order_items, currency='PHP')
+    if sales_order.valid?
 
-  attr_reader :amount
-
-  def initialize(payment_form, purchased_items, transaction_id, currency='PHP')
-    @payment_form = payment_form
-    @purchased_items = purchased_items
-    @transaction_id = transaction_id
-    @currency = currency
-  end
-
-  def create_payment_request
-    if @payment_form.valid?
-      billing_address = {
-          :line1 => @payment_form.address_line1,
-          :line2 => @payment_form.address_line2,
-          :city => @payment_form.city,
-          :country_code => @payment_form.country,
-          :postal_code => @payment_form.zip_code
-      }
-
-      credit_card = {
-          :type => @payment_form.credit_card_type,
-          :number => @payment_form.credit_card_no,
-          :expire_month => @payment_form.expiry_month,
-          :expire_year => @payment_form.expiry_year,
-          :cvv2 => @payment_form.security_code,
-          :first_name => @payment_form.first_name,
-          :last_name => @payment_form.last_name,
-          :billing_address => billing_address
-      }
-
-      payer = {
-          :payment_method => "credit_card",
-          :funding_instruments => [{:credit_card => credit_card}]
-      }
-
-      items = []
-      discount_amount = 0
-      total_amount = 0;
-
-      # Construct the items list and calculate the relevant charges i.e. discount, total amount
-      @purchased_items.each do |item|
-        price = item.price * item.quantity
-        items.push({
-                       :name => item.name,
-                       :sku => item.sku,
-                       :price => price.to_s,
-                       :currency => @currency,
-                       :quantity => item.quantity
-                   })
-        total_amount += price
-        if item.discount
-          discount_amount += (price * item.discount)
-        end
-      end
-
-      if discount_amount > 0
-        items.insert({
-                         :name => 'Discount',
-                         :sku => 'discount',
-                         :price => discount_amount.to_s,
-                         :currency => @currency,
-                         :quantity => "1"
-                     })
-      end
-
-      @amount = {
-          :total => (total_amount - discount_amount).to_s,
-          :currency => @currency
-      }
-
-      {
-          :intent => "sale",
-          :payer => payer,
-          :transactions => [
-              {
-                  :items_list => {
-                      :items => items
-                  },
-                  :amount => @amount,
-                  :description => "Payment for transaction #{@transaction_id}"
-              }
-          ]
-      }
     else
-      raise PaymentError, @payment_form.error
+      raise sales_order.errors
     end
   end
 
+  private
+    def get_amount_from_request_hash(request_hash)
+      request_hash[:transactions][0][:amount][:total]
+    end
 end

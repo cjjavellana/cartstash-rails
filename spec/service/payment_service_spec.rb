@@ -6,9 +6,9 @@ describe PaymentService do
 
     let(:payment_form) {
       payment_form = PaymentMethod.new(:credit_card_type => 'visa', :credit_card_no => '4539016690974009',
-                                               :expiry_date => '10/2015', :first_name => 'John', :last_name => 'Doe',
-                                               :security_code => '578', :address_line1 => '#123-456 Make Believe Blvd',
-                                               :city => 'Unknown City', :zip_code => '5000', :country => 'PH')
+                                       :expiry_date => '10/2015', :first_name => 'John', :last_name => 'Doe',
+                                       :security_code => '578', :address_line1 => '#123-456 Make Believe Blvd',
+                                       :city => 'Unknown City', :zip_code => '5000', :country => 'PH')
     }
 
     let(:items) {
@@ -20,26 +20,6 @@ describe PaymentService do
       purchased_item.quantity = 10
       items.push(purchased_item)
     }
-
-    before(:each) do
-
-    end
-
-    it "is able to create the payment request when parameters are valid" do
-      payment_helper = PaymentRequestHelper.new payment_form, items, 'Unit Test', 'USD'
-      expect(payment_helper.create_payment_request[:transactions][0][:amount][:total]).to eq(100.to_s)
-    end
-
-    it "is able to apply discount" do
-      items.each do |item|
-        # Simulate a 10% discount
-        item.discount = 0.10
-      end
-
-      payment_helper = PaymentRequestHelper.new payment_form, items, 'Unit Test', 'USD'
-      payment_request = payment_helper.create_payment_request[:transactions][0][:amount]
-      expect(payment_request).to include({:total => 90.0.to_s, :currency => 'USD'})
-    end
 
     it "can process a membership fee" do
       fake_payment = instance_double(PayPal::SDK::REST::Payment)
@@ -64,16 +44,14 @@ describe PaymentService do
       payment = instance_double(PayPal::SDK::REST::Payment)
       allow(payment).to receive(:create).and_return(true)
       allow(payment).to receive(:id).and_return("PAY-88888888")
-      expect(PayPal::SDK::REST::Payment).to receive(:new).and_return(payment)
-
+      #expect(PayPal::SDK::REST::Payment).to receive(:new).and_return(payment)
 
       sales_order = build(:sales_order)
-      if sales_order.valid?
-        payment_service = PaymentService.instance
-        payment_ref = payment_service.process_sales_order!(sales_order, sales_order_items, sales_order.transaction_ref, 'USD')
-      end
+      payment_service = PaymentService.instance
+      payment_ref = payment_service.process_sales_order!(sales_order, [build(:sales_order_item)], 'USD')
 
-    end    
+
+    end
   end
 
 end
