@@ -2,19 +2,20 @@ class CheckoutController < CartController
   before_action :restore_checkout_form
 
   def index
-    @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ",
-                                                         current_user.id,
-                                                         Constants::PaymentMethod::ACTIVE)
+    @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ", current_user.id, Constants::PaymentMethod::ACTIVE)
   end
 
   def delivery_and_schedule
-    if params[:payment_method].nil?
+    if missing_payment_method?
       flash[:"alert-danger"] = "Please select a payment method"
       redirect_to checkout_index_path
     else
-      @delivery_addresses = DeliveryAddress.where("user_id = ?", current_user.id)
-      @checkout_form.payment_method = params[:payment_method]
-      RedisClient.set("checkout_#{session.id}", @checkout_form.to_json)
+      restore_delivery_address
+
+      unless params[:payment_method].nil?
+        @checkout_form.payment_method = params[:payment_method]
+        RedisClient.set("checkout_#{session.id}", @checkout_form.to_json)
+      end
     end
   end
 
@@ -22,20 +23,61 @@ class CheckoutController < CartController
     @checkout_form.delivery_address = params[:delivery_address]
     @checkout_form.schedule = params[:delivery_schedule]
     if @checkout_form.valid?
+      sales_order_service = SalesOrderService.instance
+      sales_order_service.create!(create_sales_order, create_line_items)
       flash[:notice] = "Your order has been placed"
     else
-      @delivery_addresses = DeliveryAddress.where("user_id = ?", current_user.id)
-      flash[:"alert-danger"] = @checkout_form.errors
+      restore_delivery_address
       render "delivery_and_schedule"
     end
   end
 
   private
+    def create_sales_order
+      sales_order = SalesOrder.new
+      sales_order.delivery_address = DeliveryAddress.where("user_id = ? and id = ?", current_user.id, @checkout_form.delivery_address).first
+      sales_order.user = current_user
+      sales_order.order_date = DateTime.current
+      
+      if @checkout_form.payment_method.downcase == Constants::PaymentType::CASH_ON_DELIVERY.downcase
+        sales_order.payment_type = Constants::PaymentType::CASH_ON_DELIVERY
+      else
+        sales_order.payment_type = Constants::PaymentType::CREDIT_CARD
+        sales_order.payment_method = PaymentMethod.where("user_id = ? and id = ?", current_user.id, @checkout_form.payment_method).first
+      end
+
+      sales_order.time_range = @checkout_form.schedule.gsub(/^(.*?)\s/, "")
+      sales_order.delivery_date = DateTime.strptime(@checkout_form.schedule.gsub(/\s-.*$/, ""), "%d-%m-%Y %H:%M ").change(:offset => "+8:00")
+
+      sales_order
+    end
+
+    def create_line_items
+      items = []
+      @cart.item_map.map.each do |k,v|
+        product = Product.find_by_cs_sku(v.sku)
+        sales_item = SalesOrderItem.new
+        sales_item.sku = product.cs_sku
+        sales_item.name = product.name
+        sales_item.price = product.price
+        sales_item.quantity = v.quantity
+        sales_item.discount = product.discount
+        items.push(sales_item)
+      end
+      items
+    end
+
+    def missing_payment_method?
+      params[:payment_method].nil? and @checkout_form.payment_method.nil?
+    end
+
+    def restore_delivery_address
+      @delivery_addresses = DeliveryAddress.where("user_id = ?", current_user.id)
+    end
+
     def restore_checkout_form
       @checkout_form = RedisClient.get("checkout_#{session.id}")
-      @checkout_form = @checkout_form.nil? ?
-          CheckoutForm.new :
-          CheckoutForm.restore(JSON.parse(@checkout_form))
+      @checkout_form = @checkout_form.nil? ? CheckoutForm.new : CheckoutForm.restore(JSON.parse(@checkout_form))
     end
 
     def secure_params

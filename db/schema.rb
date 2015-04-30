@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428142333) do
+ActiveRecord::Schema.define(version: 20150430142345) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "country_code"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20150428142333) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.string   "uom"
+    t.float    "discount"
   end
 
   add_index "products", ["product_category_id"], name: "index_products_on_product_category_id"

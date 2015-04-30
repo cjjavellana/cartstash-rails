@@ -9,7 +9,6 @@ class CheckoutForm
   def self.restore(from_json)
     form = CheckoutForm.new
     form.payment_method = from_json["payment_method"]
-
     form
   end
 end

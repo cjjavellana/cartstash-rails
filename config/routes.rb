@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   scope '/shop' do
     resources :checkout, only: [:index, :create]
+    get '/delivery-and-schedule', to: 'checkout#delivery_and_schedule'
     post '/delivery-and-schedule', to: 'checkout#delivery_and_schedule'
+    get '/confirm-order', to: 'checkout#confirm_order'
     post '/confirm-order', to: 'checkout#confirm_order'
   end
 

@@ -7,7 +7,7 @@ do ($ = jQuery) ->
     # Number of hours from now which you cannot select
     LEAD_TIME = 4
     # Number of days user can choose from
-    DELIVERY_DATE_CHOICES = 9
+    DELIVERY_DATE_CHOICES = 11
 
     defaults =
       startTime: 8

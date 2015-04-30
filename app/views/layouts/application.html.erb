@@ -39,7 +39,7 @@
         <li><%= link_to 'Appliances', root_path %></li>
       </ul>
       <% unless signed_in? %>
-          <button class="login-btn pull-right"></button>
+          <%= link_to "", new_user_session_path, {class: "login-btn pull-right"} %>
       <% else %>
           <div class="user-info pull-right">
             <div class="dropdown">
