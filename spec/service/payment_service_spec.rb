@@ -44,13 +44,12 @@ describe PaymentService do
       payment = instance_double(PayPal::SDK::REST::Payment)
       allow(payment).to receive(:create).and_return(true)
       allow(payment).to receive(:id).and_return("PAY-88888888")
-      #expect(PayPal::SDK::REST::Payment).to receive(:new).and_return(payment)
+      expect(PayPal::SDK::REST::Payment).to receive(:new).and_return(payment)
 
       sales_order = build(:sales_order)
       payment_service = PaymentService.instance
       payment_ref = payment_service.process_sales_order!(sales_order, [build(:sales_order_item)], 'USD')
-
-
+      expect(payment_ref).to eq("PAY-88888888")
     end
   end
 
