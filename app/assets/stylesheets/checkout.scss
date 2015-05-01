@@ -210,3 +210,15 @@
 .checkout-row {
   padding-bottom: 5px;
 }
+
+.order-placed-msg {
+  .confirm-check {
+    background: url("images/confirm-check.png") no-repeat center;
+    height: 50px;
+    width: 60px;
+  }
+
+  .msg {
+    font-size: 16px;
+  }
+}

@@ -14,7 +14,6 @@ class SalesOrderService
     sales_order.save
 
     # Charge credit card (if selected)
-    byebug
     if sales_order.payment_type == Constants::PaymentType::CREDIT_CARD
       payment_service = PaymentService.instance
       payment_id = payment_service.process_sales_order!(sales_order.payment_method, line_items, "Payment for #{sales_order.transaction_ref}", "USD")

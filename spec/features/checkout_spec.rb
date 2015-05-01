@@ -27,7 +27,7 @@ describe "Check Out Process" do
     find(:css, "#delivery_address").set delivery_address.id
     find(:css, "#delivery_schedule").set "27-04-2015 8:00-10:00"
     click_button "Place Order"
-    expect(page).to have_selector(".confirmation-number")
+    expect(page).to have_selector(".order-placed-msg")
   end
 
 end

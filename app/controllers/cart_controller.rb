@@ -20,14 +20,21 @@ class CartController < ApplicationController
 
   protected
     def restore_cart
-      @cart = $redis.get("cart_#{session.id}")
+      @cart = RedisClient.get("cart_#{session.id}")
       @cart = (@cart.nil?) ? Cart.new : Cart.restore(JSON.parse(@cart))
     end
 
     def persist_cart_and_respond
-      $redis.set("cart_#{session.id}", @cart.to_json)
+      RedisClient.set("cart_#{session.id}", @cart.to_json)
       respond_to do |format|
         format.js { render 'cart' }
+      end
+    end
+
+    def clear_session_cache
+      keys = RedisClient.keys("*_#{session.id}")
+      keys.each do |key|
+        RedisClient.delete key
       end
     end
 

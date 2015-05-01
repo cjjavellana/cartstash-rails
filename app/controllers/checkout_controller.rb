@@ -23,9 +23,10 @@ class CheckoutController < CartController
     @checkout_form.delivery_address = params[:delivery_address]
     @checkout_form.schedule = params[:delivery_schedule]
     if @checkout_form.valid?
+      sales_order = create_sales_order
       sales_order_service = SalesOrderService.instance
-      sales_order_service.create!(create_sales_order, create_line_items)
-      flash[:notice] = "Your order has been placed"
+      sales_order_service.create!(sales_order, create_line_items)
+      @checkout_form.order_ref = sales_order.transaction_ref
     else
       restore_delivery_address
       render "delivery_and_schedule"
@@ -38,7 +39,7 @@ class CheckoutController < CartController
       sales_order.delivery_address = DeliveryAddress.where("user_id = ? and id = ?", current_user.id, @checkout_form.delivery_address).first
       sales_order.user = current_user
       sales_order.order_date = DateTime.current
-      
+
       if @checkout_form.payment_method.downcase == Constants::PaymentType::CASH_ON_DELIVERY.downcase
         sales_order.payment_type = Constants::PaymentType::CASH_ON_DELIVERY
       else

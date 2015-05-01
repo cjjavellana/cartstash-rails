@@ -11,4 +11,8 @@ class RedisClient
   def self.delete(key)
     $redis.del key
   end
+
+  def self.keys(pattern = "*")
+    $redis.keys(pattern)
+  end
 end

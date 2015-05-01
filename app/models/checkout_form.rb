@@ -3,6 +3,7 @@ class CheckoutForm
   include Callbacks
   attr_accessor :payment_method, :delivery_address, :schedule
   attr_accessor :payment_methods
+  attr_accessor :order_ref
 
   validates :payment_method, :delivery_address, :schedule, :presence => true
 
