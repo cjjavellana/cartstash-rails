@@ -3,6 +3,11 @@ class CheckoutController < CartController
 
   def index
     @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ", current_user.id, Constants::PaymentMethod::ACTIVE)
+
+    # calculate order ref
+    item_count = @cart.item_map.length
+    cart_amount = @cart.sub_total
+    @checkout_form.order_ref = Digest::SHA2.hexdigest("#{current_user.email}-#{cart_amount}-#{item_count}")[0..20]
   end
 
   def delivery_and_schedule
@@ -26,7 +31,7 @@ class CheckoutController < CartController
       sales_order = create_sales_order
       sales_order_service = SalesOrderService.instance
       sales_order_service.create!(sales_order, create_line_items)
-      @checkout_form.order_ref = sales_order.transaction_ref
+      sales_order.transaction_ref = @checkout_form.order_ref
     else
       restore_delivery_address
       render "delivery_and_schedule"

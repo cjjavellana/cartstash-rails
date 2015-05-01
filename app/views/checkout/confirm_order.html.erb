@@ -1,13 +1,31 @@
 <div class="main">
   <div class="row order-placed-msg">
-    <div class="col-md-2">
-      <span class="confirm-check"></span>
-    </div>
-    <div class="col-md-10 msg">
-      Thank you, your order has been placed
+    <div class="col-md-12">
+      <%= image_tag "images/confirm-check.png", height: "50px", width: "60px", alt: "confirmed" %>
+      <span class="msg">Thank you, your order has been placed</span>
     </div>
   </div>
-  <div class="confirmation-number">
-
+  <div class="confirm-msg">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <p>
+          Your order receipt number is <span class="confirm-number"><%= link_to @checkout_form.order_ref, "#" %></span>.
+          An e-receipt will be sent to your email, you can also print a copy of the receipt by clicking the print
+          receipt button below.
+          Should you need assistance, feel free to email us at support@cartstash.com or call as at +632 888 8888
+          Thank you.
+        </p>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <%= button_tag "Print Receipt", {class: "btn confirm-order-btn"} %>
+        <%= link_to "Back to Browse Product", shop_index_path, class: "link" %>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
   </div>
 </div>

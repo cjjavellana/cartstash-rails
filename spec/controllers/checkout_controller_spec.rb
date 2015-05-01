@@ -12,6 +12,7 @@ RSpec.describe CheckoutController, type: :controller do
       allow(checkout_form).to receive(:valid?).and_return(true)
       allow(checkout_form).to receive(:delivery_address)
       allow(checkout_form).to receive(:payment_method).and_return("cod")
+      allow(checkout_form).to receive(:order_ref).and_return("1234567890abcdef")
       allow(checkout_form).to receive(:schedule).and_return("#{1.day.from_now.strftime("%d-%m-%Y")} 8:00-10:00")
 
       # mocks for field assignments
@@ -36,9 +37,19 @@ RSpec.describe CheckoutController, type: :controller do
       checkout_form
     }
 
-    it "confirms an order" do
+    before(:each) {
       expect(RedisClient).to receive(:get).with("cart_#{session.id}").and_return(nil)
       expect(RedisClient).to receive(:get).with("checkout_#{session.id}").and_return(nil)
+    }
+
+    it "shows sales order items, payment methods" do
+      expect(Digest::SHA2).to receive(:hexdigest).and_return("1234567890abcdef")
+      expect(PaymentMethod).to receive(:where).and_return([build(:foobar_visa)])
+      get :index
+      expect(assigns(:checkout_form).order_ref).to eq("1234567890abcdef")
+    end
+
+    it "confirms an order" do
       expect(CheckoutForm).to receive(:new).and_return(valid_checkout_form)
 
       delivery_schedule = "#{3.days.from_now.strftime('%d-%m-%Y')} 8:00-10:00"
@@ -48,9 +59,6 @@ RSpec.describe CheckoutController, type: :controller do
     end
 
     it "prompts for error when form is invalid" do
-      expect(RedisClient).to receive(:get).with("cart_#{session.id}").and_return(nil)
-      expect(RedisClient).to receive(:get).with("checkout_#{session.id}").and_return(nil)
-
       expect(CheckoutForm).to receive(:new).and_return(invalid_checkout_form)
       expect(DeliveryAddress).to receive(:where).and_return([delivery_address])
 
