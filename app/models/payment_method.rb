@@ -16,7 +16,13 @@ class PaymentMethod < ActiveRecord::Base
   validate :credit_card_number
 
   before_validation :assemble_expiry_date
-  after_validation :split_expiry_date_to_components
+  after_initialize :after_initialize
+
+  def after_initialize
+    if !self.expiry_date.nil? and match = self.expiry_date.match(/(1[0-2]|0[1-9])\/(20\d{2})/i)
+      self.expiry_month, self.expiry_year = match.captures
+    end
+  end
 
   def masked_credit_card
     if is_credit_card_no_valid
@@ -25,28 +31,22 @@ class PaymentMethod < ActiveRecord::Base
   end
 
   private
-  def credit_card_number
-    Validator.options[:allowed_card_types] = [:visa, :master_card]
-    unless is_credit_card_no_valid
-      errors.add(:credit_card_no, 'is invalid')
+    def credit_card_number
+      Validator.options[:allowed_card_types] = [:visa, :master_card]
+      unless is_credit_card_no_valid
+        errors.add(:credit_card_no, 'is invalid')
+      end
     end
-  end
 
-  def is_credit_card_no_valid
-    !self.credit_card_no.nil? and
-        Validator.valid?(self.credit_card_no)
-  end
-
-  def split_expiry_date_to_components
-    if !self.expiry_date.nil? and match = self.expiry_date.match(/(1[0-2]|0[1-9])\/(20\d{2})/i)
-      self.expiry_month, self.expiry_year = match.captures
+    def is_credit_card_no_valid
+      !self.credit_card_no.nil? and
+          Validator.valid?(self.credit_card_no)
     end
-  end
 
-  def assemble_expiry_date
-    unless self.expiry_month.nil? and self.expiry_year.nil?
-      self.expiry_date = "#{self.expiry_month}/#{self.expiry_year}"
+    def assemble_expiry_date
+      unless self.expiry_month.nil? and self.expiry_year.nil?
+        self.expiry_date = "#{self.expiry_month}/#{self.expiry_year}"
+      end
     end
-  end
 
 end

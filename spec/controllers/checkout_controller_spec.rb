@@ -30,7 +30,6 @@ RSpec.describe CheckoutController, type: :controller do
       checkout_form = instance_double(CheckoutForm)
       allow(checkout_form).to receive(:valid?).and_return(false)
       allow(checkout_form).to receive(:errors).and_return({:errors => ["Invalid object"]})
-
       allow(checkout_form).to receive(:delivery_address=)
       allow(checkout_form).to receive(:schedule=)
 
