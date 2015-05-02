@@ -18,7 +18,7 @@ describe "Check Out Process" do
     expect(page).to have_selector(".alert-danger", text: "Please select a payment method")
   end
 
-  it "confirms the order" do
+  it "confirms the order using COD" do
     delivery_address = create(:foobar_delivery_address)
     visit checkout_index_path
     find(:css, ".pm-checkbox:last-child").set(true)
