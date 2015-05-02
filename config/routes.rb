@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     post '/delivery-and-schedule', to: 'checkout#delivery_and_schedule'
     get '/confirm-order', to: 'checkout#confirm_order'
     post '/confirm-order', to: 'checkout#confirm_order'
+    get '/order-receipt', to: 'print_receipt#index'
   end
 
   get '/server-date', to: 'schedule_picker#current_datetime'
