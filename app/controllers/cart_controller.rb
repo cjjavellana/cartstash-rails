@@ -33,9 +33,7 @@ class CartController < ApplicationController
 
     def clear_session_cache
       keys = RedisClient.keys("*_#{session.id}")
-      keys.each do |key|
-        RedisClient.delete key
-      end
+      keys.each { |key| RedisClient.delete key }
     end
 
   private
@@ -44,7 +42,7 @@ class CartController < ApplicationController
     end
 
     def get_qty
-      params[:qty].nil? ? 1 : params[:qty]
+      params[:qty] || 1
     end
 
 end
