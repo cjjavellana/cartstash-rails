@@ -33,7 +33,7 @@ RSpec.describe CheckoutController, type: :controller do
       allow(checkout_form).to receive(:errors).and_return({:errors => ["Invalid object"]})
       allow(checkout_form).to receive(:delivery_address=)
       allow(checkout_form).to receive(:schedule=)
-
+      allow(checkout_form).to receive(:order_ref).and_return("1234567890abcdef")
       checkout_form
     }
 

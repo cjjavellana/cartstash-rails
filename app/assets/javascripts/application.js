@@ -16,5 +16,3 @@
 //= require bootstrap-sprockets
 //= require sweet-alert
 //= require_tree .
-
-

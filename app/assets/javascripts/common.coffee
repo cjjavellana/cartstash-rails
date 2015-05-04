@@ -1,6 +1,11 @@
 $(document).on "page:change", ->
   $('[data-toggle="tooltip"]').tooltip()
 
+  $(document).on "click", "a[datapopup]", (e) ->
+    window.open( $(this).attr('href'), "Popup", "width=512px" )
+    e.preventDefault()
+
+
 this.isNumber = isNumber = (value) ->
   numberPattern = /^\d{1,3}(\.\d{1,2})?$/
   numberPattern.test(value)

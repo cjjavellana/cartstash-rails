@@ -10,6 +10,7 @@ class CheckoutForm
   def self.restore(from_json)
     form = CheckoutForm.new
     form.payment_method = from_json["payment_method"]
+    form.order_ref = from_json["order_ref"]
     form
   end
 end
