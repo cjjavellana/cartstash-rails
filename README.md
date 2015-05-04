@@ -20,6 +20,7 @@ The next gen ecommerce platform
 This Project Requires Ruby version 2.2.1 and Rails version 4.2.0
 
 ### System dependencies
+1. Redis >= 2.6.12
 
 ### Configuration
 

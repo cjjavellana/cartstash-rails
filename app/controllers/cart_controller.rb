@@ -25,7 +25,7 @@ class CartController < ApplicationController
     end
 
     def persist_cart_and_respond
-      RedisClient.set("cart_#{session.id}", @cart.to_json)
+      RedisClient.set_with_expiry("cart_#{session.id}", @cart.to_json)
       respond_to do |format|
         format.js { render 'cart' }
       end

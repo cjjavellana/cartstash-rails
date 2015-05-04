@@ -1,5 +1,5 @@
 class CheckoutController < CartController
-  before_action :restore_checkout_form
+  before_action :authenticate_user!, :restore_checkout_form
 
   def index
     @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ",
@@ -15,7 +15,7 @@ class CheckoutController < CartController
 
       unless params[:payment_method].nil?
         @checkout_form.payment_method = params[:payment_method]
-        RedisClient.set("checkout_#{session.id}", @checkout_form.to_json)
+        RedisClient.set_with_expiry("checkout_#{session.id}", @checkout_form.to_json)
       end
     end
   end

@@ -4,6 +4,10 @@ class RedisClient
     $redis.set key, value
   end
 
+  def self.set_with_expiry(key, value, expiry = 86400)
+    $redis.set(key, value, {:ex => expiry})
+  end
+
   def self.get(key)
     $redis.get key
   end
