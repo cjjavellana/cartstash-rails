@@ -1,5 +1,13 @@
+#
+# A wrapper class for $redis from the gem redis-rb
+#
 class RedisClient
 
+  #
+  # Stores a non-expiring key-pair into redis
+  #
+  # @key - A string, the cache key
+  # @value - A string, the value to store
   def self.set(key, value)
     $redis.set key, value
   end
@@ -18,15 +26,23 @@ class RedisClient
   #
   # Retrieves a value from the cache
   #
-  # @key - A string, the key which identifies the value to retrieve
+  # @key - A string, the key that identifies the value to retrieve
   def self.get(key)
     $redis.get key
   end
 
+  #
+  # Deletes a value from the cache
+  #
+  # @key - A string, the key that identifies the value to delete
   def self.delete(key)
     $redis.del key
   end
 
+  #
+  # Returns the cache keys which matches the given pattern
+  #
+  # @pattern - The key pattern to retrieve
   def self.keys(pattern = "*")
     $redis.keys(pattern)
   end
