@@ -2,7 +2,7 @@ $(document).on "page:change", ->
   $('[data-toggle="tooltip"]').tooltip()
 
   $(document).on "click", "a[datapopup]", (e) ->
-    window.open( $(this).attr('href'), "Popup", "width=512px" )
+    window.open($(this).attr('href'), "Popup", "width=512px,height=800px" )
     e.preventDefault()
 
 
