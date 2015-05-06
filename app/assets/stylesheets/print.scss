@@ -23,3 +23,25 @@ body {
   padding-top: 35px;
   font-weight: bold;
 }
+
+.receipt-delivery-details {
+  padding-top: 5px;
+
+  .del-address-label, .receipt-header-label {
+    font-size: 14px;
+    padding-left: 0px;
+    padding-top: 5px;
+    font-weight: bold;
+  }
+
+  .del-address-recipient {
+    padding-left: 0px;
+    font-size: 12px;
+  }
+
+  .receipt-delivery-date {
+    padding-left: 0px;
+    font-size: 12px;
+  }
+}
+

@@ -1,6 +1,7 @@
 require 'paypal-sdk-rest'
 require './lib/cartstash_error'
 
+# Handles credit card payment processing
 class PaymentService
   include Singleton
   include CartstashError
@@ -16,8 +17,10 @@ class PaymentService
   # * <tt>CartstashError::PaymentError</tt> when the payment is unsuccessful
   def process_membership_fee!(payment_form, purchased_items, transaction_id, currency='PHP')
     Payment.transaction do
-      payment_request = PaypalPaymentRequest.new(payment_form, purchased_items,
-                                                 "Payment for #{transaction_id}", currency)
+      payment_request = PaypalPaymentRequest.new(payment_form,
+                                                 purchased_items,
+                                                 "Payment for #{transaction_id}",
+                                                 currency)
       request_hash = payment_request.create_payment_request
       @payment = PayPal::SDK::REST::Payment.new(request_hash)
 
@@ -30,8 +33,12 @@ class PaymentService
 
       # Create the payment detail
       purchased_items.each do |t|
-        payment_detail = PaymentDetail.new(:name => t.name, :sku => t.sku, :price => BigDecimal(t.price, 2),
-          :quantity => Float(t.quantity), :discount => t.discount, :payment => p)
+        payment_detail = PaymentDetail.new(:name => t.name,
+                                           :sku => t.sku,
+                                           :price => BigDecimal(t.price, 2),
+                                           :quantity => Float(t.quantity),
+                                           :discount => t.discount,
+                                           :payment => p)
         payment_detail.save
       end
 
@@ -41,17 +48,20 @@ class PaymentService
       else
         raise PaymentError, @payment.error
       end
+
     end
   end
 
   def process_sales_order!(credit_card, sales_order_items, description, currency='PHP')
     request = PaypalPaymentRequest.new(credit_card, sales_order_items, description, currency)
+
     paypal_payment = PayPal::SDK::REST::Payment.new(request)
     if paypal_payment.create
       paypal_payment.id
     else
       raise PaymentError, paypal_payment.error
     end
+
   end
 
   private

@@ -1,17 +1,62 @@
 <div class="container-fluid">
   <div class="row receipt-header">
     <div class="col-xs-5 col-md-5 cs-receipt-logo">
-        <%= image_tag "images/receipt-logo.png", alt: "Receipt Logo" %>
-        <div class="cs-address">
-          #10-51, Cartstash Tower, Lopez Jeana Street, Iloilo City, Philippines, 5000
-        </div>
+      <%= image_tag "images/receipt-logo.png", alt: "Receipt Logo" %>
+      <div class="cs-address">
+        #10-51, Cartstash Tower, Lopez Jeana Street, Iloilo City, Philippines, 5000
+      </div>
     </div>
     <div class="col-xs-1 col-md-1"></div>
     <div class="col-xs-2 col-md-2 cs-receipt-label">
-        Invoice No.:
+      Invoice No.:
     </div>
     <div class="col-xs-4 col-md-4 cs-receipt-ref">
       <%= @sales_order.transaction_ref %>
     </div>
+  </div>
+  <div class="row receipt-delivery-details">
+    <div class="col-xs-4 col-md-4 receipt-delivery-address">
+      <div class="col-xs-12 col-md-12 del-address-label">
+        Delivery Address
+      </div>
+      <div class="col-xs-12 col-md-12 del-address-recipient">
+        <%= @sales_order.delivery_address.recipient_name %>
+        <div>
+          <%= "#{@sales_order.delivery_address.address_line_1} #{@sales_order.delivery_address.address_line_2}" %>
+          <%= "#{@sales_order.delivery_address.city}, #{@sales_order.delivery_address.country}, #{@sales_order.delivery_address.zip_code}" %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-12 receipt-header-label">
+        Delivery Date
+      </div>
+      <div class="col-xs-12 col-md-12 receipt-delivery-date">
+        <%= "#{@sales_order.delivery_date.strftime("%d-%^b-%Y")} #{@sales_order.time_range}" %>
+      </div>
+    </div>
+    <div class="col-xs-2 col-md-2"></div>
+    <div class="col-xs-6 col-md-6 receipt-additional-info">
+      <div class="col-xs-12 col-md-12 receipt-header-label">
+        Payment Information
+      </div>
+      <div class="col-xs-12 col-md-12 receipt-delivery-date">
+        <%= case @sales_order.payment_type
+              when "cod"
+                "Cash on Delivery"
+              else
+                "Credit Card"
+            end
+        %>
+      </div>
+      <div class="col-xs-12 col-md-12 receipt-header-label">
+        Order Placed
+      </div>
+      <div class="col-xs-12 col-md-12 receipt-delivery-date">
+        <%= "#{@sales_order.order_date.strftime("%d-%^b-%Y %H:%M")}" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row receipt-sales-order-item-section">
+
   </div>
 </div>

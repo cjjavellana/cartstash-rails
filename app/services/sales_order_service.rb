@@ -1,3 +1,4 @@
+# Handles creation of sales orders
 class SalesOrderService
   include Singleton
 
