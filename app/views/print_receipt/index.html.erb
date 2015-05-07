@@ -57,6 +57,38 @@
   </div>
 
   <div class="row receipt-sales-order-item-section">
-
+    <div class="col-xs-12 col-md-12 item-detail-title">
+      Item Details
+    </div>
+    <div class="col-xs-12 col-md-12 item-detail-table">
+      <table class="table receipt-sales-order-items">
+        <thead>
+        <tr>
+          <th>S/No</th>
+          <th>Item No</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Sub-Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @sales_order.sales_order_items.each_with_index do |item, index| %>
+            <tr class="receipt-items">
+              <td><%= index + 1 %></td>
+              <td><%= item.sku %></td>
+              <td><%= item.name %></td>
+              <td><%= item.quantity %></td>
+              <td><%= item.price %></td>
+              <td><%= item.total %></td>
+            </tr>
+        <% end %>
+        <tr class="receipt-grandtotal-row">
+          <td colspan="5" class="receipt-grand-total">Grand Total</td>
+          <td><%= number_to_currency @sales_order.order_amount, unit: 'Php ' %></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

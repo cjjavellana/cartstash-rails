@@ -13,8 +13,8 @@ body {
 }
 
 .cs-receipt-label {
-  font-size: 18px;
-  padding-top: 30px;
+  font-size: 14px;
+  padding-top: 35px;
   padding-right: 0px;
   font-weight: bold;
 }
@@ -45,3 +45,24 @@ body {
   }
 }
 
+.item-detail-title {
+  font-size: 14px;
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+.receipt-sales-order-items {
+  th {
+    font-size: 12px;
+    border-bottom: 1px solid #000!important;
+  }
+
+  .receipt-grand-total {
+    text-align: right;
+    font-weight: bold;
+  }
+}
+
+.receipt-grandtotal-row {
+  border-top: 1px solid #000;
+}
