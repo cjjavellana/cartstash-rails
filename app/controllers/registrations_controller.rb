@@ -69,21 +69,13 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
     def init_lists
-      # Try to get list of countries from the cache
-      @countries = $redis.get('countries')
-      if @countries.nil?
-        # A cache-miss, retrieve it from db
-        @countries = Country.all.to_json
-        $redis.set('countries', @countries)
-      end
-
       @cc_types = $redis.get('cc_types')
       if @cc_types.nil?
         @cc_types = CreditCardType.all.to_json
         $redis.set('cc_types', @cc_types)
       end
 
-      @countries = JSON.parse(@countries)
+      @countries = Country.get_countries
       @cc_types = JSON.parse(@cc_types)
     end
 end

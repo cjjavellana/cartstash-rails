@@ -5,4 +5,9 @@ class DeliveryAddressController < ApplicationController
   def index
   	@delivery_addresses = DeliveryAddress.where("user_id = ? and status = ?", current_user.id, "active")
   end
+
+  def new
+  	@countries = Country.get_countries
+  end
+
 end
