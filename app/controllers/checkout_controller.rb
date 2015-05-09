@@ -41,7 +41,9 @@ class CheckoutController < CartController
   private
   def create_sales_order
     sales_order = SalesOrder.new
-    sales_order.delivery_address = DeliveryAddress.where("user_id = ? and id = ?", current_user.id, @checkout_form.delivery_address).first
+    sales_order.delivery_address = DeliveryAddress.where("user_id = ? and id = ?",
+                                                         current_user.id,
+                                                         @checkout_form.delivery_address).first
     sales_order.user = current_user
     sales_order.order_date = DateTime.current
     sales_order.transaction_ref = @checkout_form.order_ref
@@ -50,7 +52,9 @@ class CheckoutController < CartController
       sales_order.payment_type = Constants::PaymentType::CASH_ON_DELIVERY
     else
       sales_order.payment_type = Constants::PaymentType::CREDIT_CARD
-      sales_order.payment_method = PaymentMethod.where("user_id = ? and id = ?", current_user.id, @checkout_form.payment_method).first
+      sales_order.payment_method = PaymentMethod.where("user_id = ? and id = ?",
+                                                       current_user.id,
+                                                       @checkout_form.payment_method).first
     end
 
     sales_order.time_range = @checkout_form.schedule.gsub(/^(.*?)\s/, "")

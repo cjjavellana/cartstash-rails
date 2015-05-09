@@ -8,6 +8,10 @@ class DeliveryAddressController < ApplicationController
 
   def new
   	@countries = Country.get_countries
+    @delivery_address = DeliveryAddress.new
   end
 
+  def create
+
+  end
 end

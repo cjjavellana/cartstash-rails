@@ -1,0 +1,18 @@
+<div class="main">
+  <div class="row">
+    <div class="col-md-2 account-sidebar">
+      <div class="col-md-12 account-sidebar-menu">
+        <%= link_to 'Account Info', '#' %>
+      </div>
+      <div class="col-md-12 account-sidebar-menu">
+        <%= link_to 'Payment Method', '#' %>
+      </div>
+      <div class="col-md-12 account-sidebar-menu">
+        <%= link_to 'Delivery Address', delivery_address_index_path %>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <%= yield %>
+    </div>
+  </div>
+</div>
