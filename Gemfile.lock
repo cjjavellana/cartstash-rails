@@ -101,6 +101,7 @@ GEM
       multi_json (>= 1.9.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     hashie (3.4.0)
     hike (1.2.3)
     httparty (0.13.3)
@@ -268,6 +269,7 @@ DEPENDENCIES
   devise (= 3.4.1)
   factory_girl_rails (~> 4.0)
   gibbon
+  gmaps4rails
   jbuilder (~> 2.0)
   jquery-rails
   kaminari (~> 0.16.3)

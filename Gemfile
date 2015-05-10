@@ -45,6 +45,7 @@ gem 'gibbon'
 gem 'credit_card_validator'
 gem 'paypal-sdk-rest'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+gem 'gmaps4rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
