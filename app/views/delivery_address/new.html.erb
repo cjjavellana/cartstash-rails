@@ -1,9 +1,48 @@
 <div class="main">
   <%= render layout: 'layouts/accounts_sidebar' do %>
-    <div class="row add-delivery-address-header">
-      <div class="col-md-12 header-title">
+      <div class="row add-delivery-address-header">
+        <div class="col-md-12 header-title">
           Add Delivery Address
+        </div>
       </div>
-    </div>
+
+      <div class="row new-delivery-address-form  col-md-6">
+        <%= form_for @delivery_address, url: delivery_address_index_path do |f| %>
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <%= check_box_tag 'same_recipient' %> I am the recipient
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :recipient_name, class: 'form-control', placeholder: 'Recipient\'s name' %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :contact_no, class: 'form-control', placeholder: 'Contact no. (e.g. +639177057221)' %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :address_line_1, class: 'form-control', placeholder: 'Address Line 1' %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :address_line_2, class: 'form-control', placeholder: 'Address Line 2' %>
+            </div>
+            <div class="form-group col-md-4 no-pad-left">
+              <%= f.text_field :zip_code, class: 'form-control', placeholder: 'Zip code' %>
+            </div>
+            <div class="form-group col-md-8 no-pad-right">
+              <%= f.select :country,
+                               options_for_select(@countries.collect {|c| [ c['name'], c['short_name'] ]}, 'PH'),
+                               {:include_blank => false},
+                               {:class => 'form-control'}
+                  %>
+            </div>
+             <div class="form-group">
+              <div class="col-md-12 col-xs-12 no-pad-left">
+                Drop a pin on your location
+              </div>
+            </div>
+        <% end %>
+      </div>
   <% end %>
 </div>
