@@ -32,6 +32,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'gmaps4rails'
+gem 'underscore-rails'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'redis', '~> 3.2.1'
 gem 'sweet-alert'
@@ -45,7 +47,6 @@ gem 'gibbon'
 gem 'credit_card_validator'
 gem 'paypal-sdk-rest'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
-gem 'gmaps4rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
