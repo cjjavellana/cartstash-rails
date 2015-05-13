@@ -1,18 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 $(document).on 'ready', ->
-  markers = []
 
-  CartStashGmapHelper =
-    clearMapMarkers: (markers) ->
-      for marker in markers
-        marker.setMap(null)
-
-      markers = []
-
+  # Manage delivery address specific javascripts
   if $('.add-delivery-address-header').length > 0
+    markers = []
+
+    CartStashGmapHelper =
+      clearMapMarkers: (markers) ->
+        for marker in markers
+          marker.setMap(null)
+
+        markers = []
+
     handler = Gmaps.build('Google')
     handler.buildMap({provider: {zoom: 17}, internal: {id: 'geolocation'}}, ->
       if navigator.geolocation
@@ -31,7 +29,10 @@ $(document).on 'ready', ->
 
           markers.push(marker)
 
+          $('#delivery_address_location_coords').val("#{e.latLng.lat()}, #{e.latLng.lng()}")
           return
       )
     )
 
+    $('#same_recipient').on 'click', ->
+      console.log "same as logged in user"

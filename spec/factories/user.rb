@@ -15,4 +15,8 @@ FactoryGirl.define do
     password    'password'
   end
 
+  factory :user_with_no_name, class: User do
+    email       'foo@bar.com'
+    password    'password'
+  end
 end

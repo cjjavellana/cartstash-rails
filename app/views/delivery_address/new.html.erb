@@ -8,6 +8,8 @@
 
       <div class="row new-delivery-address-form  col-md-6">
         <%= form_for @delivery_address, url: delivery_address_index_path do |f| %>
+            <%= f.hidden_field :location_coords %>
+            <%= form_error_messages! @delivery_address %>
             <div class="form-group">
               <div class="checkbox">
                 <label>

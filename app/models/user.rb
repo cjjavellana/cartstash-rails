@@ -3,10 +3,13 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-         # :confirmable
+  # :confirmable
 
   validates :terms_of_service, :acceptance => {:accept => true}
 
+  def get_name
+    "#{self.first_name} #{self.last_name}".strip
+  end
 end
 
 class UserRegistrationForm
@@ -28,16 +31,16 @@ class UserRegistrationForm
   end
 
   private
-    def email_must_be_unique
-      user = User.find_by_email(self.email)
-      unless user.nil?
-        errors.add(:email, 'already exist.')
-      end
+  def email_must_be_unique
+    user = User.find_by_email(self.email)
+    unless user.nil?
+      errors.add(:email, 'already exist.')
     end
+  end
 
-    def password_must_match
-      if self.password != self.confirm_password
-        errors.add(:password, 'do not match.')
-      end
+  def password_must_match
+    if self.password != self.confirm_password
+      errors.add(:password, 'do not match.')
     end
+  end
 end
