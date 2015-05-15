@@ -44,7 +44,3 @@ rake spec
 
 ### ...
 
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/cjjavellana/cartstash-rails/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
