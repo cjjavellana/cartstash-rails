@@ -9,7 +9,7 @@
           Choose Delivery Address
         </div>
         <div class="col-md-2 add-address-link">
-          <%= link_to 'Add Delivery Address', new_delivery_address_path, 'data-no-turbolink' => true %>
+          <%= link_to 'Add Delivery Address', new_delivery_address_path(:return_url => create_return_url(delivery_and_schedule_path)), 'data-no-turbolink' => true  %>
         </div>
       </div>
 

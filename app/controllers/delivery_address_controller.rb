@@ -9,6 +9,9 @@ class DeliveryAddressController < ApplicationController
   def new
   	@countries = Country.get_countries
     @delivery_address = DeliveryAddress.new
+    @return_url = params[:return_url]
+
+    byebug
   end
 
   def create
