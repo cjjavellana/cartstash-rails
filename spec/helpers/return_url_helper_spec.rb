@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ReturnUrlHelper do
+describe ReturnUrlHelper, type: :helper do
   include ReturnUrlHelper
 
   it "encrypts the return url" do

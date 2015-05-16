@@ -30,14 +30,12 @@ class DeliveryAddressController < ApplicationController
 
       return_url = params[:return_url].equal?("") ? nil : params[:return_url]
       unless return_url.nil?
-
         begin
           redirect_to decrypt_return_url(return_url)
         rescue
           # Unable to decrypt the return url
           render :index
         end
-
       else
         render :index
       end
