@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"get",
+				"get_countries"
+			],
+			[
+				"fac",
+				"factory"
+			],
+			[
+				"render",
+				"render_template"
+			],
+			[
+				"have_",
+				"have_http_status"
+			],
+			[
+				"delive",
+				"delivery_address"
+			],
+			[
+				"build",
+				"build_stubbed"
+			],
+			[
+				"and",
+				"and_return"
+			],
+			[
+				"current",
+				"current_user"
+			],
+			[
+				"Delivery",
+				"DeliveryAddress"
+			],
+			[
+				"delivery_addres",
+				"delivery_addresses"
+			],
+			[
+				"Foo",
+				"Foobar"
+			],
+			[
+				"non",
+				"non-registered"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
 				"ce",
 				"centered"
 			],
@@ -106,10 +162,6 @@
 			[
 				"last",
 				"last_dot_index"
-			],
-			[
-				"get",
-				"get_list"
 			],
 			[
 				"ser",
@@ -360,10 +412,6 @@
 				"CountryList"
 			],
 			[
-				"current",
-				"currentYear"
-			],
-			[
 				"user",
 				"user_serializer"
 			],
@@ -466,88 +514,16 @@
 			[
 				"uni",
 				"unit_of_measure"
-			],
-			[
-				"For",
-				"ForeignKey"
-			],
-			[
-				"ware",
-				"warehouse_inventory"
-			],
-			[
-				"Char",
-				"CharField"
-			],
-			[
-				"phone",
-				"phone_number"
-			],
-			[
-				"credit",
-				"credit_card"
-			],
-			[
-				"pre",
-				"prefetch_related"
-			],
-			[
-				"paymen",
-				"payment_ref_number"
-			],
-			[
-				"ver",
-				"verify_sales_order"
-			],
-			[
-				"pur",
-				"purchased_item"
-			],
-			[
-				"ve",
-				"verify_sales_order"
-			],
-			[
-				"tota",
-				"total"
-			],
-			[
-				"shi",
-				"shipping"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "config/environments/development.rb",
+			"file": "db/schema.rb",
 			"settings":
 			{
-				"buffer_size": 1682,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/stylesheets/application.css.scss",
-			"settings":
-			{
-				"buffer_size": 1262,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/layouts/application.html.erb",
-			"settings":
-			{
-				"buffer_size": 797,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/cjavellana/Library/Application Support/Sublime Text 2/Packages/User/DashDoc.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 4122,
+				"buffer_size": 9345,
 				"line_ending": "Unix"
 			}
 		}
@@ -615,7 +591,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 593.0
 	},
 	"console":
 	{
@@ -632,6 +608,57 @@
 	},
 	"file_history":
 	[
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/checkout/index.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/users/registrations/new.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/users/registrations/membership.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/delivery_address/new.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/layouts/application.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/Gemfile",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/assets/javascripts/application.js",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/assets/javascripts/delivery_address.coffee",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/assets/stylesheets/delivery_address.scss",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/devise/registrations/new.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/users/sessions/new.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/controllers/delivery_address_controller_spec.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/controllers/delivery_address_controller.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/delivery_address/index.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/models/country.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/models/country_spec.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/assets/stylesheets/accounts.scss",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/controllers/registrations_controller.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/controllers/checkout_controller_spec.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/factories/delivery_addresses.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/features/checkout_spec.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/controllers/print_receipt_controller_spec.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/checkout/confirm_order.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/layouts/_accounts_sidebar.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/db/schema.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/checkout/delivery_and_schedule.html.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/controllers/checkout_controller.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/controllers/cart_controller.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/features/login_spec.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/factories/countries.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/db/seeds.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/db/seeds/countries.json",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/lib/constants.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/service/payment_service_spec.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/factories/user.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/models/payment.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/models/membership.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/models/supplier.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/views/cart/cart.js.erb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/config/environments/development.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/controllers/main_controller.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/.rspec",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/spec/fixtures/sequences.yml",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/assets/stylesheets/pregister.css.scss",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/helpers/form_validation_helper.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/lib/form_validation_helper.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/helpers/prelaunch_helper.rb",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/app/assets/stylesheets/application.css.scss",
+		"/Users/cjavellana/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/cjavellana/Library/Application Support/Sublime Text 2/Packages/User/DashDoc.sublime-settings",
+		"/Users/cjavellana/Projects/cartstash/rails-dev-box/projects/cartstash-rails/cartstash/cartstash.sublime-project",
 		"/Users/cjavellana/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/cjavellana/Projects/java/ibens-logs-parser/scripts/tarsplit.sh",
 		"/Users/cjavellana/Projects/java/ocp/package com.cjavellana.ocp.modifiers",
@@ -708,58 +735,7 @@
 		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/authentication.py",
 		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/merchantservice.js",
 		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/product.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/permissions.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/settings.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/manytomany.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/test_merchant.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/__init__.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/pydev/styles/rwd.css",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/pydev/rwd.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/merchant_report.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/login.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/styles/main.css",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/.tmp/styles/main.css",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/merchant_menu.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/item_management.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/users/creditcards.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/controllers/manageaccount.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/productsservice.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/app.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/alertservice.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/manageaccount.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/addressservice.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/myservice.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/services/authinterceptor.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/merchants.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/files/httpd/conf.d/vhost.conf",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/projectmarket/settings.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/dashboard.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/ngGoogleCharts.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/index.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/merchant_header.html",
-		"/Users/cjavellana/Downloads/jb.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/merchant/registration.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/footer.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/bower_components/angular-wizard/dist/angular-wizard.css",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/choices.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/orders.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/menu.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/backends.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/admin_dashboard.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/users/manageaccount.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/test_runner.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/view/accounts.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/menu.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/users/leftmenu.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/report.pdf",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/test_paymentmethod.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/models/customers.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/views/users/changepassword.html",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/tests/test_salesorder.py",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/README.md",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryjs/app/scripts/controllers/login.js",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/TODOs",
-		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/admin.py"
+		"/Users/cjavellana/Projects/ecommerce/djangocentos/projects/groceryapi/api/permissions.py"
 	],
 	"find":
 	{
@@ -784,6 +760,15 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"build_stubbed",
+			"end",
+			"\\n",
+			"\"",
+			"\",",
+			"^",
+			"$",
+			"\\r\\n",
+			"\\r\\b",
 			"RSA",
 			"Memory",
 			"Exception",
@@ -879,9 +864,14 @@
 		"highlight": false,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": false,
+		"regex": true,
 		"replace_history":
 		[
+			"build",
+			",",
+			"",
+			"\"",
+			"\",",
 			"",
 			"\\t",
 			"\"",
@@ -896,20 +886,20 @@
 		"show_context": false,
 		"use_buffer2": false,
 		"whole_word": false,
-		"wrap": true
+		"wrap": false
 	},
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "config/environments/development.rb",
+					"file": "db/schema.rb",
 					"settings":
 					{
-						"buffer_size": 1682,
+						"buffer_size": 9345,
 						"regions":
 						{
 						},
@@ -927,87 +917,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/assets/stylesheets/application.css.scss",
-					"settings":
-					{
-						"buffer_size": 1262,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1257,
-								1257
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/views/layouts/application.html.erb",
-					"settings":
-					{
-						"buffer_size": 797,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								474,
-								474
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/cjavellana/Library/Application Support/Sublime Text 2/Packages/User/DashDoc.sublime-settings",
-					"settings":
-					{
-						"buffer_size": 4122,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4122,
-								4122
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 60.0,
+						"translation.y": 132.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1068,6 +978,50 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"delivery",
+				"app/assets/stylesheets/delivery_address.scss"
+			],
+			[
+				"application",
+				"app/views/layouts/application.html.erb"
+			],
+			[
+				"new",
+				"app/views/devise/registrations/new.html.erb"
+			],
+			[
+				"schema",
+				"db/schema.rb"
+			],
+			[
+				"countries",
+				"db/seeds/countries.json"
+			],
+			[
+				"seed",
+				"db/seeds.rb"
+			],
+			[
+				"cons",
+				"lib/constants.rb"
+			],
+			[
+				"schm",
+				"db/schema.rb"
+			],
+			[
+				"delivery_address_c",
+				"app/controllers/delivery_address_controller.rb"
+			],
+			[
+				"cart_",
+				"app/controllers/cart_controller.rb"
+			],
+			[
+				"checkout",
+				"app/controllers/checkout_controller.rb"
+			],
 			[
 				"development.r",
 				"config/environments/development.rb"
@@ -1207,6 +1161,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 393.0,
+	"side_bar_width": 229.0,
 	"status_bar_visible": true
 }

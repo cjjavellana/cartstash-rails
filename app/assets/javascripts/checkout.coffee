@@ -11,6 +11,7 @@ $(document).on 'click', '.del-address', ->
   # Clean up
   $('.del-address').css({'border': ''})
   $(".glyphicon-check").remove()
+  $(".greencheck").remove()
 
   # Highlight selected Delivery Address
   $(this).css({'border': '2px solid rgba(184, 233, 134, 0.8)'})

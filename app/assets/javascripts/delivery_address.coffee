@@ -35,4 +35,9 @@ $(document).on 'ready', ->
     )
 
     $('#same_recipient').on 'click', ->
-      console.log "same as logged in user"
+      if $(this).is(':checked')
+        $('#delivery_address_recipient_name').val($('#user').val())
+        $('#delivery_address_recipient_name').attr('readonly', true)
+      else
+        $('#delivery_address_recipient_name').val('')
+        $('#delivery_address_recipient_name').attr('readonly', false)

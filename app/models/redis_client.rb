@@ -28,7 +28,11 @@ class RedisClient
   #
   # @key - A string, the key that identifies the value to retrieve
   def self.get(key)
-    $redis.get key
+    begin
+      $redis.get key
+    rescue Redis::CannotConnectError
+      nil
+    end
   end
 
   #
