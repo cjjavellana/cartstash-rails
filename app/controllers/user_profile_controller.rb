@@ -4,4 +4,8 @@ class UserProfileController < ApplicationController
     @user = User.find(current_user.id)
   end
 
+  def update
+
+    render :index
+  end
 end

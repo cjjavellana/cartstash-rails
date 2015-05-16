@@ -3,16 +3,27 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'buttons';
 
-.add-delivery-address-header {
-	padding-left: 25px;
+.add-delivery-address-header, .user-profile-header {
+	padding-left: 10px;
+    border-left: 1px solid #fff;
 
 	.header-title {
-		font-size: 20px;
-		border-bottom: 1px solid #fff;
-	}	
+      border-bottom: 1px solid #fff;
+      font-size: 20px;
+	}
+
+    a {
+      font-size: 12px;
+      color: #fff;
+    }
+
+    a:hover {
+      color: #fff !important;
+      text-decoration: underline;
+    }
 }
 
-.new-delivery-address-form {
+.new-delivery-address-form, .user-profile-form {
   padding-left: 25px;
   padding-top: 5px;
   border-left: 1px solid #fff;

@@ -41,6 +41,7 @@ class DeliveryAddressController < ApplicationController
       end
 
     else
+      @countries = Country.get_countries
       render :new
     end
 
