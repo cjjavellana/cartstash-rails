@@ -50,8 +50,8 @@
               </button>
               <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation">
-                  <a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-user"></span> My
-                    Account</a></li>
+                  <%= link_to user_profile_index_path do %><span class="glyphicon glyphicon-user"></span> My Account<% end %>
+                </li>
                 <li role="presentation">
                   <a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-list"></span> Orders</a>
                 </li>
