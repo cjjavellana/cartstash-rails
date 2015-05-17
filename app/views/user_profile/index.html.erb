@@ -4,7 +4,7 @@
         <div class="col-md-12 header-title">
           Account Info
           <div class="pull-right">
-            <%= link_to "Change Password", "#", class: "change-password-link"%>
+            <%= link_to "Change Password", "#", class: "change-password-link" %>
           </div>
         </div>
       </div>
@@ -17,11 +17,23 @@
             <div class="form-group">
               <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last name' %>
             </div>
-            <div class="form-group col-md-5 no-pad-left">
-              <%= select_tag "gender",
-                             options_for_select(["Select Gender", "Male", "Female"], @user.gender),
-                             class: "form-control"
-              %>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <%= select_tag "gender",
+                               options_for_select(["Select Gender", "Male", "Female"], @user.gender),
+                               class: "form-control"
+                %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <div class='input-group date' id='birthdate'>
+                  <%= f.text_field :birthdate, class: 'form-control', placeholder: 'Birthdate' %>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                </div>
+              </div>
             </div>
         <% end %>
       </div>
