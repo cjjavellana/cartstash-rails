@@ -28,7 +28,7 @@
             <div class="row">
               <div class="form-group col-md-6">
                 <div class='input-group date' id='birthdate'>
-                  <%= f.text_field :birthdate, class: 'form-control', placeholder: 'Birthdate' %>
+                  <%= f.text_field :birthdate, value: date_to_string(@user.birthdate), class: 'form-control', placeholder: 'Birthdate' %>
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
