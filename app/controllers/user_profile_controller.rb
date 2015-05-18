@@ -10,12 +10,13 @@ class UserProfileController < ApplicationController
     @user = User.find(current_user.id)
 
     if @user.valid?
-
+      @user.assign_attributes(secure_params)
       @user.save
-    else
-      
+
+      flash[:notice] = "User profile successfully updated"
     end
 
+    @countries = Country.get_countries
     render :index
   end
 

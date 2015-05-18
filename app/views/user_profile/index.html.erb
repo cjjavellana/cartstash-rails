@@ -19,10 +19,10 @@
             </div>
             <div class="row">
               <div class="form-group col-md-6">
-                <%= select_tag "gender",
-                               options_for_select(["Select Gender", "Male", "Female"], @user.gender),
-                               class: "form-control"
-                %>
+                <%= f.select :gender,
+                             options_for_select(["Male", "Female"], @user.gender),
+                             {include_blank: true},
+                             {class: "form-control"} %>
               </div>
             </div>
             <div class="row">
@@ -47,7 +47,7 @@
               </div>
               <div class="form-group col-md-8">
                 <%= f.select :country,
-                             options_for_select(@countries.collect { |c| [c['name'], c['short_name']] }, 'PH'),
+                             options_for_select(@countries.collect { |c| [c['name'], c['short_name']] }, "#{@user.country.nil? ? 'PH' : @user.country}" ),
                              {:include_blank => false},
                              {:class => 'form-control'}
                 %>
