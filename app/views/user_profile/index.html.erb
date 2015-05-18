@@ -35,6 +35,29 @@
                 </div>
               </div>
             </div>
+            <div class="form-group">
+              <%= f.text_field :address_line_1, class: 'form-control', placeholder: 'Address Line 1' %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :address_line_2, class: 'form-control', placeholder: 'Address Line 2' %>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-4">
+                <%= f.text_field :zip, class: 'form-control', placeholder: 'Zip Code' %>
+              </div>
+              <div class="form-group col-md-8">
+                <%= f.select :country,
+                             options_for_select(@countries.collect { |c| [c['name'], c['short_name']] }, 'PH'),
+                             {:include_blank => false},
+                             {:class => 'form-control'}
+                %>
+              </div>
+
+                <div class="form-group action-btn-group">
+                  <%= f.submit "Save", class: "btn save-account-info" %>
+                </div>
+
+            </div>
         <% end %>
       </div>
   <% end %>

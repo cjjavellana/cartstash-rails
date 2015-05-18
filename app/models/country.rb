@@ -4,8 +4,12 @@ class Country < ActiveRecord::Base
     countries = RedisClient.get("countries")
     if countries.nil?
       countries = Country.all.to_json
-      # decline caching if list is empty
-      RedisClient.set("countries", countries) unless countries.equal? "[]"
+
+      begin
+        RedisClient.set("countries", countries) unless countries.equal? "[]"
+      rescue
+        # Do nothing when redis is unavailable
+      end
     end
 
     JSON.parse(countries)

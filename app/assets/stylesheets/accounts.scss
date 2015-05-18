@@ -1,3 +1,5 @@
+@import 'buttons';
+
 .account-sidebar {
 	.account-sidebar-menu {
 		padding: 10px 0px 10px 0px;
@@ -8,4 +10,13 @@
 			text-decoration: none;
 		}
 	}	
+}
+
+.user-profile-form .action-btn-group {
+  padding-left: 15px;
+}
+
+.save-account-info {
+  @extend .cartstash-btn;
+  width: 80px;
 }
