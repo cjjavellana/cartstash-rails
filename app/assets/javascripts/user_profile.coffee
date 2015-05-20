@@ -4,3 +4,5 @@
 $(document).on 'page:change', ->
   if $('#birthdate').length > 0
     $('#birthdate').datepicker()
+
+  return

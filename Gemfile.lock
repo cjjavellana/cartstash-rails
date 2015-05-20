@@ -264,6 +264,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-session_store!
+  autoprefixer-rails
   bootstrap-datepicker-rails
   bootstrap-sass (~> 3.3.3)
   byebug
