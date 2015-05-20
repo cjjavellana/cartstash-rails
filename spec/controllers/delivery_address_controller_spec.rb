@@ -27,7 +27,7 @@ RSpec.describe DeliveryAddressController, type: :controller do
     }
 
     it "displays the user's configured delivery addresses" do
-      allow(DeliveryAddress).to receive(:where).and_return([delivery_address])
+      expect(DeliveryAddress).to receive(:where).and_return([delivery_address])
       get :index
       expect(assigns(:delivery_addresses).length).to eq(1)
       expect(response).to have_http_status(:success)
