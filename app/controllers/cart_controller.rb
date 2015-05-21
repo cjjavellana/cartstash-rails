@@ -1,21 +1,31 @@
 class CartController < ApplicationController
   before_action :restore_cart
+  after_action :persist_cart
 
   def add2cart
     @cart.add_item(params[:sku], get_qty)
-    persist_cart_and_respond
+
+    respond_to do |format|
+      format.js { render 'cart' }
+    end
   end
 
   # Updates the quantity of an item in the cart
   def update_cart
     @cart.update_item(params[:sku], get_qty)
-    persist_cart_and_respond
+
+    respond_to do |format|
+      format.js { render 'cart' }
+    end
   end
 
   # Removes an item from the cart
   def remove_item
     @cart.remove_item params[:sku]
-    persist_cart_and_respond
+
+    respond_to do |format|
+      format.js { render 'cart' }
+    end
   end
 
   protected
@@ -24,11 +34,8 @@ class CartController < ApplicationController
       @cart = (@cart.nil?) ? Cart.new : Cart.restore(JSON.parse(@cart))
     end
 
-    def persist_cart_and_respond
+    def persist_cart
       RedisClient.set_with_expiry("cart_#{session.id}", @cart.to_json)
-      respond_to do |format|
-        format.js { render 'cart' }
-      end
     end
 
     def clear_session_cache

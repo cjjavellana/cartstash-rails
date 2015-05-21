@@ -1,5 +1,6 @@
 class UserProfileController < ApplicationController
 
+  before_filter :authenticate_user!
   before_action :set_countries
 
   def index
@@ -20,10 +21,25 @@ class UserProfileController < ApplicationController
     render :index
   end
 
+  def update_password
+    @user = User.find(current_user.id)
+
+    if @user.update_with_password(password_update_params)
+      sign_in @user, :bypass => true
+      flash[:notice] = "Password successfully updated"
+    end
+
+    render :index
+  end
+
   private
     def secure_params
       params.require(:user).permit(:first_name, :last_name, :gender, :birthdate,
                                    :address_line_1, :address_line_2, :zip, :country)
+    end
+
+    def password_update_params
+      params.require(:user).permit(:password, :confirm_password, :current_password)
     end
 
     def set_attributes
