@@ -39,7 +39,7 @@ class UserProfileController < ApplicationController
     end
 
     def password_update_params
-      params.require(:user).permit(:password, :confirm_password, :current_password)
+      params.require(:user).permit(:password, :password_confirmation, :current_password)
     end
 
     def set_attributes

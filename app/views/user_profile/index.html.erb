@@ -4,7 +4,7 @@
         <div class="col-md-12 header-title">
           Account Info
           <div class="pull-right">
-            <%= link_to "Change Password", "#", class: "change-password-link", data: { toggle: 'modal', target: '#changePassword'} %>
+            <%= link_to "Change Password", "#", class: "change-password-link", data: {toggle: 'modal', target: '#changePassword'} %>
           </div>
         </div>
       </div>
@@ -47,15 +47,15 @@
               </div>
               <div class="form-group col-md-8">
                 <%= f.select :country,
-                             options_for_select(@countries.collect { |c| [c['name'], c['short_name']] }, "#{@user.country.nil? ? 'PH' : @user.country}" ),
+                             options_for_select(@countries.collect { |c| [c['name'], c['short_name']] }, "#{@user.country.nil? ? 'PH' : @user.country}"),
                              {:include_blank => false},
                              {:class => 'form-control'}
                 %>
               </div>
 
-                <div class="form-group action-btn-group">
-                  <%= f.submit "Save", class: "btn save-account-info" %>
-                </div>
+              <div class="form-group action-btn-group">
+                <%= f.submit "Save", class: "btn save-account-info" %>
+              </div>
 
             </div>
         <% end %>
@@ -63,21 +63,38 @@
   <% end %>
 </div>
 
-<div class="modal fade change-password-dialog" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title change-password-modal-title" id="myModalLabel">Change Password</h4>
-      </div>
-      <div class="modal-body container-fluid">
+<%= form_for @user, url: update_password_user_profile_index_path, method: 'patch' do |f| %>
+    <div class="modal fade change-password-dialog" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title change-password-modal-title" id="myModalLabel">
+              Change Password
+            </h4>
+          </div>
+          <div class="modal-body container-fluid">
+            <%= form_error_messages! @user %>
+            <div class="form-group">
+              <label for="current_password">Current Password</label>
+              <%= f.password_field :current_password, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <label for="confirm_password">Confirm Password</label>
+              <%= f.password_field :password_confirmation, class: 'form-control' %>
+            </div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= f.submit 'Change Password', class: "btn change-password-btn"%>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
+<% end %>

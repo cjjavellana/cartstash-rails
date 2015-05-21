@@ -1,6 +1,18 @@
 // Place all the styles related to the UserProfile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "buttons";
+
 .change-password-modal-title {
   color: #2E2F30;
+}
+
+.change-password-dialog .form-group label {
+  color: #2E2F30;
+}
+
+.change-password-btn {
+  @extend .cartstash-btn;
+  width: 140px;
 }
