@@ -29,7 +29,10 @@ class UserProfileController < ApplicationController
       flash[:notice] = "Password successfully updated"
     end
 
-    render :index
+    respond_to do |format|
+      format.js { render 'changepassword' }
+    end
+
   end
 
   private
