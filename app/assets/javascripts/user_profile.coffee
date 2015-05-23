@@ -4,8 +4,9 @@
 $(document).on 'page:change', ->
 
   $('.change-password-link').on 'click', ->
-    $('.change-password-dialog #error_explanation').remove()
-    $('.change-password-dialog').modal('toggle')
-    
+    dlg = $('.change-password-dialog')
+    dlg.find('#error_explanation').remove()
+    dlg.modal('toggle')
+
   if $('#birthdate').length > 0
     $('#birthdate').datepicker()

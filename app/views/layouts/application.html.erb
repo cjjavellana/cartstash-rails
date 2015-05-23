@@ -24,20 +24,20 @@
         <span class="icon-bar cs-menu-icon-bar"></span>
       </button>
       <div class="navbar-toggle pull-left cs-m-logo">
-        <%= link_to image_tag("images/cs-white-orange-logo.png", alt: "CartStash Logo"), root_path %>
+        <%= link_to image_tag("images/cs-white-orange-logo.png", alt: "CartStash Logo"), shop_index_path %>
       </div>
     </div>
 
     <div class="collapse navbar-collapse" id="menu-collapse-1">
       <div class="cs-logo pull-left">
-        <%= link_to image_tag("images/cs-white-orange-logo.png", alt: "CartStash Logo"), root_path %>
+        <%= link_to image_tag("images/cs-white-orange-logo.png", alt: "CartStash Logo"), shop_index_path %>
       </div>
       <ul class="nav navbar-nav cs-header-menu">
-        <li><%= link_to 'Food Items', root_path %></li>
-        <li><%= link_to 'Non-Food Items', root_path %></li>
-        <li><%= link_to 'Babies', root_path %></li>
-        <li><%= link_to 'Pets', root_path %></li>
-        <li><%= link_to 'Appliances', root_path %></li>
+        <li><%= link_to 'Food Items', product_category_path(:category => 'food-items') %></li>
+        <li><%= link_to 'Non-Food Items', product_category_path(:category => 'non-food-items') %></li>
+        <li><%= link_to 'Babies', product_category_path(:category => 'babies') %></li>
+        <li><%= link_to 'Pets', product_category_path(:category => 'pets') %></li>
+        <li><%= link_to 'Appliances', product_category_path(:category => 'appliances') %></li>
       </ul>
       <% unless signed_in? %>
           <%= link_to "", new_user_session_path, {class: "login-btn pull-right"} %>

@@ -1,11 +1,17 @@
 class ShopController < CartController
   def index
     page = params[:page]
-    if page.nil?
-      page = 1
-    end
+    page = 1 if page.nil?
     restore_cart
-    @products = Product.page(page)
+
+    case params[:category]
+      when nil
+        @products = Product.page(page)
+      else
+        @products = Product.
+            joins(:product_category).
+            where(product_categories: { slug: "1-#{params[:category]}" }).page(page)
+    end
   end
 
   # The actions below are a wrapper to the standard cart functions

@@ -27,7 +27,10 @@ RSpec.describe UserProfileController, type: :controller do
       expect(user).to receive(:update_with_password)
       expect(User).to receive(:find).and_return(user)
 
-      patch :update_password,  user: { password: 'pass1234', password_confirmation: 'pass1234' , current_password: 'old_password' }
+      patch :update_password,  { format: 'js',
+                                 user: { password: 'pass1234',
+                                         confirm_password: 'pass1234' ,
+                                         current_password: 'old_password' }}
     end
   end
 

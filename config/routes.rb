@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 
   scope '/shop' do
+    get '/categories/:category', to: 'shop#index', as: 'product_category'
+
     resources :checkout, only: [:index, :create]
     get '/delivery-and-schedule', to: 'checkout#delivery_and_schedule'
     post '/delivery-and-schedule', to: 'checkout#delivery_and_schedule'
