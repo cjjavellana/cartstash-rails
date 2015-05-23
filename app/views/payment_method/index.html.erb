@@ -1,4 +1,28 @@
 <div class="main">
   <%= render layout: 'layouts/accounts_sidebar' do %>
+      <div class="row payment-method-header">
+        <div class="col-md-12 header-title">
+          Payment Method
+          <div class="pull-right">
+            <%= link_to "Add Payment Method", "#", class: "add-payment-method-link" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row payment-method-list col-md-12">
+
+        <% @payment_methods.each do |payment_method| %>
+            <div class="payment-method-item col-md-3">
+              <div class="pm-name">
+                <%= "#{payment_method.first_name} #{payment_method.last_name}" %>
+              </div>
+              <div class="pm-address">
+                <%= "#{payment_method.full_address}" %>
+              </div>
+            </div>
+        <% end %>
+
+      </div>
+
   <% end %>
 </div>

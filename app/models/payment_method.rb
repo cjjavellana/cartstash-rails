@@ -1,6 +1,7 @@
 class PaymentMethod < ActiveRecord::Base
   include CreditCardValidator
   include Callbacks
+  include AddressBuilder
 
   belongs_to :user
 
@@ -8,7 +9,7 @@ class PaymentMethod < ActiveRecord::Base
 
   validates :first_name, :last_name, presence: true
   validates :credit_card_no, length: {minimum: 16, maximum: 16}
-  validates :credit_card_type, :address_line1, :city, :zip_code, :country, presence: true
+  validates :credit_card_type, :address_line_1, :city, :zip_code, :country, presence: true
   validates :security_code, length: {minimum: 3, maximum: 3}
   validates :expiry_date, length: {minimum: 7, maximum: 7}
   validates_format_of :expiry_date, :with => /(1[0-2]|0[1-9])\/(20\d{2})/i

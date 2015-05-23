@@ -16,8 +16,8 @@ module PaymentRequest
     private
       def billing_address
         {
-          :line1 => @credit_card.address_line1,
-          :line2 => @credit_card.address_line2,
+          :line1 => @credit_card.address_line_1,
+          :line2 => @credit_card.address_line_2,
           :city => @credit_card.city,
           :country_code => @credit_card.country,
           :postal_code => @credit_card.zip_code

@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'buttons';
 
-.add-delivery-address-header, .user-profile-header {
+.add-delivery-address-header, .user-profile-header, .payment-method-header {
 	padding-left: 10px;
     border-left: 1px solid #fff;
 
@@ -23,7 +23,7 @@
     }
 }
 
-.new-delivery-address-form, .user-profile-form {
+.new-delivery-address-form, .user-profile-form, .payment-method-list {
   padding-left: 25px;
   padding-top: 5px;
   border-left: 1px solid #fff;
@@ -41,4 +41,12 @@
 .save-delivery-address-btn {
   @extend .cartstash-btn;
   width: 80px;
+}
+
+.payment-method-item {
+  background-color: rgba(255,255,255,0.3);
+  height: 150px;
+  margin: 10px 10px 0px 0px;
+  border-radius: 8px;
+  padding-top: 5px;
 }

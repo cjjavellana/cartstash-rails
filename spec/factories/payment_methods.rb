@@ -8,7 +8,7 @@ FactoryGirl.define do
     security_code     "587"
     expiry_month      "10"
     expiry_year       "2017"
-    address_line1     "#123-456 Make Believe Blvd"
+    address_line_1     "#123-456 Make Believe Blvd"
     city              "Iloilo"
     zip_code          "5000"
     country           "PH"
