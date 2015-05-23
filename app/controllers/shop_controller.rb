@@ -14,7 +14,7 @@ class ShopController < CartController
     end
   end
 
-  # The actions below are a wrapper to the standard cart functions
+  # The actions below are wrappers to the standard cart functions
 
   def create
     add2cart
