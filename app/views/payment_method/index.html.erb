@@ -13,11 +13,21 @@
 
         <% @payment_methods.each do |payment_method| %>
             <div class="payment-method-item col-md-3">
+              <div class="pm-cc-type">
+                <%= "#{payment_method.credit_card_type}" %>
+              </div>
+              <div class="pm-cc-num">
+                <%= "#{payment_method.masked_credit_card}" %>
+              </div>
               <div class="pm-name">
                 <%= "#{payment_method.first_name} #{payment_method.last_name}" %>
               </div>
               <div class="pm-address">
                 <%= "#{payment_method.full_address}" %>
+              </div>
+              <div class="pm-action-btns pull-right">
+                <%= link_to edit_payment_method_path(:id => payment_method.id) do %><span class="glyphicon glyphicon-edit"></span><% end %>
+                <%= link_to payment_method_path(:id => payment_method.id), { method: :delete } do %><span class="glyphicon glyphicon-trash"></span><% end %>
               </div>
             </div>
         <% end %>

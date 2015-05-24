@@ -19,6 +19,21 @@ class PaymentMethod < ActiveRecord::Base
   before_validation :assemble_expiry_date
   after_initialize :after_initialize
 
+  def credit_card_type=(type)
+    write_attribute(:credit_card_type, type)
+  end
+
+  def credit_card_type
+    case read_attribute(:credit_card_type)
+      when "visa"
+        "Visa"
+      when "master_card"
+        "Master Card"
+      when "amex"
+        "American Express"
+    end
+  end
+
   def after_initialize
     if !self.expiry_date.nil? and match = self.expiry_date.match(/(1[0-2]|0[1-9])\/(20\d{2})/i)
       self.expiry_month, self.expiry_year = match.captures
