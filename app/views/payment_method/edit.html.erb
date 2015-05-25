@@ -1,0 +1,25 @@
+<div class="main">
+  <%= render layout: 'layouts/accounts_sidebar' do %>
+      <div class="row payment-method-header">
+        <div class="col-md-12 header-title">
+          Edit Payment Method
+        </div>
+      </div>
+      <div class="row payment-method-list col-md-6">
+        <%= form_for @payment_method, url: payment_method_path(id: @payment_method.id), method: 'patch' do |f| %>
+            <div class="form-group col-md-12">
+              <label for="first_name">First Name (as it appears on the credit card)</label>
+              <%= f.text_field :first_name, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="last_name">Last Name (as it appears on the credit card)</label>
+              <%= f.text_field :last_name, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="credit_card_no">Credit Card Number</label>
+              <%= f.text_field :credit_card_no, value: @payment_method.masked_credit_card, class: "form-control" %>
+            </div>
+        <% end %>
+      </div>
+  <% end %>
+</div>
