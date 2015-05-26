@@ -18,7 +18,7 @@ RSpec.describe PaymentMethodController, type: :controller do
     end
 
     it "displays the payment method edit page" do
-      expect(PaymentMethod).to receive(:where).and_return(visa)
+      expect(PaymentMethod).to receive_message_chain(:where, :first).and_return(visa)
 
       get :edit, id: visa.id
       expect(assigns(:payment_method).first_name).to eq('Foobar')
