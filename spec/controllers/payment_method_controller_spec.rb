@@ -24,5 +24,16 @@ RSpec.describe PaymentMethodController, type: :controller do
       expect(assigns(:payment_method).first_name).to eq('Foobar')
       expect(response).to have_http_status(:success)
     end
+
+    it "is able to update a payment method" do
+      expect(PaymentMethod).to receive_message_chain(:where, :first).and_return(visa)
+      expect(visa).to receive(:valid?).and_return(true)
+      expect(visa).to receive(:save).and_return(nil)
+
+
+      patch :update, { id: visa.id, payment_method: { address_line_1: 'New address blvd' } }
+      expect(assigns(:payment_method).address_line_1).to eq('New address blvd')
+      expect(response).to have_http_status(:success)
+    end
   end
 end

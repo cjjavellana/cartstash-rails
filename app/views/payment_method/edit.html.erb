@@ -15,9 +15,43 @@
               <label for="last_name">Last Name (as it appears on the credit card)</label>
               <%= f.text_field :last_name, class: "form-control" %>
             </div>
+
+            <div class="form-group col-md-12">
+              <label for="credit_card_type">Credit Card Type</label>
+              <%= f.select :credit_card_type,
+                           options_for_select(@card_types.collect {|c| [ c['description'], c['name'] ]}, @payment_method.credit_card_type),
+                           {:include_blank => false},
+                           {:class => 'form-control'}
+              %>
+            </div>
+
             <div class="form-group col-md-12">
               <label for="credit_card_no">Credit Card Number</label>
               <%= f.text_field :credit_card_no, value: @payment_method.masked_credit_card, class: "form-control" %>
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="address_line_1">Address Line 1</label>
+              <%= f.text_field :address_line_1, class: 'form-control', placeholder: 'Address Line 1' %>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="address_line_2">Address Line 2</label>
+              <%= f.text_field :address_line_2, class: 'form-control', placeholder: 'Address Line 2' %>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="zip_code">Zip Code</label>
+              <%= f.text_field :zip_code, class: 'form-control', placeholder: 'Zip code' %>
+            </div>
+            <div class="form-group col-md-8">
+              <label for="country">Country</label>
+              <%= f.select :country,
+                           options_for_select(@countries.collect {|c| [ c['name'], c['short_name'] ]}, 'PH'),
+                           {:include_blank => false},
+                           {:class => 'form-control'}
+              %>
+            </div>
+            <div class="form-group action-btn-group col-md-12">
+              <%= f.submit "Save", class: "btn save-delivery-address-btn pull-right"%>
             </div>
         <% end %>
       </div>
