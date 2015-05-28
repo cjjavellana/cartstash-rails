@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get '/users/registrations/complete' => 'registrations#complete'
   end
 
-  resources :payment_method, only: [:index, :create, :edit, :update, :destroy]
+  resources :payment_method, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :shop, only: [:index, :create, :update, :destroy]
   resources :delivery_address, only: [:index, :new, :create, :update, :destroy, :show]
 

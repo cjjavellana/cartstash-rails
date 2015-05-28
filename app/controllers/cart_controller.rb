@@ -3,29 +3,17 @@ class CartController < ApplicationController
   after_action :persist_cart
 
   def add2cart
-    @cart.add_item(params[:sku], get_qty)
-
-    respond_to do |format|
-      format.js { render 'cart' }
-    end
+    respond_with_format { @cart.add_item(params[:sku], get_qty) }
   end
 
   # Updates the quantity of an item in the cart
   def update_cart
-    @cart.update_item(params[:sku], get_qty)
-
-    respond_to do |format|
-      format.js { render 'cart' }
-    end
+    respond_with_format { @cart.update_item(params[:sku], get_qty) }
   end
 
   # Removes an item from the cart
   def remove_item
-    @cart.remove_item params[:sku]
-
-    respond_to do |format|
-      format.js { render 'cart' }
-    end
+    respond_with_format { @cart.remove_item params[:sku] }
   end
 
   protected
@@ -52,4 +40,11 @@ class CartController < ApplicationController
       params[:qty] || 1
     end
 
+    def respond_with_format
+      yield if block_given?
+
+      respond_to do |format|
+        format.js { render 'cart' }
+      end
+    end
 end

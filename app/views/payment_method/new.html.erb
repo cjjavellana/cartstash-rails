@@ -2,11 +2,11 @@
   <%= render layout: 'layouts/accounts_sidebar' do %>
       <div class="row payment-method-header">
         <div class="col-md-12 header-title">
-          Edit Payment Method
+          New Payment Method
         </div>
       </div>
       <div class="row payment-method-list col-md-7">
-        <%= form_for @payment_method, url: payment_method_path(id: @payment_method.id), method: 'patch' do |f| %>
+        <%= form_for @payment_method, url: payment_method_index, method: 'post' do |f| %>
             <%= form_error_messages! @payment_method %>
 
             <div class="form-group col-md-12">
