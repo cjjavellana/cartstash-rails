@@ -8,7 +8,7 @@ class CheckoutController < CartController
 
   def delivery_and_schedule
     if missing_payment_method?
-      flash[:"alert-danger"] = "Please select a payment method"
+      flash['alert-danger'.to_s] = 'Please select a payment method'
       redirect_to checkout_index_path
     else
       restore_delivery_address
@@ -41,7 +41,7 @@ class CheckoutController < CartController
   private
   def create_sales_order
     sales_order = SalesOrder.new
-    sales_order.delivery_address = DeliveryAddress.where("user_id = ? and id = ?",
+    sales_order.delivery_address = DeliveryAddress.where('user_id = ? and id = ?',
                                                          current_user.id,
                                                          @checkout_form.delivery_address).first
     sales_order.user = current_user
@@ -52,7 +52,7 @@ class CheckoutController < CartController
       sales_order.payment_type = Constants::PaymentType::CASH_ON_DELIVERY
     else
       sales_order.payment_type = Constants::PaymentType::CREDIT_CARD
-      sales_order.payment_method = PaymentMethod.where("user_id = ? and id = ?",
+      sales_order.payment_method = PaymentMethod.where('user_id = ? and id = ?',
                                                        current_user.id,
                                                        @checkout_form.payment_method).first
     end
