@@ -5,19 +5,14 @@ class PaymentMethod < ActiveRecord::Base
 
   belongs_to :user
 
-  attr_accessor :expiry_date
+  attr :expiry_date
 
   validates :first_name, :last_name, presence: true
   validates :credit_card_no, length: {minimum: 16, maximum: 16}
   validates :credit_card_type, :address_line_1, :city, :zip_code, :country, presence: true
   validates :security_code, length: {minimum: 3, maximum: 3}
-  validates :expiry_date, length: {minimum: 7, maximum: 7}
-  validates_format_of :expiry_date, :with => /(1[0-2]|0[1-9])\/(20\d{2})/i
 
-  validate :credit_card_number
-
-  before_validation :assemble_expiry_date
-  after_initialize :after_initialize
+  validate :credit_card_number, :validate_expiry_date
 
   def credit_card_type=(type)
     write_attribute(:credit_card_type, type)
@@ -34,9 +29,17 @@ class PaymentMethod < ActiveRecord::Base
     end
   end
 
-  def after_initialize
-    if !self.expiry_date.nil? and match = self.expiry_date.match(/(1[0-2]|0[1-9])\/(20\d{2})/i)
+  def expiry_date=(expiry)
+    if match = expiry.match(/(1[0-2]|0[1-9])\/(20\d{2})/i)
       self.expiry_month, self.expiry_year = match.captures
+    end
+  end
+
+  def expiry_date
+    unless self.expiry_month.nil? and self.expiry_year.nil?
+      self.expiry_date = "#{self.expiry_month}/#{self.expiry_year}"
+    else
+      nil
     end
   end
 
@@ -59,10 +62,14 @@ class PaymentMethod < ActiveRecord::Base
           Validator.valid?(self.credit_card_no)
     end
 
-    def assemble_expiry_date
-      unless self.expiry_month.nil? and self.expiry_year.nil?
-        self.expiry_date = "#{self.expiry_month}/#{self.expiry_year}"
+    def validate_expiry_date
+      unless expiry_date =~  /(1[0-2]|0[1-9])\/(20\d{2})/i
+        errors.add(:expiry_date, 'Expiry date must be MMYYYY')
+      else
+        current_year = Date.today.strftime("%Y").to_i
+        if current_year > self.expiry_year.to_i
+          errors.add(:expiry_date, 'Invalid Expiration Year')
+        end
       end
     end
-
 end

@@ -1,17 +1,13 @@
 class SessionsController < Devise::SessionsController
 
   def destroy
-    $redis.del("cart_#{session.id}")
+    $redis.del "cart_#{session.id}"
     super
   end
 
   protected
-    def after_sign_in_path_for(resources)
-      if active_member?
-        '/shop'
-      else
-        '/users/registrations/membership'
-      end
+    def after_sign_in_path_for resources
+      active_member? ? '/shop' : '/users/registrations/membership'
     end
 
     def active_member?

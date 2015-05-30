@@ -39,5 +39,12 @@ RSpec.describe PaymentMethodController, type: :controller do
       get :new
       expect(response).to have_http_status(:success)
     end
+
+    it "is able to create payment method" do
+      post :create, payment_method: { first_name: 'FooBar',
+                                      last_name: 'Kadigan',
+                                      credit_card_type: 'visa',
+                                      credit_card_no: '4539016690974009',  }
+    end
   end
 end
