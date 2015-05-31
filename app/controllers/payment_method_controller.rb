@@ -2,7 +2,7 @@ class PaymentMethodController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @payment_methods = PaymentMethod.where("user_id = ? and status = ?", current_user.id, "active")
+    @payment_methods = PaymentMethod.where("user_id = ? and status = ?", current_user.id, "active").all
   end
 
   def edit
@@ -31,6 +31,7 @@ class PaymentMethodController < ApplicationController
 
   def create
     @payment_method = PaymentMethod.new secure_params
+    @payment_method.update({ status: "active", user_id: current_user.id })
     if @payment_method.save
       redirect_to payment_method_index_path
     else

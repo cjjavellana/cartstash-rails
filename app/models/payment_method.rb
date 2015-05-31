@@ -9,7 +9,7 @@ class PaymentMethod < ActiveRecord::Base
 
   validates :first_name, :last_name, presence: true
   validates :credit_card_no, length: {minimum: 16, maximum: 16}
-  validates :credit_card_type, :address_line_1, :city, :zip_code, :country, presence: true
+  validates :credit_card_type, :address_line_1, :zip_code, :country, presence: true
   validates :security_code, length: {minimum: 3, maximum: 3}
 
   validate :credit_card_number, :validate_expiry_date
