@@ -12,13 +12,16 @@
         <%= form_for @user, url: user_profile_path(id: @user.id), method: "put" do |f| %>
             <%= form_error_messages! @user %>
             <div class="form-group">
+              <label for="first_name">First name</label>
               <%= f.text_field :first_name, class: 'form-control', placeholder: 'First name' %>
             </div>
             <div class="form-group">
+              <label for="last_name">Last name</label>
               <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last name' %>
             </div>
             <div class="row">
               <div class="form-group col-md-6">
+                <label for="gender">Gender</label>
                 <%= f.select :gender,
                              options_for_select(["Male", "Female"], @user.gender),
                              {include_blank: true},
@@ -27,6 +30,7 @@
             </div>
             <div class="row">
               <div class="form-group col-md-6">
+                <label for="birthdate">Birthdate</label>
                 <div class='input-group date' id='birthdate'>
                   <%= f.text_field :birthdate, value: date_to_string(@user.birthdate), class: 'form-control', placeholder: 'Birthdate', 'data-date-format' => 'mm/dd/yyyy' %>
                   <span class="input-group-addon">
@@ -36,16 +40,20 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="address_line_1">Address Line 1</label>
               <%= f.text_field :address_line_1, class: 'form-control', placeholder: 'Address Line 1' %>
             </div>
             <div class="form-group">
+              <label for="address_line_2">Address Line 2</label>
               <%= f.text_field :address_line_2, class: 'form-control', placeholder: 'Address Line 2' %>
             </div>
             <div class="row">
               <div class="form-group col-md-4">
+                <label for="zip">Zip Code</label>
                 <%= f.text_field :zip, class: 'form-control', placeholder: 'Zip Code' %>
               </div>
               <div class="form-group col-md-8">
+                <label for="country">Country</label>
                 <%= f.select :country,
                              options_for_select(@countries.collect { |c| [c['name'], c['short_name']] }, "#{@user.country.nil? ? 'PH' : @user.country}"),
                              {:include_blank => false},
