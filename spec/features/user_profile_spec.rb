@@ -13,7 +13,10 @@ describe "User Profile" do
   end
 
   it "allows the user to update his/her profile details" do
-
+    visit user_profile_index_path
+    fill_in("user_first_name", with: "Foobarbaz")
+    click_button("Save")
+    expect(page).to have_selector(".flash", text: "User profile successfully updated")
   end
 
   it "allows the user to change his/her password" do

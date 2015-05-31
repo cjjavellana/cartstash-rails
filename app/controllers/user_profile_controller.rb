@@ -47,7 +47,7 @@ class UserProfileController < ApplicationController
 
     def set_attributes
       @user.assign_attributes(secure_params)
-      unless secure_params[:birthdate].nil?
+      unless secure_params[:birthdate].nil? or secure_params[:birthdate].eql?("")
         begin
           @user.birthdate = Date.strptime(secure_params[:birthdate], '%m/%d/%Y')
         rescue
@@ -59,4 +59,5 @@ class UserProfileController < ApplicationController
     def set_countries
       @countries = Country.get_countries
     end
+
 end
