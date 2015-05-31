@@ -41,10 +41,16 @@ RSpec.describe PaymentMethodController, type: :controller do
     end
 
     it "is able to create payment method" do
+      p = PaymentMethod.new
+      expect(p).to receive(:save).and_return(true)
+      expect(PaymentMethod).to receive(:new).and_return(p)
       post :create, payment_method: { first_name: 'FooBar',
                                       last_name: 'Kadigan',
                                       credit_card_type: 'visa',
-                                      credit_card_no: '4539016690974009',  }
+                                      credit_card_no: '4539016690974009',
+                                      expiry_date: '12/2015',
+                                      security_code: '536'}
+      expect(response).to have_http_status(:redirect)
     end
   end
 end

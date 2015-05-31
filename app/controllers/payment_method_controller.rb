@@ -31,8 +31,13 @@ class PaymentMethodController < ApplicationController
 
   def create
     @payment_method = PaymentMethod.new secure_params
-
-    redirect_to payment_method_index_path
+    if @payment_method.save
+      redirect_to payment_method_index_path
+    else
+      @card_types = CreditCardType.get_credit_card_types
+      @countries = Country.get_countries
+      render :new
+    end
   end
 
   private
