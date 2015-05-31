@@ -10,7 +10,7 @@
       </div>
 
       <div class="row payment-method-list col-md-12">
-
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
         <% @payment_methods.each do |payment_method| %>
             <div class="payment-method-item col-md-3">
               <div class="pm-cc-type">
@@ -27,7 +27,7 @@
               </div>
               <div class="pm-action-btns pull-right">
                 <%= link_to edit_payment_method_path(:id => payment_method.id) do %><span class="glyphicon glyphicon-edit"></span><% end %>
-                <%= link_to '#', { method: :delete, class: 'delete-payment-method', data: { id: payment_method.id} } do %><span class="glyphicon glyphicon-trash"></span><% end %>
+                <%= link_to payment_method_path(id: payment_method.id), { method: :delete, class: 'delete-payment-method' } do %><span class="glyphicon glyphicon-trash"></span><% end %>
               </div>
             </div>
         <% end %>
