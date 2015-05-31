@@ -2,7 +2,7 @@ class PaymentMethodController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @payment_methods = PaymentMethod.where("user_id = ? and status = ?", current_user.id, "active").all
+    @payment_methods = PaymentMethod.where("user_id = ? and status = ?", current_user.id, "active")
   end
 
   def edit
@@ -31,14 +31,24 @@ class PaymentMethodController < ApplicationController
 
   def create
     @payment_method = PaymentMethod.new secure_params
-    @payment_method.update({ status: "active", user_id: current_user.id })
-    if @payment_method.save
+    if @payment_method.update({ status: Constants::PaymentMethod::ACTIVE, user_id: current_user.id })
       redirect_to payment_method_index_path
     else
       @card_types = CreditCardType.get_credit_card_types
       @countries = Country.get_countries
       render :new
     end
+  end
+
+  def destroy
+    @payment_method = PaymentMethod.where("user_id = ? and id = ?", current_user.id, params[:id]).first
+    if @payment_method.update({ status: Constants::PaymentMethod::DELETED })
+      flash[:alert] = "Payment method deleted successfully"
+    else
+      flash[:alert] = "An error has occurred while deleting payment method"
+    end
+
+    redirect_to payment_method_index_path
   end
 
   private

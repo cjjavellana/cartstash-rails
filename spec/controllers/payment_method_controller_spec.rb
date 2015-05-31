@@ -52,5 +52,12 @@ RSpec.describe PaymentMethodController, type: :controller do
                                       security_code: '536'}
       expect(response).to have_http_status(:redirect)
     end
+
+    it "is able to delete the payment method" do
+      expect(PaymentMethod).to receive_message_chain(:where, :first).and_return(visa)
+      expect(visa).to receive(:save).and_return(true)
+      delete :destroy, { id:  visa.id }
+      expect(response).to have_http_status(:redirect)
+    end
   end
 end
