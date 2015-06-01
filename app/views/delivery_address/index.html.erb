@@ -1,4 +1,31 @@
 <div class="main">
   <%= render layout: 'layouts/accounts_sidebar' do %>
+      <div class="row manage-delivery-addr-hdr">
+        <div class="col-md-12 header-title">
+          Manage Delivery Address
+          <div class="pull-right">
+            <%= link_to "Add Delivery Address", new_delivery_address_path, class: "add-delivery-addr-link" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row delivery-address-list col-md-12">
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+        <% @delivery_addresses.each do |address| %>
+            <div class="delivery-address-item col-md-3">
+              <div class="delivery-addr-name">
+                <%= "#{address.recipient_name}" %>
+              </div>
+              <div class="delivery-addr-address">
+                <%= "#{address.full_address}" %>
+              </div>
+              <div class="pm-action-btns pull-right">
+                <%= link_to edit_delivery_address_path(:id => address.id), { class: 'edit-delivery-addr-link' } do %><span class="glyphicon glyphicon-edit"></span><% end %>
+                <%= link_to delivery_address_path(id: address.id), { method: :delete, class: 'delete-payment-method' } do %><span class="glyphicon glyphicon-trash"></span><% end %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
   <% end %>
 </div>

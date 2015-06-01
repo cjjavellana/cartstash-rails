@@ -1,14 +1,13 @@
 $(document).on 'ready', ->
 
   # Manage delivery address specific javascripts
-  if $('.add-delivery-address-header').length > 0
+  if $('.add-delivery-address-header, .edit-delivery-address-header').length > 0
     markers = []
 
     CartStashGmapHelper =
       clearMapMarkers: (markers) ->
         for marker in markers
           marker.setMap(null)
-
         markers = []
 
     handler = Gmaps.build('Google')
@@ -34,10 +33,20 @@ $(document).on 'ready', ->
       )
     )
 
+  if $('.add-delivery-address-header').length > 0
     $('#same_recipient').on 'click', ->
       if $(this).is(':checked')
         $('#delivery_address_recipient_name').val($('#user').val())
         $('#delivery_address_recipient_name').attr('readonly', true)
       else
         $('#delivery_address_recipient_name').val('')
+        $('#delivery_address_recipient_name').attr('readonly', false)
+
+
+  if $('.edit-delivery-address-header').length > 0
+    $('#same_recipient').on 'click', ->
+      if $(this).is(':checked')
+        $('#delivery_address_recipient_name').val($('#current_user_name').val())
+        $('#delivery_address_recipient_name').attr('readonly', true)
+      else
         $('#delivery_address_recipient_name').attr('readonly', false)

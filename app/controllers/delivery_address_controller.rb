@@ -15,15 +15,9 @@ class DeliveryAddressController < ApplicationController
   end
 
   def create
-    @delivery_address = DeliveryAddress.new
-    @delivery_address.recipient_name = secure_params[:recipient_name]
-    @delivery_address.address_line_1 = secure_params[:address_line_1]
-    @delivery_address.zip_code = secure_params[:zip_code]
-    @delivery_address.contact_no = secure_params[:contact_no]
-    @delivery_address.country = secure_params[:country]
-    @delivery_address.location_coords = secure_params[:location_coords]
+    @delivery_address = DeliveryAddress.new(secure_params)
     @delivery_address.user = current_user
-    @delivery_address.status = "active"
+    @delivery_address.status = 'active'
 
     if @delivery_address.valid?
       @delivery_address.save
@@ -44,7 +38,22 @@ class DeliveryAddressController < ApplicationController
       @countries = Country.get_countries
       render :new
     end
+  end
 
+  def edit
+    @delivery_address = DeliveryAddress.where("user_id = ? and id = ?", current_user.id, params[:id]).first
+    @countries = Country.get_countries
+  end
+
+  def update
+    @delivery_address = DeliveryAddress.where("user_id = ? and id = ?", current_user.id, params[:id]).first
+    if @delivery_address.update(secure_params)
+      flash[:'alert-success'] = 'Delivery address updated successfully'
+      redirect_to delivery_address_index_path
+    else
+      @countries = Country.get_countries
+      render :edit
+    end
   end
 
   private

@@ -34,18 +34,23 @@ RSpec.describe DeliveryAddressController, type: :controller do
       expect(response).to render_template(:index)
     end
 
-    it "does not create delivery address when parameters are empty" do
+    it 'does not create delivery address when parameters are empty' do
       post :create, delivery_address: empty_create_parameter
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:new)
     end
 
-    it "allows a user to create new delivery address" do
+    it 'allows a user to create new delivery address' do
       post :create, delivery_address: create_parameter
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:index)
     end
 
+    it 'shows the edit page' do
+      get :edit, { id: delivery_address.id }
+      expect(response).to have_http_status(:success)
+      expect(response).to render_template(:edit)
+    end
   end
 
 end

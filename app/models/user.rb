@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates :terms_of_service, :acceptance => {:accept => true}
 
-  def get_name
+  def full_name
     "#{self.first_name} #{self.last_name}".strip
   end
 end

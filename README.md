@@ -15,6 +15,9 @@ The next gen ecommerce platform
     ```
     rvm current ruby-2.2.1@cartstash --create --ruby-version
     ```
+4. Capybara-webkit gem requires the qt library to be installed. Refer to the installation guide [here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit)
+
+
 
 ### Ruby version
 This Project Requires Ruby version 2.2.1 and Rails version 4.2.0

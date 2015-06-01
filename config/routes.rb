@@ -13,15 +13,13 @@ Rails.application.routes.draw do
 
   resources :payment_method, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :shop, only: [:index, :create, :update, :destroy]
-  resources :delivery_address, only: [:index, :new, :create, :update, :destroy, :show]
+  resources :delivery_address, only: [:index, :new, :create, :edit, :update, :destroy, :show]
 
   resources :user_profile, only: [:index, :update] do
     collection do
       patch 'update_password'
     end
   end
-
-
 
   scope '/shop' do
     get '/categories/:category', to: 'shop#index', as: 'product_category'
