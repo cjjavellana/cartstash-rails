@@ -30,7 +30,11 @@ require 'capybara/rspec'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+DEFAULT_HOST = "127.0.0.1"
+DEFAULT_PORT = 7171
+
 RSpec.configure do |config|
+  config.include Capybara::DSL
   config.mock_with :rspec
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -39,7 +43,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  #config.use_transactional_fixtures = true
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -63,4 +67,26 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
+
+  Capybara.javascript_driver = :webkit
+
+  Capybara.default_host = "http://#{DEFAULT_HOST}"
+  Capybara.server_port = DEFAULT_PORT
+  Capybara.app_host = "http://#{DEFAULT_HOST}:#{Capybara.server_port}"
+
+  #fixes issues with capybara not detecting db changes made during tests
+  config.use_transactional_fixtures = false
+
+  config.before :each do
+    if Capybara.current_driver == :rack_test
+      DatabaseCleaner.strategy = :transaction
+    else
+      DatabaseCleaner.strategy = :truncation
+    end
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 end

@@ -6,7 +6,10 @@ $(document).on 'page:change', ->
   $('.change-password-link').on 'click', ->
     dlg = $('.change-password-dialog')
     dlg.find('#error_explanation').remove()
+    dlg.find('.flash').remove()
     dlg.modal('toggle')
+
+    false
 
   if $('#birthdate').length > 0
     $('#birthdate').datepicker()

@@ -79,6 +79,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.5.1)
+      capybara (>= 2.3.0, < 2.5.0)
+      json
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -89,6 +92,7 @@ GEM
     columnize (0.9.0)
     credit_card_validator (1.2.0)
       base_app (>= 1.0.5)
+    database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     devise (3.4.1)
@@ -291,8 +295,10 @@ DEPENDENCIES
   brakeman
   byebug
   capybara
+  capybara-webkit
   coffee-rails (~> 4.1.0)
   credit_card_validator
+  database_cleaner
   devise (= 3.4.1)
   factory_girl_rails (~> 4.0)
   gibbon
