@@ -18,20 +18,20 @@ class DeliveryAddressController < ApplicationController
     @delivery_address = DeliveryAddress.new(secure_params)
     @delivery_address.user = current_user
     @delivery_address.status = 'active'
+    @return_url = params[:return_url].equal?("") ? nil : params[:return_url]
 
     if @delivery_address.valid?
       @delivery_address.save
 
-      return_url = params[:return_url].equal?("") ? nil : params[:return_url]
-      unless return_url.nil?
+      unless @return_url.nil?
         begin
-          redirect_to decrypt_return_url(return_url)
+          redirect_to decrypt_return_url(@return_url)
         rescue
           # Unable to decrypt the return url
-          render :index
+          redirect_to delivery_address_index_path
         end
       else
-        render :index
+        redirect_to delivery_address_index_path
       end
 
     else

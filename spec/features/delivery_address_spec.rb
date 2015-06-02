@@ -23,4 +23,18 @@ describe 'Manage delivery address' do
 
     expect(page).to have_selector('.flash', text: 'Delivery address updated successfully')
   end
+
+  it 'creates new delivery address' do
+    visit delivery_address_index_path
+    click_link 'Add Delivery Address'
+
+    fill_in 'delivery_address_recipient_name', :with => 'Foobar Kadigan'
+    fill_in 'delivery_address_contact_no', :with => '+639178888888'
+    fill_in 'delivery_address_address_line_1', :with => '#07-07 BLK 111, Make Believe Street'
+    fill_in 'delivery_address_zip_code', :with => '520111'
+    find('#delivery_address_country').find(:css, 'option[value="PH"]').select_option
+
+    click_button 'Save'
+    expect(page).to have_selector('.delivery-address-item')
+  end
 end

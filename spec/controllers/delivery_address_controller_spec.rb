@@ -42,8 +42,7 @@ RSpec.describe DeliveryAddressController, type: :controller do
 
     it 'allows a user to create new delivery address' do
       post :create, delivery_address: create_parameter
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:index)
+      expect(response).to have_http_status(:redirect)
     end
 
     it 'shows the edit page' do
