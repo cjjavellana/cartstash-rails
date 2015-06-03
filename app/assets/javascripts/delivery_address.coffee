@@ -1,9 +1,8 @@
-$(document).on 'ready', ->
+$(document).on 'page:change', ->
+  markers = []
 
   # Manage delivery address specific javascripts
-  if $('.add-delivery-address-header').length > 0 or $('.edit-delivery-address-header').length > 0
-    markers = []
-
+  if $('.add-delivery-address-header, .edit-delivery-address-header').length > 0
     CartStashGmapHelper =
       clearMapMarkers: (markers) ->
         for marker in markers
@@ -32,6 +31,19 @@ $(document).on 'ready', ->
           return
       )
     )
+
+    # set marker (if any)
+    coords = $('#delivery_address_location_coords').val()
+    if coords.match(/^[-]?\d*\.\d*,\s[-]?\d*\.\d*$/)
+      console.log('Setting marker at: ' + coords)
+      lat = coords.split(',')[0]
+      lng = coords.split(',')[1]
+      latlng = new google.maps.LatLng(lat, lng)
+      marker = new google.maps.Marker({
+        position: latlng,
+        map: handler.getMap()
+      })
+      markers.push(marker)
 
   if $('.add-delivery-address-header').length > 0
     $('#same_recipient').on 'click', ->
