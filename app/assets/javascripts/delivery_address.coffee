@@ -1,7 +1,7 @@
 $(document).on 'ready', ->
 
   # Manage delivery address specific javascripts
-  if $('.add-delivery-address-header, .edit-delivery-address-header').length > 0
+  if $('.add-delivery-address-header').length > 0 or $('.edit-delivery-address-header').length > 0
     markers = []
 
     CartStashGmapHelper =
