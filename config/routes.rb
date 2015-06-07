@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :payment_method, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :shop, only: [:index, :create, :update, :destroy]
   resources :delivery_address, only: [:index, :new, :create, :edit, :update, :destroy, :show]
-
+  resources :order_history, only: [:index, :show]
   resources :user_profile, only: [:index, :update] do
     collection do
       patch 'update_password'
