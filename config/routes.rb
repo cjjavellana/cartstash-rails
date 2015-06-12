@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => 'registrations',
                                        :sessions => 'sessions',
-                                       :omniauth_callbacks => 'omniauth_callbacks' }
+                                       :omniauth_callbacks => 'omni_auth_callbacks' }
 
   devise_scope :user do
     get '/users/registrations/confirm_account' => 'registrations#confirm_account'
