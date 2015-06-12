@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   root to: 'prelaunch#index'
 
-  devise_for :users, :controllers => {:registrations => 'registrations', :sessions => 'sessions'}
+  devise_for :users, :controllers => { :registrations => 'registrations',
+                                       :sessions => 'sessions',
+                                       :omniauth_callbacks => 'omniauth_callbacks' }
+
   devise_scope :user do
     get '/users/registrations/confirm_account' => 'registrations#confirm_account'
     get '/users/registrations/membership' => 'registrations#membership'
@@ -10,6 +13,8 @@ Rails.application.routes.draw do
     post '/users/registrations/bankdeposit' => 'registrations#bank_deposit'
     get '/users/registrations/complete' => 'registrations#complete'
   end
+
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   resources :payment_method, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :shop, only: [:index, :create, :update, :destroy]
