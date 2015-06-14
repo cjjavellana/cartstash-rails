@@ -4,7 +4,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     class_eval %Q{
       def #{provider}
         @user = User.find_for_oauth(env["omniauth.auth"], current_user)
-
+        session[:auth] = "#{provider}"
         if @user.persisted?
           sign_in @user, event: :authentication
           set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?

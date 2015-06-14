@@ -1,3 +1,7 @@
 // Place all the styles related to the PaymentMethod controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.payment-method-list, .delivery-address-list {
+  min-height: 400px!important;
+}

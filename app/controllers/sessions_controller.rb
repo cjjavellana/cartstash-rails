@@ -6,7 +6,7 @@ class SessionsController < Devise::SessionsController
   end
 
   protected
-    def after_sign_in_path_for resources
+    def after_sign_in_path_for(resources)
       active_member? ? '/shop' : '/users/registrations/membership'
     end
 
