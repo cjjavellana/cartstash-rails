@@ -1,4 +1,6 @@
 class PaymentMethodController < ApplicationController
+  include ReturnUrlHelper
+
   before_filter :authenticate_user!
 
   def index
@@ -27,12 +29,26 @@ class PaymentMethodController < ApplicationController
     @payment_method = PaymentMethod.new
     @card_types = CreditCardType.get_credit_card_types
     @countries = Country.get_countries
+    @return_url = params[:return_url] unless params[:return_url].nil?
   end
 
   def create
     @payment_method = PaymentMethod.new secure_params
-    if @payment_method.update({ status: Constants::PaymentMethod::ACTIVE, user_id: current_user.id })
-      redirect_to payment_method_index_path
+    @return_url = params[:return_url].equal?("") ? nil : params[:return_url]
+
+    if @payment_method.update({status: Constants::PaymentMethod::ACTIVE, user_id: current_user.id})
+
+      unless @return_url.nil?
+        begin
+          redirect_to decrypt_return_url(@return_url)
+        rescue
+          # Unable to decrypt the return url
+          redirect_to payment_method_index_path
+        end
+      else
+        redirect_to payment_method_index_path
+      end
+      
     else
       @card_types = CreditCardType.get_credit_card_types
       @countries = Country.get_countries
@@ -42,7 +58,7 @@ class PaymentMethodController < ApplicationController
 
   def destroy
     @payment_method = PaymentMethod.where("user_id = ? and id = ?", current_user.id, params[:id]).first
-    if @payment_method.update({ status: Constants::PaymentMethod::DELETED })
+    if @payment_method.update({status: Constants::PaymentMethod::DELETED})
       flash[:alert] = "Payment method deleted successfully"
     else
       flash[:alert] = "An error has occurred while deleting payment method"

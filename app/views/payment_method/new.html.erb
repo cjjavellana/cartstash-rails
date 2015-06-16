@@ -8,6 +8,7 @@
       <div class="row payment-method-list col-md-7">
         <%= form_for @payment_method, url: payment_method_index_path, method: 'post' do |f| %>
             <%= form_error_messages! @payment_method %>
+            <%= hidden_field_tag :return_url, @return_url %>
 
             <div class="form-group col-md-12">
               <label for="first_name">First Name (as it appears on the credit card)</label>

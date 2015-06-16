@@ -30,5 +30,24 @@ describe "Check Out Process" do
     expect(page).to have_selector('.order-placed-msg')
   end
 
+  it 'can navigate to add new payment method' do
+    visit checkout_index_path
+    click_link 'Add Payment Method'
+
+    expect(page).to have_selector('#return_url')
+
+    fill_in 'payment_method_first_name', :with => 'Foobar'
+    fill_in 'payment_method_last_name', :with => 'Kadigan'
+    find('#payment_method_credit_card_type').find(:css, 'option[value="visa"]').select_option
+    fill_in 'payment_method_expiry_date', :with => '10/2015'
+    fill_in 'payment_method_security_code', :with => '536'
+    fill_in 'payment_method_credit_card_no', :with => '4539016690974009'
+    fill_in 'payment_method_address_line_1', :with => '#10-20, Street 1'
+    fill_in 'payment_method_zip_code', :with => '520111'
+    find('#payment_method_country').find(:css, 'option[value="PH"]').select_option
+
+    click_button 'Save'
+    expect(page).to have_selector(".review-order", text: "Review Order")
+  end
 end
 

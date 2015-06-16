@@ -55,7 +55,7 @@
               Choose Payment Method
             </div>
             <div class="col-md-5 pm-add-label no-pad-right">
-              Add Payment Method
+              <%= link_to 'Add Payment Method', new_payment_method_path(:return_url => create_return_url(checkout_index_path))%>
             </div>
           </div>
           <div class="row pm-options">
