@@ -1,6 +1,5 @@
 # Handles creation of sales orders
 class SalesOrderService
-  include Singleton
 
   def create!(sales_order, line_items)
     total = 0
@@ -16,8 +15,7 @@ class SalesOrderService
 
     # Charge credit card (if selected)
     if sales_order.payment_type == Constants::PaymentType::CREDIT_CARD
-      payment_service = PaymentService.instance
-      payment_id = payment_service.process_sales_order!(sales_order.payment_method, line_items, "Payment for #{sales_order.transaction_ref}", "USD")
+      payment_id = PaymentService.process_sales_order!(sales_order.payment_method, line_items, "Payment for #{sales_order.transaction_ref}", "USD")
       sales_order.payment_ref = payment_id
       sales_order.paid = true
       sales_order.save

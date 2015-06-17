@@ -3,7 +3,6 @@ require './lib/cartstash_error'
 
 # Handles credit card payment processing
 class PaymentService
-  include Singleton
   include CartstashError
   include PaymentRequest
 
@@ -15,21 +14,20 @@ class PaymentService
   # * <tt>currency</tt> - A string indicating the currency to be used; Defaults to Philippine Peso (PHP)
   # === Exceptions
   # * <tt>CartstashError::PaymentError</tt> when the payment is unsuccessful
-  def process_membership_fee!(payment_form, purchased_items, transaction_id, currency='PHP')
+  def self.process_membership_fee!(payment_form, purchased_items, transaction_id, currency='PHP')
     Payment.transaction do
       payment_request = PaypalPaymentRequest.new(payment_form,
                                                  purchased_items,
                                                  "Payment for #{transaction_id}",
                                                  currency)
       request_hash = payment_request.create_payment_request
-      @payment = PayPal::SDK::REST::Payment.new(request_hash)
+      payment = PayPal::SDK::REST::Payment.new(request_hash)
 
       # Create the payment header
-      p = Payment.new
-      p.amount = get_amount_from_request_hash(request_hash)
-      p.description = "Payment for #{transaction_id}"
-      p.request_ref = transaction_id
-      p.save
+      amount = get_amount_from_request_hash(request_hash)
+      p = Payment.create!(:amount => amount,
+                          :description => "Payment for #{transaction_id}",
+                          :request_ref => transaction_id)
 
       # Create the payment detail
       purchased_items.each do |t|
@@ -42,17 +40,17 @@ class PaymentService
         payment_detail.save
       end
 
-      if @payment.create
-        p.update({:status => 'PAID', :payment_ref => @payment.id})
-        @payment.id
+      if payment.create
+        p.update({:status => 'PAID', :payment_ref => payment.id})
+        payment.id
       else
-        raise PaymentError, @payment.error
+        raise PaymentError, payment.error
       end
 
     end
   end
 
-  def process_sales_order!(credit_card, sales_order_items, description, currency='PHP')
+  def self.process_sales_order!(credit_card, sales_order_items, description, currency='PHP')
     request = PaypalPaymentRequest.new(credit_card, sales_order_items, description, currency)
 
     paypal_payment = PayPal::SDK::REST::Payment.new(request)
@@ -65,7 +63,7 @@ class PaymentService
   end
 
   private
-    def get_amount_from_request_hash(request_hash)
+    def self.get_amount_from_request_hash(request_hash)
       request_hash[:transactions][0][:amount][:total]
     end
 end

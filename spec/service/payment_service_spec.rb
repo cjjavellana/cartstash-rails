@@ -27,9 +27,7 @@ describe PaymentService do
       allow(fake_payment).to receive(:id).and_return("PAY-12345678")
 
       expect(PayPal::SDK::REST::Payment).to receive(:new).and_return(fake_payment)
-
-      payment_service = PaymentService.instance
-      payment_id = payment_service.process_membership_fee!(payment_form, items, 'Unit Test', 'USD')
+      payment_id = PaymentService.process_membership_fee!(payment_form, items, 'Unit Test', 'USD')
 
       expect(payment_id).to_not eq(nil)
 
@@ -47,8 +45,7 @@ describe PaymentService do
       expect(PayPal::SDK::REST::Payment).to receive(:new).and_return(payment)
 
       sales_order = build(:sales_order)
-      payment_service = PaymentService.instance
-      payment_ref = payment_service.process_sales_order!(sales_order, [build(:sales_order_item)], 'USD')
+      payment_ref = PaymentService.process_sales_order!(sales_order, [build(:sales_order_item)], 'USD')
       expect(payment_ref).to eq("PAY-88888888")
     end
   end

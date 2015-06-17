@@ -27,14 +27,14 @@ class CheckoutController < CartController
     if @checkout_form.valid?
       unless sales_order_exists?
         sales_order = create_sales_order
-        sales_order_service = SalesOrderService.instance
+        sales_order_service = SalesOrderService.new
         sales_order_service.create!(sales_order, create_line_items)
 
         clear_session_cache
       end
     else
       restore_delivery_address
-      render "delivery_and_schedule"
+      render 'delivery_and_schedule'
     end
   end
 

@@ -48,7 +48,7 @@ class PaymentMethodController < ApplicationController
       else
         redirect_to payment_method_index_path
       end
-      
+
     else
       @card_types = CreditCardType.get_credit_card_types
       @countries = Country.get_countries
