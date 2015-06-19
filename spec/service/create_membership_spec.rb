@@ -24,7 +24,7 @@ describe MembershipService do
     it "is able to create membership, payment and payment detail entries" do
       expect(PaymentService).to receive(:process_membership_fee!)
 
-      MembershipService.instance.create_membership(current_user, payment_form)
+      MembershipService.create_membership(current_user, payment_form)
       mem = Membership.find_by_user_id(current_user.id)
 
       expect(mem).to_not be_nil
@@ -32,13 +32,12 @@ describe MembershipService do
     end
 
     it "is able to create membership with pending status when there is no payment method" do
-      MembershipService.instance.create_membership(current_user)
+      MembershipService.create_membership(current_user)
       mem = Membership.find_by_user_id(current_user.id)
 
       expect(mem).to_not be_nil
       expect(mem.status).to eq(Constants::Membership::PENDING)
     end
   end
-
 
 end

@@ -14,7 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
     @form = PaymentMethod.new(credit_card_params)
     if @form.valid?
       begin
-        MembershipService.instance.create_membership(current_user, @form)
+        MembershipService.create_membership(current_user, @form)
         sha256 = Digest::SHA256.new
         session[:access_token] = Digest.hexencode(sha256.digest(current_user.email))[0..10]
 

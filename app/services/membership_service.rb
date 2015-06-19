@@ -1,10 +1,9 @@
 require './lib/cartstash_error'
 
 class MembershipService
-  include Singleton
   include CartstashError
 
-  def create_membership(current_user, payment_method = nil)
+  def self.create_membership(current_user, payment_method = nil)
 
     seq = SeqGenerator.instance.generate_sequence(Constants::SequenceGenerator::MEMBERSHIP, 'MEM')
 
@@ -18,24 +17,18 @@ class MembershipService
     membership.member_id = seq
     membership.save
 
-    if payment_method.nil?
-      # user opted to pay through bank deposit
-    else
-      if payment_method.valid?
-        PaymentService.process_membership_fee!(payment_method, [create_membership_fee_line_item], seq, Constants::Currency::USD)
-        membership.status = Constants::Membership::ACTIVE
-        membership.save
-      end
+    if with_credit_card?(payment_method)
+      line_item = PurchasedItem.new(name: 'Membership Fee', sku: 'memfee', quantity: 1, price: Constants::Membership::FEE_DEFAULT)
+      PaymentService.process_membership_fee!(payment_method, [line_item], seq, Constants::Currency::USD)
+      membership.status = Constants::Membership::ACTIVE
+      membership.save
     end
+
   end
 
   private
-  def create_membership_fee_line_item
-    line_item = PurchasedItem.new
-    line_item.name = 'Membership Fee'
-    line_item.sku = 'memfee'
-    line_item.quantity = 1
-    line_item.price = Constants::Membership::FEE_DEFAULT
-    line_item
-  end
+    def self.with_credit_card?(payment_method)
+      not payment_method.nil? and payment_method.valid?
+    end
+
 end

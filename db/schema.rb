@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611123629) do
+ActiveRecord::Schema.define(version: 20150619123029) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "country_code"
@@ -145,9 +145,22 @@ ActiveRecord::Schema.define(version: 20150611123629) do
     t.datetime "updated_at",                                   null: false
     t.string   "uom"
     t.float    "discount"
+    t.decimal  "qty",                 precision: 10, scale: 2
   end
 
   add_index "products", ["product_category_id"], name: "index_products_on_product_category_id"
+
+  create_table "reserved_items", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.decimal  "qty",        precision: 10, scale: 2
+    t.string   "session_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "reserved_items", ["product_id"], name: "index_reserved_items_on_product_id"
+  add_index "reserved_items", ["user_id"], name: "index_reserved_items_on_user_id"
 
   create_table "sales_order_items", force: :cascade do |t|
     t.integer  "sales_order_id"
