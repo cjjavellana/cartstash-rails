@@ -49,6 +49,8 @@ gem 'credit_card_validator'
 gem 'paypal-sdk-rest'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'bootstrap-datepicker-rails'
+gem 'sidekiq'
+gem 'whenever', :require => false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

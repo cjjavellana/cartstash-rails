@@ -57,6 +57,8 @@ countries_json.each do |data|
   country.save
 end
 
+Product.update_all("qty = 100")
+
 FactoryGirl.create :user
 FactoryGirl.create :foobar_visa
 FactoryGirl.create :foobar_delivery_address

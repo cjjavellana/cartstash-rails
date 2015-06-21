@@ -2,6 +2,7 @@ class ReservedItem < ActiveRecord::Base
   belongs_to :user
   belongs_to :product
 
+
   # Retrieves items that have been reserved for more than 30 minutes
   # but not purchased back to the inventory
   def self.return_to_inventory
@@ -12,7 +13,6 @@ class ReservedItem < ActiveRecord::Base
       product.update_attribute(:qty, product.qty + item.qty)
       item.destroy
     end
-
   end
 
 end
