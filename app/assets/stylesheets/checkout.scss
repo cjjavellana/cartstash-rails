@@ -249,3 +249,10 @@ a.link:hover {
   color: #fff;
   text-decoration: underline;
 }
+
+.order-summary-alert {
+  .alert {
+    padding: 5px;
+    font-size: 12px;
+  }
+}

@@ -10,6 +10,7 @@ class CartController < ApplicationController
       reserved_item.save
       respond_with_format { @cart.add_item(params[:sku], get_qty) }
     else
+      flash[:error] = 'Not enough item in inventory'
       respond_with_format
     end
   end
@@ -21,14 +22,15 @@ class CartController < ApplicationController
                               product.id,
                               session.id).first
     qty = BigDecimal.new(get_qty)
-    unless item.nil?
-      product.update_attribute(:qty, (product.qty + item.qty) - qty) if qty > item.qty
-      product.update_attribute(:qty, product.qty + (item.qty - qty)) if qty < item.qty
+
+    if available?(product, item, qty)
+      product.update_attribute(:qty, (product.qty + item.qty) - qty)
       item.update_attribute(:qty, qty)
+      respond_with_format { @cart.update_item(params[:sku], get_qty) }
+    else
+      flash[:error] = 'Not enough item in inventory'
+      respond_with_format
     end
-
-
-    respond_with_format { @cart.update_item(params[:sku], get_qty) }
   end
 
   # Removes an item from the cart
@@ -49,35 +51,38 @@ class CartController < ApplicationController
   end
 
   protected
-  def restore_cart
-    @cart = RedisClient.get("cart_#{session.id}")
-    @cart = (@cart.nil?) ? Cart.new : Cart.restore(JSON.parse(@cart))
-  end
+    def restore_cart
+      @cart = RedisClient.get("cart_#{session.id}")
+      @cart = (@cart.nil?) ? Cart.new : Cart.restore(JSON.parse(@cart))
+    end
 
-  def persist_cart
-    RedisClient.set_with_expiry("cart_#{session.id}", @cart.to_json, 2.hours.to_i)
-  end
+    def persist_cart
+      RedisClient.set_with_expiry("cart_#{session.id}", @cart.to_json, 2.hours.to_i)
+    end
 
-  def clear_session_cache
-    keys = RedisClient.keys("*_#{session.id}")
-    keys.each { |key| RedisClient.delete key }
-  end
+    def clear_session_cache
+      keys = RedisClient.keys("*_#{session.id}")
+      keys.each { |key| RedisClient.delete key }
+    end
 
   private
-  def secure_params
-    params.permit(:sku, :qty)
-  end
-
-  def get_qty
-    params[:qty] || 1
-  end
-
-  def respond_with_format
-    yield if block_given?
-
-    respond_to do |format|
-      format.js { render 'cart' }
+    def secure_params
+      params.permit(:sku, :qty)
     end
-  end
 
+    def get_qty
+      params[:qty] || 1
+    end
+
+    def respond_with_format
+      yield if block_given?
+
+      respond_to do |format|
+        format.js { render 'cart' }
+      end
+    end
+
+    def available?(product, reserved, qty)
+      (product.qty + reserved.qty) - qty >= 0
+    end
 end
