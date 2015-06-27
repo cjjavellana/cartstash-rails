@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'prelaunch#index'
+  root to: 'shop#index'
 
   devise_for :users, :controllers => { :registrations => 'registrations',
                                        :sessions => 'sessions',
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   scope '/shop' do
+    post '/search', to: 'shop#product_search', as: 'product_search'
     get '/categories/:category', to: 'shop#index', as: 'product_category'
 
     resources :checkout, only: [:index, :create]

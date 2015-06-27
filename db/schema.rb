@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621023538) do
+ActiveRecord::Schema.define(version: 20150626145541) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "country_code"
@@ -121,10 +121,13 @@ ActiveRecord::Schema.define(version: 20150621023538) do
   create_table "product_categories", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "slug"
+    t.integer  "product_category_id"
   end
+
+  add_index "product_categories", ["product_category_id"], name: "index_product_categories_on_product_category_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"

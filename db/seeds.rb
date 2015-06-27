@@ -27,16 +27,24 @@ product_categories_json.each do |data|
   product_category.name = data['name']
   product_category.description = data['description']
   product_category.save
+
+  subcategories = data['subcategories']
+  subcategories.each do |category|
+    sub_category = ProductCategory.new(name: category['name'], description: category['description'])
+    sub_category.product_category = product_category
+    sub_category.save
+  end
 end
 
 products_json = ActiveSupport::JSON.decode(File.read('db/seeds/products.json'))
 products_json.each do |data|
-  product = Product.new
-  product.name = data['name']
-  product.description = data['description']
-  product.price = data['price']
-  product.product_category_id = data['product_category_id']
-  product.cs_sku = data['cs_sku']
+  product = Product.new(name: data['name'],
+                        description: data['description'],
+                        price: data['price'],
+                        product_category_id: data['product_category_id'],
+                        cs_sku: data['cs_sku'],
+                        image_front: data['image_front'],
+                        qty: data['qty'])
   product.save
 end
 

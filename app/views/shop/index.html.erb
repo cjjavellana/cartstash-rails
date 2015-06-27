@@ -1,34 +1,7 @@
 <div class="main col-md-9">
 
   <% @products.each_with_index do |product, index| %>
-      <% if index % 3 == 0 %>
-          <div class="row">
-      <% end %>
-      <div class="col-md-4 col-xs-12">
-        <div class="product-box">
-          <div>
-            <div class="col-md-12 img-holder">
-              <%= image_tag 'safeguard.png', :class => 'product-img pull-left' %>
-              <span class="pull-right product-description">Php <%= product.price %> </span>
-            </div>
-          </div>
-          <div>
-            <div class="col-md-10 product-description pull-left">
-              <%= product.name.length > 50 ? "#{product.name[0..50]}..." : product.name %>
-            </div>
-            <div class="col-md-2">
-              <%= button_to '', shop_index_path, {:class => 'add2cart-btn', :remote => true, :method => 'post',
-                                                  :form_class => 'add2cart-form', :params => {:sku => product.cs_sku}} %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% if index % 3 == 2 %>
-          </div>
-      <% end %>
+
   <% end %>
-  <%= paginate @products %>
-</div>
-<div class="col-md-3 cart-summary">
-  <%= render 'cart/cartsummary' %>
+
 </div>

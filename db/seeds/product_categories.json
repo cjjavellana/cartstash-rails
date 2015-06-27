@@ -1,22 +1,104 @@
 [
   {
-    "name": "Food Items",
-    "description": "Food Items Category"
+    "name": "Rice & Breads",
+    "description": "Rice & Breads Category",
+    "subcategories": [
+      {"name": "Thai Rice", "description": "Thai Rice"},
+      {"name": "Indian Rice", "description": "Indian Rice"},
+      {"name": "NFA Rice", "description": "NFA Rice"},
+      {"name": "Local Premium Rice", "description": "Local Premium Rice"},
+      {"name": "Breads", "description": "Breads"},
+      {"name": "Cookies", "description": "Cookies"},
+      {"name": "Spreads", "description": "Spreads"}
+    ]
   },
   {
-    "name": "Non-Food Items",
-    "description": "Non-Food Items Category"
+    "name": "Canned Goods",
+    "description": "Canned Goods",
+    "subcategories": [
+      {"name": "Pork & Beans", "description": "Pork & Beans"},
+      {"name": "Sardines", "description": "Sardines"},
+      {"name": "Corned Beef", "description": "Corned Beef"},
+      {"name": "Meat Loaf", "description": "Meat Loaf"}
+    ]
   },
   {
-    "name": "Babies",
-    "description": "Babies Category"
+    "name": "Beverages",
+    "description": "Beverages",
+    "subcategories": [
+      {"name": "Beers", "description": "Beers"},
+      {"name": "Whisky, Rum, etc", "description": "Whisky, Rum, etc"},
+      {"name": "Soda Drinks", "description": "Softdrinks"},
+      {"name": "Energy Drinks", "description": "Energy Drinks"},
+      {"name": "Iced Tea, etc", "description": "Iced Tea, etc"}
+    ]
   },
   {
-    "name": "Pets",
-    "description": "Pets Category"
+    "name": "Milk & Other Dairy Products",
+    "description": "Milk & Other Dairy Products",
+    "subcategories": [
+      {"name": "Milks", "description": "Milks"},
+      {"name": "Baby Milks", "description": "Baby Milks"},
+      {"name": "Butters", "description": "Butters"},
+      {"name": "Chocolates", "description": "Chocolates"},
+      {"name": "Cheese", "description": "Cheese"}
+    ]
   },
   {
-    "name": "Appliances",
-    "description": "Appliances Category"
+    "name": "Coffee, Sugar & Tea",
+    "description": "Coffee, Sugar & Tea",
+    "subcategories": [
+      {"name": "Coffee", "description": "Coffee"},
+      {"name": "Sugar", "description": "Sugar"},
+      {"name": "Tea", "description": "Tea"}
+    ]
+  },
+  {
+    "name": "Cooking",
+    "description": "Cooking",
+    "subcategories": [
+      {"name": "Cooking Oils", "description": "Cooking Oils"},
+      {"name": "Spices & Salts", "description": "Spices & Salts"},
+      {"name": "Ketchup & sauces", "description": "Ketchup & sauces"},
+      {"name": "Pancakes & Cookies", "description": "Pancakes & Cookies"},
+      {"name": "Noodles & Ready to Cook", "description": "Noodles & Ready to Cook"},
+      {"name": "Table napkins", "description": "Table napkins"}
+    ]
+  },
+  {
+    "name": "Beauty & Hygiene",
+    "description": "Beauty & Hygiene",
+    "subcategories": [
+      {"name": "Mouth care", "description": "Mouth care"},
+      {"name": "Bath Soaps", "description": "Bath Soaps"},
+      {"name": "Hair Care", "description": "Hair Care"},
+      {"name": "Baby Powder", "description": "Baby Powder"},
+      {"name": "Deodorants", "description": "Deodorants"},
+      {"name": "Nail Care", "description": "Nail Care"},
+      {"name": "Feminine Wash", "description": "Feminine Wash"},
+      {"name": "Sanitary Napkins", "description": "Sanitary Napkins"},
+      {"name": "Tissue papers", "description": "Tissue papers"},
+      {"name": "Etc", "description": "Etc"}
+    ]
+  },
+  {
+    "name": "Baby care",
+    "description": "Baby care",
+    "subcategories": [
+      {"name": "Disposable Diapers", "description": "Disposable Diapers"},
+      {"name": "Wet wipes", "description": "Wet wipes"},
+      {"name": "Milk Bottles", "description": "Milk Bottles"}
+    ]
+  },
+  {
+    "name": "Household & Petcare",
+    "description": "Household & Petcare",
+    "subcategories": [
+      {"name": "Dishwashing liquids", "description": "Dishwashing liquids"},
+      {"name": "Detergents", "description": "Detergents"},
+      {"name": "Disinfectants", "description": "Disinfectants"},
+      {"name": "Toilet cleaners", "description": "Toilet cleaners"},
+      {"name": "Dog Foods", "description": "Dog Foods"}
+    ]
   }
 ]

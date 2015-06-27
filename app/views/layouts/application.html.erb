@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Cartstash</title>
+  <title>Cartstash Grocery</title>
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -13,34 +13,43 @@
 </head>
 
 <body>
-
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle cs-menu-icon" data-toggle="collapse" data-target="#menu-collapse-1">
+      <button type="button" class="navbar-toggle cs-menu-icon" data-toggle="collapse" data-target="#xs-menu">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar cs-menu-icon-bar"></span>
         <span class="icon-bar cs-menu-icon-bar"></span>
         <span class="icon-bar cs-menu-icon-bar"></span>
       </button>
       <div class="navbar-toggle pull-left cs-m-logo">
-        <%= link_to image_tag("images/cs-white-orange-logo.png", alt: "CartStash Logo"), shop_index_path %>
+        <%= link_to image_tag("images/home-icon.png", alt: "CartStash Logo"), root_path %>
       </div>
     </div>
 
-    <div class="collapse navbar-collapse" id="menu-collapse-1">
+    <div class="collapse navbar-collapse" id="md-menu">
       <div class="cs-logo pull-left">
-        <%= link_to image_tag("images/cs-white-orange-logo.png", alt: "CartStash Logo"), shop_index_path %>
+        <%= link_to image_tag("images/home-icon.png", alt: "CartStash Logo"), root_path %>
       </div>
-      <ul class="nav navbar-nav cs-header-menu">
-        <li><%= link_to 'Food Items', product_category_path(:category => 'food-items') %></li>
-        <li><%= link_to 'Non-Food Items', product_category_path(:category => 'non-food-items') %></li>
-        <li><%= link_to 'Babies', product_category_path(:category => 'babies') %></li>
-        <li><%= link_to 'Pets', product_category_path(:category => 'pets') %></li>
-        <li><%= link_to 'Appliances', product_category_path(:category => 'appliances') %></li>
-      </ul>
+      <%= form_tag product_search_path, method: :post do %>
+          <ul class="nav navbar-nav product-search-header">
+            <li>
+              <%= text_field_tag :query, '', {class: 'product-search', placeholder: 'Search'} %>
+            </li>
+            <li>
+              <%= submit_tag '', class: 'product-search-btn' %>
+            </li>
+          </ul>
+        <% end %>
+      <div class="order-summary">
+        <span class="amount-summary">$ 0.00</span>
+        <span class="down-arrow"></span>
+      </div>
       <% unless signed_in? %>
-          <%= link_to "", new_user_session_path, {class: "login-btn pull-right"} %>
+          <ul class="nav navbar-nav pull-right">
+            <li><%= button_to "", new_user_session_path, {class: "login-btn"}%></li>
+            <li><%= button_to "", new_user_registration_path, {class: "signup-btn"}%></li>
+          </ul>
       <% else %>
           <div class="user-info pull-right">
             <div class="dropdown">
@@ -50,7 +59,8 @@
               </button>
               <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation">
-                  <%= link_to user_profile_index_path do %><span class="glyphicon glyphicon-user"></span> My Account<% end %>
+                  <%= link_to user_profile_index_path do %><span class="glyphicon glyphicon-user"></span> My Account
+                  <% end %>
                 </li>
                 <li role="presentation">
                   <a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-list"></span> Orders</a>

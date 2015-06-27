@@ -38,4 +38,13 @@ FactoryGirl.define do
     uom           "ea"
     association :product_category, factory: :household
   end
+
+  factory :thai_fragrant_rice, class: Product do
+    name          "Thai Fragrant Rice, 5kg"
+    description   "Thai Fragrant Rice, 5kg"
+    price         "9.90"
+    cs_sku        "40-120-02"
+    uom           "ea"
+    association :product_category, factory: :thai_rice
+  end
 end
