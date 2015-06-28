@@ -3,6 +3,7 @@ FactoryGirl.define do
   factory :rice_and_breads, class: ProductCategory do
     name  "Rice & Breads"
     description  "Rice & Breads"
+    slug "1-rice-breads"
   end
 
   factory :thai_rice, class: ProductCategory do

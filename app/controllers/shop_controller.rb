@@ -1,7 +1,8 @@
 class ShopController < CartController
 
+  before_action :product_offerings, :categories
+
   def index
-    product_offerings
   end
 
   def product_search
@@ -39,5 +40,14 @@ class ShopController < CartController
       end
     end
 
+    def categories
+      @categories = RedisClient.get 'menu_categories'
+      if @categories.nil?
+        @categories = ProductCategory.where('product_category_id is NULL').order(id: :asc)
+        RedisClient.set 'menu_categories', @categories.to_json
+      else
+        @categories = JSON.parse @categories, :symbolize_names => true
+      end
+    end
 end
 

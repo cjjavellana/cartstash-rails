@@ -1,0 +1,16 @@
+<div class="main" id>
+  <div class="row">
+    <div class="col-md-2 categories-sidebar">
+      <ul>
+      <% @categories.each do |category| %>
+          <li>
+            <%= link_to category[:name], product_category_path(:category => category[:slug]) %>
+          </li>
+      <% end %>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <%= yield %>
+    </div>
+  </div>
+</div>

@@ -164,6 +164,28 @@ body {
   }
 }
 
+.categories-sidebar {
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul li {
+    margin-top: 10px;
+  }
+
+  ul li a {
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  li {
+    background:url('images/menu-separator.png') no-repeat top right;
+  }
+}
+
 .cs-menu-icon {
   margin-top: 20px;
 }
@@ -187,7 +209,7 @@ body {
 }
 
 .main {
-  margin-top: 40px;
+//  margin-top: 40px;
 }
 
 .product-box {

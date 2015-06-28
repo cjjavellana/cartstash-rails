@@ -1,7 +1,9 @@
-<div class="main col-md-9">
 
-  <% @products.each_with_index do |product, index| %>
+<%= render layout: 'layouts/categories_sidebar' do %>
+    <div class="col-md-12">
+      <% @products.each_with_index do |product, index| %>
 
-  <% end %>
+      <% end %>
+    </div>
+<% end %>
 
-</div>
