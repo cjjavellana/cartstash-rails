@@ -1,8 +1,26 @@
-
 <%= render layout: 'layouts/categories_sidebar' do %>
-    <div class="col-md-12">
-      <% @products.each_with_index do |product, index| %>
+    <div class="col-md-10">
+      <% @products.each do |product| %>
+          <div class="row product-choices-row">
+            <div class="category-header">
+              <h4><%= product[:category] %></h4>
+            </div>
+            <div class="see-all">
+              <%= link_to 'See All', product_category_path(:category => product[:slug]) %>
+            </div>
+          </div>
+          <div class="row item-row">
+            <% if product[:products].empty? %>
+                <div>No product to display.</div>
+            <% else %>
+                <% product[:products].each do |item| %>
+                    <div class="col-md-4 product-item">
 
+                    </div>
+                <% end %>
+            <% end%>
+            <% print product[:products]%>
+          </div>
       <% end %>
     </div>
 <% end %>

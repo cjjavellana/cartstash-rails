@@ -29,9 +29,9 @@ class ShopController < CartController
         list = []
         root_categories = ProductCategory.where('product_category_id is NULL')
         root_categories.each do |f|
-          products = Product.joins(:product_category).where('products.product_category.product_category_id = ?', f.id).limit 3
+          products = Product.joins(:product_category).where(product_categories: {product_category_id: f.id}).limit 3
           products = [] if products.nil?
-          list.push({category: f.name, products: products.to_json})
+          list.push({category: f.name, slug: f.slug, products: products})
         end
         @products = list
         RedisClient.set 'shop_index', list.to_json

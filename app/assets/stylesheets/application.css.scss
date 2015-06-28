@@ -282,3 +282,32 @@ body {
 .pad-left-none {
   padding-left: 5px!important;
 }
+
+.product-choices-row{
+
+  border-bottom: 1px solid #fff;
+
+  .category-header {
+    float:left;
+  }
+
+  .see-all {
+    font-size: 12px;
+    margin-top: 15px;
+    float:right;
+    font-weight: bold;
+
+    a {
+      color: #fff;
+
+      :after {
+        margin-left: 5px;
+        content: url('images/menu-separator.png');
+      }
+    }
+  }
+}
+
+.item-row {
+  margin-bottom: 20px;
+}
