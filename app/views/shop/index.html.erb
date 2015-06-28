@@ -14,8 +14,23 @@
                 <div>No product to display.</div>
             <% else %>
                 <% product[:products].each do |item| %>
-                    <div class="col-md-4 product-item">
-
+                    <div class="col-md-3 col-xs-5 product-item">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                              <%= image_tag item[:image_front] %>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12 col-xs-12">
+                            <%= item[:name] %>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="order-qty col-md-3 col-xs-3">1</div>
+                            <div class="col-md-3 col-xs-3 add2cart">
+                                <%= button_tag "#{number_to_currency item[:price], unit: '$ '}" %>
+                            </div>
+                        </div>
                     </div>
                 <% end %>
             <% end%>

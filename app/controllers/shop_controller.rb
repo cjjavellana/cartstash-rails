@@ -23,12 +23,19 @@ class ShopController < CartController
   end
 
   private
+
+    # This is an expensive computation involving multiple round trip
+    # calls to the database. Idea here is that once we have retrieved
+    # the top 3 items for each category, cache it so that we don't have
+    # to incur the same computation cost
     def product_offerings
       @products = RedisClient.get 'shop_index'
       if @products.nil?
+
         list = []
         root_categories = ProductCategory.where('product_category_id is NULL')
         root_categories.each do |f|
+          # Get only 3 of each kind
           products = Product.joins(:product_category).where(product_categories: {product_category_id: f.id}).limit 3
           products = [] if products.nil?
           list.push({category: f.name, slug: f.slug, products: products})
@@ -40,6 +47,7 @@ class ShopController < CartController
       end
     end
 
+    # Retrieve the categories to be displayed in the left menu.
     def categories
       @categories = RedisClient.get 'menu_categories'
       if @categories.nil?
