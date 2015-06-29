@@ -1,11 +1,19 @@
 class ShopController < CartController
 
-  before_action :product_offerings, :categories
+  before_action :categories
 
   def index
+    product_offerings
   end
 
   def product_search
+  end
+
+  def load_by_category
+    # Place the result in the array because the view is iterating the categories
+    # array
+    @products = [Product.products_by_category(params[:category])]
+    render :index
   end
 
   # The actions below are wrappers to the standard cart functions
@@ -38,7 +46,7 @@ class ShopController < CartController
           # Get only 3 of each kind
           products = Product.joins(:product_category).where(product_categories: {product_category_id: f.id}).limit 3
           products = [] if products.nil?
-          list.push({category: f.name, slug: f.slug, products: products})
+          list.push({name: f.name, slug: f.slug, products: products})
         end
         @products = list
         RedisClient.set 'shop_index', list.to_json
@@ -58,4 +66,3 @@ class ShopController < CartController
       end
     end
 end
-

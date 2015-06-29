@@ -3,7 +3,7 @@
       <% @products.each do |product| %>
           <div class="row product-choices-row">
             <div class="category-header">
-              <h4><%= product[:category] %></h4>
+              <h4><%= product[:name] %></h4>
             </div>
             <div class="see-all">
               <%= link_to 'See All', product_category_path(:category => product[:slug]) %>
@@ -22,7 +22,9 @@
                         </div>
                         <div class="row">
                           <div class="col-md-12 col-xs-12">
-                            <%= item[:name] %>
+                            <span data-toggle="tooltip" title="<%= item[:name] %>">
+                              <%= (item[:name].length > 26) ? "#{item[:name][0..26]}..." : item[:name] %>
+                            </span>
                           </div>
                         </div>
                         <div class="row">
