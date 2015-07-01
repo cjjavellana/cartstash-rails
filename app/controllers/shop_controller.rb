@@ -1,4 +1,5 @@
 class ShopController < CartController
+  include ActionView::Helpers::NumberHelper
 
   before_action :categories
 
@@ -17,6 +18,22 @@ class ShopController < CartController
   end
 
   # The actions below are wrappers to the standard cart functions
+
+  def add2cart
+    begin
+      add2cart!
+      result = { sku: params[:sku],
+                 qty: @cart.order_qty(params[:sku]),
+                 total: number_to_currency(@cart.sub_total, precision: 2, unit: '$ ')}
+      respond_to do |format|
+        format.json { render :json => result }
+      end
+    rescue CartstashError::CartError => e
+      respond_to do |format|
+        format.json { render :json => {error_msg: e.message}}
+      end
+    end
+  end
 
   def create
     add2cart

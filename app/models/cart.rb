@@ -32,8 +32,17 @@ class Cart
     @item_map.delete sku.to_sym
   end
 
+  # Returns the number of items in cart
   def unique_items
     @item_map.length
+  end
+
+  # Returns an instance of PurchasedItem containing the qty
+  # of the items ordered and the partial total
+  def order_qty(sku)
+    purchased_item = @item_map[sku.to_sym]
+    return 0 if purchased_item.nil?
+    return purchased_item.quantity
   end
 
   def sub_total

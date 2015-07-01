@@ -42,7 +42,7 @@
           </ul>
         <% end %>
       <div class="order-summary">
-        <span class="amount-summary">$ 0.00</span>
+        <span class="amount-summary"><%= number_to_currency(@cart.sub_total, unit: '$ ') %></span>
         <span class="down-arrow"></span>
       </div>
       <% unless signed_in? %>

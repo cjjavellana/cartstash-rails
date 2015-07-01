@@ -64,4 +64,8 @@ describe Cart do
     expect(cart.sales_tax).to eq(109.32)
   end
 
+  it "returns 0 when product does not exist in cart" do
+    qty = cart.order_qty('10001')
+    expect(qty).to eq(0)
+  end
 end

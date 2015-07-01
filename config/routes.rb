@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   scope '/shop' do
     post '/search', to: 'shop#product_search', as: 'product_search'
     get '/categories/:category', to: 'shop#load_by_category', as: 'product_category'
+    post '/add2cart', to: 'shop#add2cart', as: 'add2cart'
 
     resources :checkout, only: [:index, :create]
     get '/delivery-and-schedule', to: 'checkout#delivery_and_schedule'

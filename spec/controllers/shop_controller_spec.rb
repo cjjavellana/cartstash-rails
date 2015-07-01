@@ -57,5 +57,11 @@ RSpec.describe ShopController, type: :controller do
     expect(response).to have_http_status :success
   end
 
+  it 'is able to add item into the cart' do
+    expect(Product).to receive(:find_by_cs_sku).twice.and_return(build_stubbed(:thai_fragrant_rice))
+    post :add2cart, {format: 'json', sku: '0001', qty: 1}
+
+    expect(assigns(:cart).item_map['0001'.to_sym]).to_not be_nil
+  end
 
 end

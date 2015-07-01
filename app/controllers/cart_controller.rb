@@ -1,18 +1,15 @@
 class CartController < ApplicationController
+  include CartstashError
+
   before_action :restore_cart
   after_action :persist_cart
 
-  def add2cart
+  def add2cart!
     product = Product.find_by_cs_sku(params[:sku])
-    if product.qty >= get_qty
-      product.update_attribute(:qty, product.qty - get_qty)
-      reserved_item = ReservedItem.new(user: current_user, product: product, qty: get_qty, session_id: session.id)
-      reserved_item.save
-      respond_with_format { @cart.add_item(params[:sku], get_qty) }
-    else
-      flash[:error] = 'Not enough item in inventory'
-      respond_with_format
-    end
+    raise CartError("Product #{params[:sku]} not found") if product.nil?
+    raise CartError("Not enough inventory to fulfill this request") if get_qty.to_i > product.qty
+
+    @cart.add_item(params[:sku], get_qty)
   end
 
   # Updates the quantity of an item in the cart
@@ -51,6 +48,7 @@ class CartController < ApplicationController
   end
 
   protected
+
     def restore_cart
       @cart = RedisClient.get("cart_#{session.id}")
       @cart = (@cart.nil?) ? Cart.new : Cart.restore(JSON.parse(@cart))
@@ -79,6 +77,7 @@ class CartController < ApplicationController
 
       respond_to do |format|
         format.js { render 'cart' }
+        format.json { @cart.as_json }
       end
     end
 

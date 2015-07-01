@@ -45,6 +45,7 @@ FactoryGirl.define do
     price         "9.90"
     cs_sku        "40-120-02"
     uom           "ea"
+    qty           300
     association :product_category, factory: :thai_rice
   end
 end
