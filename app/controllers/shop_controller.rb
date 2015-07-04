@@ -39,26 +39,15 @@ class ShopController < CartController
   # :q is the action to perform - Increase or reduce the order quantity
   # :sku is the item identifier
   def update_cart
-    if params[:q] === "add"
-      @cart.add_item params[:sku], 1
-      subtotal = @cart.item_map[params[:sku].to_sym].total_price
-      cart_total = @cart.sub_total
-      respond_to do |format|
-        format.json {
-          render :json => {
-                     sku: params[:sku],
-                     qty: @cart.order_qty(params[:sku]),
-                     subtotal: number_to_currency(subtotal, unit: '$ ', precision: 2),
-                     cart_total: number_to_currency(cart_total, unit: '$ ', precision: 2)
-                 }
-        }
-      end
-    else
+    @cart.add_item(params[:sku], 1) if params[:q] == "add"
+    @cart.reduce_qty_of(params[:sku]) if params[:q] == "reduce"
 
+    respond_to do |format|
+      format.json {
+        render :json => update_cart_response
+      }
     end
-
   end
-
 
   def order_summary
 
@@ -69,6 +58,19 @@ class ShopController < CartController
   end
 
   private
+
+    def update_cart_response
+      item = @cart.item_map[params[:sku].to_sym]
+      subtotal = item.nil? ? 0 : item.total_price
+      cart_total = @cart.sub_total
+
+      {
+        sku: params[:sku],
+        qty: @cart.order_qty(params[:sku]),
+        subtotal: number_to_currency(subtotal, unit: '$ ', precision: 2),
+        cart_total: number_to_currency(cart_total, unit: '$ ', precision: 2)
+      }
+    end
 
     # This is an expensive computation involving multiple round trip
     # calls to the database. Idea here is that once we have retrieved
