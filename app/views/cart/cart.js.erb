@@ -1,3 +1,13 @@
-$('.cart-summary').html('');
-$('.cart-summary').html("<%= escape_javascript render(partial: 'cart/cartsummary') %>");
-$('[data-toggle="tooltip"]').tooltip();
+$('.order-summary button').popover('show');
+$('.order-summary .popover-content').html('');
+$('.order-summary .popover-content').html("<%= escape_javascript render(partial: 'cart/cartsummary') %>");
+
+//adjust popover position
+left = $('.order-summary div.popover').css('left').replace('px', '');
+left -= 130;
+$('.order-summary div.popover').css('left', left + 'px');
+
+//adjust arrow position
+arrowLeft = $('.order-summary div.popover div.arrow').css('left').replace('px', '');
+arrowLeft = parseInt(arrowLeft) + 70;
+$('.order-summary div.popover div.arrow').css('left', arrowLeft + 'px');

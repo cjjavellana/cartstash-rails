@@ -1,5 +1,5 @@
 class PurchasedItem
-  attr_accessor :name, :sku, :price, :discount, :quantity, :uom
+  attr_accessor :name, :sku, :price, :discount, :quantity, :uom, :image_front
 
   def initialize(params = {})
     @name = params[:name]
@@ -8,6 +8,7 @@ class PurchasedItem
     @discount = params[:discount]
     @quantity = params[:quantity]
     @uom = params[:uom]
+    @image_front = params[:image_front] || '/images/product_placeholder.png'
   end
 
   def total_price

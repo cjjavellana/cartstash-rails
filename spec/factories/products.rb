@@ -46,6 +46,7 @@ FactoryGirl.define do
     cs_sku        "40-120-02"
     uom           "ea"
     qty           300
+    image_front   "http://lorempixel.com/100/130/food/"
     association :product_category, factory: :thai_rice
   end
 end

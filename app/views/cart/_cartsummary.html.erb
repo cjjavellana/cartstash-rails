@@ -1,71 +1,23 @@
-<div class="main">
-  <div class="line-items">
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10 tx-summary">SUMMARY</div>
-      <div class="col-md-1"></div>
-    </div>
-    <div class="row costing-info">
-      <div class="col-md-1"></div>
-      <div class="col-md-5 total-cost">TOTAL</div>
-      <div class="col-md-5 total-cost total-cost-amt"><%= @cart.nil? ? "Php 0.00" : number_to_currency(@cart.sub_total, unit: 'Php ') %></div>
-      <div class="col-md-1 total-cost"></div>
-    </div>
-    <div class="row checkout-row">
-      <div class="col-md-6"></div>
-      <div class="col-md-5 checkout-btn-row">
-        <%= link_to 'Checkout', checkout_index_path, class: "btn checkout-btn" %>
+<% @cart.item_map.each do |key, value| %>
+    <div class="row cart-item">
+      <div class="col-md-12 col-xs-12">
+        <div class="col-md-3 col-xs-3">
+          <%= image_tag value.image_front, size: '50x65' %>
+        </div>
+        <div class="col-md-3 col-xs-3">
+          <%= number_to_currency value.price, unit: "$ ", precision: 2 %>
+        </div>
+        <div class="col-md-3 col-xs-3">Qty: <%= value.quantity %></div>
+        <div class="col-md-3 col-xs-3">= <%= number_to_currency value.total_price, unit: '$ ', precision: 2 %></div>
       </div>
-      <div class="col-md-1"></div>
+      <div class="col-md-12 col-xs-12">
+        <%= value.name %>
+      </div>
     </div>
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10 items-list-hdr">ITEMS LIST</div>
-      <div class="col-md-1"></div>
-    </div>
-
-    <% if !flash.empty? %>
-        <!-- Flash message area -->
-        <% flash.each do |key, value| %>
-            <div class="row">
-              <div class="col-md-12 col-xs-12 order-summary-alert">
-                <div id="error_explanation" class="alert alert-danger">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <ul><%= value %></ul>
-                </div>
-              </div>
-            </div>
-        <% end %>
-    <% end %>
-
-    <% unless @cart.nil? %>
-        <% @cart.item_map.each do |sku, purchased_item| %>
-            <div class="line-item">
-              <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-8 item-desc">
-                  <span data-toggle=tooltip data-placement=right title="<%= purchased_item.name %>">
-                    <%= purchased_item.name.length > 20 ? "#{purchased_item.name[0..20]}..." : purchased_item.name %>
-                  </span>
-                </div>
-                <div class="col-md-2">
-                  <%= button_to '', {:controller => 'shop', :action => 'destroy', :id => purchased_item.sku},
-                                {:method => 'delete', :class => 'removeitem-btn', :remote => true, :form_class => 'removeitem-form', :params => {:sku => purchased_item.sku}} %>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-4 item-desc form-group">
-                  <%= text_field(:order, :qty, {:class => "form-control input-sm item-qty", :value => purchased_item.quantity, :sku => sku, :id => sku}) %>
-                </div>
-                <div class="col-md-6 item-desc">
-                  <%= "Price: #{number_to_currency(purchased_item.total_price, unit: 'Php ')}" %>
-                </div>
-              </div>
-            </div>
-        <% end %>
-    <% end %>
-  </div>
+<% end %>
+<hr />
+<div class="col-md-12 col-xs-12 checkout-btn-container">
+  <%= link_to '', url: checkout_index_path do %>
+      <button class="checkout-btn"></button>
+  <% end %>
 </div>

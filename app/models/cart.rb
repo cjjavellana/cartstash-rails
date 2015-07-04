@@ -12,7 +12,16 @@ class Cart
     if item.nil?
       product = Product.find_by_cs_sku(sku)
       raise "#{sku} not found" if product.nil?
-      item = PurchasedItem.new({:name => product.name, :price => product.price, :sku => product.cs_sku, :quantity => qty})
+      item = PurchasedItem.new(
+          {
+              :name => product.name,
+              :price => product.price,
+              :sku => product.cs_sku,
+              :quantity => qty,
+              :image_front => product.image_front
+          }
+      )
+
       @item_map[sku.to_sym] = item
     else
       item.quantity += Float(qty)

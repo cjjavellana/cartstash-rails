@@ -41,10 +41,11 @@
             </li>
           </ul>
         <% end %>
-      <div class="order-summary">
-        <span class="amount-summary"><%= number_to_currency(@cart.sub_total, unit: '$ ') %></span>
-        <span class="down-arrow"></span>
-      </div>
+      <%= button_to  :order_summary, remote: true, form_class: 'order-summary', method: :get do %>
+          <span class="amount-summary"><%= number_to_currency(@cart.sub_total, unit: '$ ') %></span>
+          <span class="down-arrow"></span>
+      <% end %>
+
       <% unless signed_in? %>
           <ul class="nav navbar-nav pull-right">
             <li><%= button_to "", new_user_session_path, {class: "login-btn"}%></li>

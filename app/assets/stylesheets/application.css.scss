@@ -129,15 +129,22 @@ body {
   }
 }
 
+a.order-summary:hover {
+  text-decoration: none;
+}
+
 .order-summary {
-  margin: 15px 0px 0px 300px;
-  width: 150px;
-  height: 45px;
-  background: #EFF1F7;
-  border-radius: 8px;
-  border: none;
-  float: left;
-  padding: 10px 0px 0px 10px;
+
+  button[type="submit"] {
+    margin: 15px 0px 0px 300px;
+    width: 150px;
+    height: 45px;
+    background: #EFF1F7;
+    border-radius: 8px;
+    border: none;
+    float: left;
+    padding: 0px 0px 0px 0px;
+  }
 
   .amount-summary {
     font-family: 'Century Gothic';
@@ -152,6 +159,27 @@ body {
     float: right;
     margin: 10px 10px 0px 0px;
     background: url("images/down-arrow.png") no-repeat center;
+  }
+
+  .popover {
+
+    .popover-content .row {
+      color: #2B2938;
+    }
+
+    .popover-content .cart-item {
+      margin-bottom: 10px;
+
+      div {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+
+      div.col-md-12 {
+        padding-left: 10px;
+      }
+    }
+
   }
 }
 
@@ -361,4 +389,15 @@ body {
 .tooltip-inner {
   font-size: 14px;
   color: #fff!important;
+}
+
+.checkout-btn-container {
+  text-align: center;
+  margin-top: -15px;
+  .checkout-btn {
+    width: 168px;
+    height: 38px;
+    border: none;
+    background: url('images/checkout-btn.png');
+  }
 }

@@ -47,6 +47,14 @@ class ShopController < CartController
     update_cart
   end
 
+  def order_summary
+
+    respond_to do |format|
+      format.js { render 'cart' }
+    end
+
+  end
+
   private
 
     # This is an expensive computation involving multiple round trip
