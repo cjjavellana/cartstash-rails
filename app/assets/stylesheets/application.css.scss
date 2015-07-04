@@ -180,6 +180,26 @@ a.order-summary:hover {
       }
     }
 
+    .cart-item {
+
+      .add-item {
+        background: url(images/arrow-up.png) no-repeat 0px center;
+        width: 18px;
+        height: 20px;
+        display: block;
+      }
+
+      .reduce-item {
+        background: url(images/arrow-down.png) no-repeat 0px center;
+        width: 18px;
+        height: 20px;
+        display: block;
+      }
+
+      .sub-total {
+        padding-left: 5px!important;
+      }
+    }
   }
 }
 

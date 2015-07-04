@@ -40,6 +40,19 @@ describe Cart do
     expect(cart.item_map["40-100-01".to_sym].quantity).to eq(2)
   end
 
+  it "can reduce the quantity of an item in the cart" do
+    cart.add_item("40-100-01")
+    cart.add_item("40-100-01")
+
+    expect(cart.item_map["40-100-01".to_sym].quantity).to eq(2)
+
+    cart.reduce_qty_of("40-100-01")
+    expect(cart.item_map["40-100-01".to_sym].quantity).to eq(1)
+
+    cart.reduce_qty_of("40-100-01")
+    expect(cart.order_qty("40-100-01")).to eq(0)
+  end
+
   it "can revise the quantity of an item in the cart" do
     cart.add_item("40-100-01", 2)
     expect(cart.item_map["40-100-01".to_sym].quantity).to eq(2)

@@ -1,14 +1,18 @@
 <% @cart.item_map.each do |key, value| %>
     <div class="row cart-item">
       <div class="col-md-12 col-xs-12">
-        <div class="col-md-3 col-xs-3">
-          <%= image_tag value.image_front, size: '50x65' %>
+        <div class="col-md-3 col-xs-3"><%= image_tag value.image_front, size: '50x65' %></div>
+        <div class="col-md-3 col-xs-3">Price: <div><%= number_to_currency value.price, unit: "$ ", precision: 2 %></div></div>
+        <div class="col-md-2 col-xs-2">Qty: <div><%= value.quantity %></div></div>
+        <div class="col-md-1 col-xs-1">
+          <div>
+            <%= link_to '', update_cart_path(sku: value.sku, q: 'add'), class: 'add-item', method: :put, remote: true %>
+          </div>
+          <div>
+            <%= link_to '', update_cart_path(sku: value.sku, q: 'reduce'), class: 'reduce-item', method: :put, remote: true %>
+          </div>
         </div>
-        <div class="col-md-3 col-xs-3">
-          <%= number_to_currency value.price, unit: "$ ", precision: 2 %>
-        </div>
-        <div class="col-md-3 col-xs-3">Qty: <%= value.quantity %></div>
-        <div class="col-md-3 col-xs-3">= <%= number_to_currency value.total_price, unit: '$ ', precision: 2 %></div>
+        <div class="col-md-3 col-xs-3 sub-total">= <%= number_to_currency value.total_price, unit: '$ ', precision: 2 %></div>
       </div>
       <div class="col-md-12 col-xs-12">
         <%= value.name %>

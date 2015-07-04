@@ -35,17 +35,30 @@ class ShopController < CartController
     end
   end
 
-  def create
-    add2cart
+  # /shop/updatecart/:q/:sku
+  # :q is the action to perform - Increase or reduce the order quantity
+  # :sku is the item identifier
+  def update_cart
+    if params[:q] === "add"
+      @cart.add_item params[:sku], 1
+      subtotal = @cart.item_map[params[:sku].to_sym].total_price
+      cart_total = @cart.sub_total
+      respond_to do |format|
+        format.json {
+          render :json => {
+                     sku: params[:sku],
+                     qty: @cart.order_qty(params[:sku]),
+                     subtotal: number_to_currency(subtotal, unit: '$ ', precision: 2),
+                     cart_total: number_to_currency(cart_total, unit: '$ ', precision: 2)
+                 }
+        }
+      end
+    else
+
+    end
+
   end
 
-  def destroy
-    remove_item
-  end
-
-  def update
-    update_cart
-  end
 
   def order_summary
 

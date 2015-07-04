@@ -8,7 +8,7 @@ class PurchasedItem
     @discount = params[:discount]
     @quantity = params[:quantity]
     @uom = params[:uom]
-    @image_front = params[:image_front] || '/images/product_placeholder.png'
+    @image_front = params[:image_front] || 'http://placehold.it/50x65'
   end
 
   def total_price

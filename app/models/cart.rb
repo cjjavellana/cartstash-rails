@@ -37,6 +37,18 @@ class Cart
     end
   end
 
+  def reduce_qty_of(sku)
+    item = @item_map[sku.to_sym]
+    unless item.nil?
+      new_qty = item.quantity - 1
+      if new_qty > 0
+        update_item sku, new_qty
+      else
+        remove_item sku
+      end
+    end
+  end
+
   def remove_item(sku)
     @item_map.delete sku.to_sym
   end

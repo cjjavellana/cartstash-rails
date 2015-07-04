@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   resources :payment_method, only: [:index, :new, :create, :edit, :update, :destroy]
-  resources :shop, only: [:index, :create, :update, :destroy]
+  resources :shop, only: [:index]
   resources :delivery_address, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   resources :order_history, only: [:index, :show]
   resources :user_profile, only: [:index, :update] do
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     post '/search', to: 'shop#product_search', as: 'product_search'
     get '/categories/:category', to: 'shop#load_by_category', as: 'product_category'
     post '/add2cart', to: 'shop#add2cart', as: 'add2cart'
+    put '/updatecart/:q/:sku', to: 'shop#update_cart', as: 'update_cart'
     get '/order_summary', to: 'shop#order_summary', as: 'order_summary'
 
     resources :checkout, only: [:index, :create]
