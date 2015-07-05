@@ -36,11 +36,12 @@ class ShopController < CartController
   end
 
   # /shop/updatecart/:q/:sku
-  # :q is the action to perform - Increase or reduce the order quantity
+  # :q is the action to perform - Either of the following: add, reduce, remove
   # :sku is the item identifier
   def update_cart
     @cart.add_item(params[:sku], 1) if params[:q] == "add"
     @cart.reduce_qty_of(params[:sku]) if params[:q] == "reduce"
+    @cart.remove_item(params[:sku]) if params[:q] == "remove"
 
     respond_to do |format|
       format.json {
@@ -49,12 +50,11 @@ class ShopController < CartController
     end
   end
 
+  # /shop/order_summary
   def order_summary
-
     respond_to do |format|
       format.js { render 'cart' }
     end
-
   end
 
   private
@@ -66,7 +66,7 @@ class ShopController < CartController
 
       {
         sku: params[:sku],
-        qty: @cart.order_qty(params[:sku]),
+        qty: Float(@cart.order_qty(params[:sku])),
         subtotal: number_to_currency(subtotal, unit: '$ ', precision: 2),
         cart_total: number_to_currency(cart_total, unit: '$ ', precision: 2)
       }

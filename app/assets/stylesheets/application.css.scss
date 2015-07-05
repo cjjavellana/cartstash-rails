@@ -198,6 +198,14 @@ a.order-summary:hover {
         display: block;
       }
 
+      .remove-item {
+        background: url(images/remove-item.png) no-repeat 0px center;
+        width: 18px;
+        height: 18px;
+        display: block;
+        margin-top: 15px;
+      }
+
       .sub-total {
         padding-left: 5px!important;
       }

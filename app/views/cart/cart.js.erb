@@ -11,3 +11,25 @@ $('.order-summary div.popover').css('left', left + 'px');
 arrowLeft = $('.order-summary div.popover div.arrow').css('left').replace('px', '');
 arrowLeft = parseInt(arrowLeft) + 70;
 $('.order-summary div.popover div.arrow').css('left', arrowLeft + 'px');
+
+// bind events
+$('.add-item, .reduce-item, .remove-item').on('ajax:success', function (e, data, status, xhr) {
+    var summary = $('#summary-' + data.sku);
+    if(data.qty > 0) {
+        summary.find('.qty').html(data.qty);
+        summary.find('.sub-total div').html(data.subtotal);
+        $('.amount-summary').html(data.cart_total);
+    } else {
+        summary.remove();
+        $('.amount-summary').html(data.cart_total);
+
+        //When there are no items left in cart
+        if($('.cart-item').length == 0) {
+            $('.popover-content').prepend($('<div class="col-md-12 col-xs-12">Cart is empty. Nothing to display.</div>'));
+        }
+    }
+
+    $('div#' + data.sku).html(data.qty);
+
+    return
+});
