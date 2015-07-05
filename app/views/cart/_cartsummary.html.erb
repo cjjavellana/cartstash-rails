@@ -37,7 +37,5 @@
 
 <hr/>
 <div class="col-md-12 col-xs-12 checkout-btn-container">
-  <%= link_to '', url: checkout_index_path do %>
-      <button class="checkout-btn"></button>
-  <% end %>
+  <%= link_to '', checkout_index_path, class: 'checkout-btn', method: :get %>
 </div>

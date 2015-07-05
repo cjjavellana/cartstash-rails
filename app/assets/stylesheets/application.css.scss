@@ -186,16 +186,18 @@ a.order-summary:hover {
 
       .add-item {
         background: url(images/arrow-up.png) no-repeat 0px center;
-        width: 18px;
-        height: 20px;
+        width: 15px;
+        height: 17px;
         display: block;
+        margin-top: 3px;
       }
 
       .reduce-item {
         background: url(images/arrow-down.png) no-repeat 0px center;
-        width: 18px;
-        height: 20px;
+        width: 15px;
+        height: 17px;
         display: block;
+        margin-top: 3px;
       }
 
       .remove-item {
@@ -424,10 +426,12 @@ a.order-summary:hover {
 .checkout-btn-container {
   text-align: center;
   margin-top: -15px;
+
   .checkout-btn {
     width: 168px;
     height: 38px;
     border: none;
     background: url('images/checkout-btn.png');
+    display: inline-block;
   }
 }
