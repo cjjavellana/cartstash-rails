@@ -2,17 +2,12 @@ Rails.application.routes.draw do
 
   root to: 'shop#index'
 
-  devise_for :users, :controllers => { :registrations => 'registrations',
-                                       :sessions => 'sessions',
-                                       :omniauth_callbacks => 'users/omniauth_callbacks' }
-
-  devise_scope :user do
-    get '/users/registrations/confirm_account' => 'registrations#confirm_account'
-    get '/users/registrations/membership' => 'registrations#membership'
-    post '/users/registrations/membership' => 'registrations#credit_card_payment'
-    post '/users/registrations/bankdeposit' => 'registrations#bank_deposit'
-    get '/users/registrations/complete' => 'registrations#complete'
-  end
+  devise_for :users,
+             :controllers => {
+                 :registrations => 'registrations',
+                 :sessions => 'sessions',
+                 :omniauth_callbacks => 'users/omniauth_callbacks'
+             }
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
@@ -24,6 +19,10 @@ Rails.application.routes.draw do
     collection do
       patch 'update_password'
     end
+  end
+
+  scope '/users' do
+    get '/ajaxsigninform', to: 'ajax_loginform#new', as: 'ajax_signin'
   end
 
   scope '/shop' do

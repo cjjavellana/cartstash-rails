@@ -37,5 +37,9 @@
 
 <hr/>
 <div class="col-md-12 col-xs-12 checkout-btn-container">
-  <%= link_to '', checkout_index_path, class: 'checkout-btn', method: :get %>
+  <% unless signed_in? %>
+      <%= link_to '', ajax_signin_path, class: 'checkout-btn', remote: true %>
+  <% else %>
+  <% end %>
+
 </div>

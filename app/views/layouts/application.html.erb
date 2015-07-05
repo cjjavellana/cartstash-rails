@@ -99,6 +99,11 @@
   <div class="row">
     <div class="col-md-12">
       <%= yield %>
+
+      <% unless signed_in?  %>
+          <div class="modal-holder">
+          </div>
+      <% end %>
     </div>
   </div>
 </div>

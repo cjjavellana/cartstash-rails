@@ -1,5 +1,4 @@
 $('.order-summary button').popover('show');
-$('.order-summary .popover-content').html('');
 $('.order-summary .popover-content').html("<%= escape_javascript render(partial: 'cart/cartsummary') %>");
 
 //adjust popover position
