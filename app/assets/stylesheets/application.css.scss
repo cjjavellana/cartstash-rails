@@ -444,11 +444,32 @@ a.order-summary:hover {
     font-weight: bold;
   }
 
-  input {
+  input[type="email"],
+  input[type="password"],
+  input[type="submit"] {
+    height: 40px;
+    border-radius: 6px;
     border: none;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    background-color: #88A4FF;
   }
 
   .checkbox label {
     color: #6E49A4;
+  }
+
+  .login-or-label {
+    color: #6E49A4;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .social-login {
+    margin-top: 10px;
+    text-align: center;
   }
 }

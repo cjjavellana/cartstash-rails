@@ -11,23 +11,48 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-md-6 col-xs-12">
-                  <div class="form-group">
-                    <%= email_field_tag :email, nil, class: 'form-control', placeholder: 'Email Address' %>
+                  <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                      <div class="form-group">
+                        <%= email_field_tag :email, nil, class: 'form-control', placeholder: 'Email Address' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                      <div class="form-group">
+                        <%= password_field_tag :password, nil, class: 'form-control', placeholder: 'Password', autocomplete: 'off' %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                      <div class="form-group">
+                        <div class="checkbox">
+                          <label>
+                            <%= check_box_tag :remember_me, 'rememberme', class: 'checkbox' %> Remember me
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                      <div class="form-group">
+                        <%= submit_tag 'Sign In', class: 'ajax-signin-btn' %>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
+
                 <div class="col-md-6 col-xs-12">
-                  <div class="form-group">
-                    <%= password_field_tag :password, nil, class: 'form-control', placeholder: 'Password', autocomplete: 'off' %>
+                  <div class="login-or-label">- OR - </div>
+                  <div class="social-login">
+                    <%= link_to image_tag('images/facebook-login-button.png', alt:  "Facebook Login"), omniauth_authorize_path('user', :facebook) %>
                   </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="checkbox">
-                  <label>
-                    <%= check_box_tag :remember_me, 'rememberme', class: 'checkbox' %> Remember me
-                  </label>
+                  <div class="social-login">
+                    <%= link_to image_tag('images/login-twitter.png', alt:  "Twitter Login"), omniauth_authorize_path('user', :twitter) %>
+                  </div>
                 </div>
               </div>
         <% end %>
