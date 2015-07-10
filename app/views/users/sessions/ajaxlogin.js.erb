@@ -1,2 +1,27 @@
 $('.modal-holder').html("<%= escape_javascript render(partial: 'users/sessions/ajaxlogin') %>");
+
+$('.ajax-signin-btn').on('click', function () {
+    var email = $('#user_email').val()
+    var password = $('#user_password').val()
+    var remember_me = ($('#user_remember_me:checked').length != 0) ? 1 : 0;
+
+    $.ajax({
+        url: '/users/sign_in.json',
+        type: 'post',
+        contentType: "application/json",
+        dataType: 'json',
+        headers: {
+            'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+        },
+        data: JSON.stringify({"user": { "email": email, "password": password, "remember_me": remember_me}}),
+        error: function (xhr) {
+            console.log('Error during sign in')
+        },
+        success: function (data) {
+            console.log(data)
+        }
+    });
+});
+
 $('#ajaxLoginFormModal').modal('show');
+

@@ -13,7 +13,6 @@ $ ->
   $('.order-summary').on 'click', ->
     $('.order-summary').popover('toggle')
 
-
   $(document).on 'mouseup', (e) ->
     container = $('.popover')
     if !container.is(e.target) and container.has(e.target).length == 0

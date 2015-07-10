@@ -446,13 +446,13 @@ a.order-summary:hover {
 
   input[type="email"],
   input[type="password"],
-  input[type="submit"] {
+  .ajax-signin-btn {
     height: 40px;
     border-radius: 6px;
     border: none;
   }
 
-  input[type="submit"] {
+  .ajax-signin-btn {
     width: 100%;
     background-color: #88A4FF;
   }

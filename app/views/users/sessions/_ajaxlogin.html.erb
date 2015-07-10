@@ -7,21 +7,21 @@
         <h4 class="modal-title" id="modalTitle">Welcome Back!</h4>
       </div>
       <div class="modal-body">
-        <%= form_tag user_session_path, remote: true, method: :post, data: {type: 'json'} do %>
+        <%= form_tag user_session_path, method: :post, format: :json do %>
             <div class="container-fluid">
               <div class="row">
                 <div class="col-md-6 col-xs-12">
                   <div class="row">
                     <div class="col-md-12 col-xs-12">
                       <div class="form-group">
-                        <%= email_field_tag :email, nil, class: 'form-control', placeholder: 'Email Address' %>
+                        <%= email_field_tag 'user[email]', nil, class: 'form-control', placeholder: 'Email Address' %>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12 col-xs-12">
                       <div class="form-group">
-                        <%= password_field_tag :password, nil, class: 'form-control', placeholder: 'Password', autocomplete: 'off' %>
+                        <%= password_field_tag 'user[password]', nil, class: 'form-control', placeholder: 'Password', autocomplete: 'off' %>
                       </div>
                     </div>
                   </div>
@@ -30,7 +30,7 @@
                       <div class="form-group">
                         <div class="checkbox">
                           <label>
-                            <%= check_box_tag :remember_me, 'rememberme', class: 'checkbox' %> Remember me
+                            <%= check_box_tag 'user[remember_me]', '1', class: 'checkbox' %> Remember me
                           </label>
                         </div>
                       </div>
@@ -39,7 +39,7 @@
                   <div class="row">
                     <div class="col-md-12 col-xs-12">
                       <div class="form-group">
-                        <%= submit_tag 'Sign In', class: 'ajax-signin-btn' %>
+                        <%= button_tag 'Sign In', type: 'button',class: 'ajax-signin-btn' %>
                       </div>
                     </div>
                   </div>
