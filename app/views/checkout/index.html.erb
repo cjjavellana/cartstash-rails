@@ -1,99 +1,36 @@
-<div class="main">
-  <div class="row">
-    <div class="col-md-10 review-order">
-      Review Order
+<%= render layout: 'layouts/categories_sidebar' do %>
+  <div class="col-md-9">
+    <div class="section-header">
+      <h4>Order Summary</h4>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 no-pad-left review-order-table">
-      <table class="table review-order-table">
-        <thead>
+
+    <table class="table order-summary-table">
+      <thead>
         <tr>
-          <td>Item No</td>
-          <td>Description</td>
-          <td>Unit</td>
-          <td class="text-right">Price</td>
-          <td class="text-right">Quantity</td>
-          <td class="text-right">Sub-Total</td>
+          <th>Item No</th>
+          <th>Description</th>
+          <th>Unit</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Sub-Total</th>
+          <th>&nbsp;</th>
         </tr>
-        </thead>
-        <tbody>
-        <% unless @cart.nil? %>
-            <% @cart.item_map.each do |sku, purchased_item| %>
-                <tr>
-                  <td><%= purchased_item.sku %></td>
-                  <td><%= purchased_item.name %></td>
-                  <td><%= purchased_item.uom.nil? ? "-" : purchased_item.uom %></td>
-                  <td class="text-right"><%= number_to_currency(purchased_item.price, unit: 'Php ') %></td>
-                  <td class="text-right"><%= purchased_item.quantity %></td>
-                  <td class="text-right"><%= number_to_currency(purchased_item.total_price, unit: 'Php ') %></td>
-                </tr>
-            <% end %>
-            <!-- total price  -->
-            <tr class="total-price-row">
-              <td colspan="5"></td>
-              <td class="text-right">Total
-                <span class="total-price"><%= number_to_currency(@cart.sub_total, unit: 'Php ') %></span></td>
-            </tr>
-
-        <% else %>
-            <tr>
-              <td colspan="6">
-                No line items to display
-              </td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+      </thead>
+      <tbody>
+      <% @cart.item_map.each do |key, value| %>
+        <tr id="tr_<%= value.sku %>">
+          <td><%= value.sku %></td>
+          <td><%= value.name %></td>
+          <td><%= value.uom %></td>
+          <td><%= number_to_currency value.price, unit: "$ ", precision: 2 %></td>
+          <td><%= value.quantity %></td>
+          <td><%= number_to_currency value.total_price, unit: "$ ", precision: 2 %></td>
+          <td><%= link_to '', update_cart_path(sku: value.sku, q: 'remove'), class: 'remove-item', method: :put, remote: true %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
-  <div class="row">
-    <%= form_tag delivery_and_schedule_path, method: 'post' do |f| %>
-        <div class="col-md-4">
-          <div class="row pm-header-label">
-            <div class="col-md-7 pm-choose-label no-pad-left">
-              Choose Payment Method
-            </div>
-            <div class="col-md-5 pm-add-label no-pad-right">
-              <%= link_to 'Add Payment Method', new_payment_method_path(:return_url => create_return_url(checkout_index_path))%>
-            </div>
-          </div>
-          <div class="row pm-options">
-
-            <div class="col-md-12">
-              <% unless @payment_methods.nil? %>
-                  <% @payment_methods.each do |method| %>
-                      <div class="row">
-                        <div class="col-md-12 no-pad-left">
-                          <div class="checkbox payment-method-checkbox">
-                            <label>
-                              <%= check_box_tag :payment_method, method.id, @checkout_form.payment_method == method.id.to_s ? true : false, {class: 'checkbox pm-checkbox'} %> <%= "#{method.credit_card_type.upcase} #{method.masked_credit_card}" %>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                  <% end %>
-              <% end %>
-              <div class="row">
-                <div class="col-md-12 no-pad-left">
-                  <div class="checkbox payment-method-checkbox">
-                    <label>
-                      <%= check_box_tag :payment_method, 'COD', @checkout_form.payment_method == "COD" ? true : false, {class: 'checkbox pm-checkbox'} %> Cash on
-                      delivery
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5"></div>
-        <div class="col-md-3">
-          <div class="pull-right">
-            <%= link_to image_tag('images/chkout-back.png', alt: "Back"), shop_index_path %>
-            <%= submit_tag 'Next', {class: 'btn sched-deliver-btn', id: 'checkout-next-btn'} %>
-          </div>
-        </div>
-    <% end %>
+  <div class="col-md-3">
   </div>
-</div>
+<% end %>

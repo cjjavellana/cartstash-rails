@@ -12,7 +12,8 @@ arrowLeft = parseInt(arrowLeft) + 70;
 $('.order-summary div.popover div.arrow').css('left', arrowLeft + 'px');
 
 // bind events
-$('.add-item, .reduce-item, .remove-item').on('ajax:success', function (e, data, status, xhr) {
+$('.cart-item .add-item, .cart-item .reduce-item, .cart-item .remove-item').on('ajax:success', function (e, data, status, xhr) {
+    // These elements are in the order summary popover
     var summary = $('#summary-' + data.sku);
     if (data.qty > 0) {
         summary.find('.qty').html(data.qty);
@@ -28,7 +29,6 @@ $('.add-item, .reduce-item, .remove-item').on('ajax:success', function (e, data,
         }
     }
 
-    $('div#' + data.sku).html(data.qty);
-
-    return
+    //execute event handlers subscribed to this callback queue
+    updatePurchaseOrderCallbacks.fire({'sku': data.sku, 'qty': data.qty, 'subtotal': data.subtotal});
 });

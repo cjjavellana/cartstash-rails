@@ -8,6 +8,7 @@
       </div>
       <div class="modal-body">
         <%= form_tag user_session_path, method: :post, format: :json do %>
+            <%= hidden_field_tag :return_url, @return_url%>
             <div class="container-fluid">
               <div class="row">
                 <div class="col-md-6 col-xs-12">

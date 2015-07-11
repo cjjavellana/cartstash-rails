@@ -2,22 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'change', '.pm-checkbox', ->
-  $('.pm-checkbox').not(this).prop('checked', false)
-
-$(document).on 'click', '.del-address', ->
-  $('#delivery_address').val($(this).attr('del-id'))
-
-  # Clean up
-  $('.del-address').css({'border': ''})
-  $(".glyphicon-check").remove()
-  $(".greencheck").remove()
-
-  # Highlight selected Delivery Address
-  $(this).css({'border': '2px solid rgba(184, 233, 134, 0.8)'})
-  checkIcon = $("<span>").addClass("greencheck pull-right")
-  $(this).find('.del-name').append(checkIcon);
-
 $(document).on 'click', '.selectable-cell', ->
   # Clear any previously highlighted cell
   $('.selectable-cell').css({"background-color": ""})
@@ -35,3 +19,11 @@ $(document).on 'click', '.selectable-cell', ->
 
 $(document).on 'page:change', ->
   $('.schedule-picker').schedulePicker()
+
+  updatePurchaseOrderCallbacks.add (data) ->
+
+    if data.qty > 0
+      $('#tr_' + data.sku + '> td:nth-child(5)').html(data.qty)
+      $('#tr_' + data.sku + '> td:nth-child(6)').html(data.subtotal)
+    else
+      $('#tr_' + data.sku).remove()

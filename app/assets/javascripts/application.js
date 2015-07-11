@@ -18,17 +18,7 @@
 //= require underscore
 //= require gmaps/google
 //= require bootstrap-datepicker
-//= require cart
-//= require checkout
-//= require common
-//= require delivery_address
-//= require facebook
-//= require main
-//= require markerclusterer
-//= require payment_method
-//= require schedule-picker
-//= require shop
-//= require user_profile
+//= require_tree .
 
 
 

@@ -1,8 +1,8 @@
 $('.modal-holder').html("<%= escape_javascript render(partial: 'users/sessions/ajaxlogin') %>");
 
 $('.ajax-signin-btn').on('click', function () {
-    var email = $('#user_email').val()
-    var password = $('#user_password').val()
+    var email = $('#user_email').val();
+    var password = $('#user_password').val();
     var remember_me = ($('#user_remember_me:checked').length != 0) ? 1 : 0;
 
     $.ajax({
@@ -13,12 +13,18 @@ $('.ajax-signin-btn').on('click', function () {
         headers: {
             'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
         },
-        data: JSON.stringify({"user": { "email": email, "password": password, "remember_me": remember_me}}),
+        data: JSON.stringify({"user": {"email": email, "password": password, "remember_me": remember_me}}),
         error: function (xhr) {
-            console.log('Error during sign in')
+            $('.modal-body').prepend(
+                    $('<div><strong>Opps!</strong> Invalid username or password</div>').addClass('alert alert-danger')
+            );
+
+            setTimeout(function(){
+                $('.alert-danger').remove()
+            }, 5000);
         },
         success: function (data) {
-            console.log(data)
+            window.location = $('#return_url').val();
         }
     });
 });

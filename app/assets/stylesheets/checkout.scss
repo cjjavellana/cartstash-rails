@@ -3,14 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'buttons';
 
+.section-header {
+  border-bottom: 1px solid #fff;
+}
+
 .review-order {
   font-size: 20px;
   padding-bottom: 5px;
 }
 
 .table {
-
-  border-top: 1px solid #fff;
 
   thead tr td {
     font-weight: bold;
@@ -20,17 +22,31 @@
     border-top: none!important;
     font-size: 12px;
   }
-
-  .total-price-row {
-    border-top: 1px solid #fff;
-    .total-price {
-      font-weight: bold;
-    }
-  }
 }
 
-.review-order-table {
-  margin-bottom: 0px!important;
+.order-summary-table {
+  .add-item {
+    background: url(images/arrow-up.png) no-repeat 0px center;
+    width: 15px;
+    height: 17px;
+    display: block;
+    margin-top: 3px;
+  }
+
+  .reduce-item {
+    background: url(images/arrow-down.png) no-repeat 0px center;
+    width: 15px;
+    height: 17px;
+    display: block;
+    margin-top: 3px;
+  }
+
+  .remove-item {
+    background: url(images/remove-item.png) no-repeat 0px center;
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
 }
 
 .pm-header-label {

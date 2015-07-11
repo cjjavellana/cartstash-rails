@@ -17,3 +17,4 @@ this.delay = delay = do ->
     clearTimeout(timer)
     timer = setTimeout(callback, ms)
     return
+

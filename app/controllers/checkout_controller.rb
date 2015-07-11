@@ -1,9 +1,9 @@
-class CheckoutController < CartController
-  before_action :authenticate_user!, :restore_checkout_form
+class CheckoutController < ShopController
+  before_action :authenticate_user!, :restore_checkout_form, :categories
 
   def index
-    @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ",
-                                           current_user.id, Constants::PaymentMethod::ACTIVE)
+    @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ", current_user.id, Constants::PaymentMethod::ACTIVE)
+    @delivery_addresses = DeliveryAddress.where("user_id = ? and status = ?", current_user.id, "active")
   end
 
   def delivery_and_schedule
