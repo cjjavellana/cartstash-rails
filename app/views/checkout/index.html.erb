@@ -28,8 +28,21 @@
           <td><%= link_to '', update_cart_path(sku: value.sku, q: 'remove'), class: 'remove-item', method: :put, remote: true %></td>
         </tr>
       <% end %>
+      <tr id="total-row">
+        <td colspan="5" class="amount-lbl">Total</td>
+        <td>
+          <%= number_to_currency @cart.after_discount_amount, unit: '$ ', precision: 2 %>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
       </tbody>
     </table>
+
+    <div class="delivery-sched-section section-header">
+      <h4>Delivery Schedule</h4>
+    </div>
+    <div class="schedule-picker">
+    </div>
   </div>
   <div class="col-md-3">
   </div>

@@ -51,6 +51,8 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'bootstrap-datepicker-rails'
 gem 'sidekiq'
 gem 'whenever', :require => false
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -68,4 +70,3 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'brakeman', :require => false
 end
-

@@ -43,10 +43,14 @@ RSpec.describe CheckoutController, type: :controller do
     }
 
     it "shows sales order items, payment methods" do
-      expect(Digest::SHA2).to receive(:hexdigest).and_return("1234567890abcdef")
+      ShopController.any_instance.stub(:categories)
+
       expect(PaymentMethod).to receive(:where).and_return([build(:foobar_visa)])
+      expect(DeliveryAddress).to receive(:where).and_return([build(:foobar_delivery_address)])
       get :index
-      expect(assigns(:checkout_form).order_ref).to eq("1234567890abcdef")
+      expect(assigns(:payment_methods)[0].credit_card_no).to eq("4539016690974009")
+      expect(assigns(:delivery_addresses)[0].country).to eq("Philippines")
+
     end
 
     it "confirms an order" do

@@ -2,28 +2,36 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'click', '.selectable-cell', ->
-  # Clear any previously highlighted cell
-  $('.selectable-cell').css({"background-color": ""})
-
-  # Highlight selected cell
-  $(this).css({"background-color": "rgba(184, 233, 134, 0.8)"})
-
-  # Get selected row index
-  # The row index starts at index 0 and the selectable cells starts at row 2
-  # We apply the formula: n * 8 - [(n - 1) * 6] to get the schedule delivery range
-  selectedIndex = $('.schedule-table tr').index($(this).parent()) - 1
-  timeRange = (selectedIndex * 8) - ((selectedIndex - 1) * 6)
-  $('#delivery_schedule').val($(this).attr("date-time") + " "+ "#{timeRange}:00 - #{timeRange + 2}:00")
-
-
 $(document).on 'page:change', ->
-  $('.schedule-picker').schedulePicker()
 
+  # Register event handler to handle callback
+  # when item quantity is updated from the popover menu
   updatePurchaseOrderCallbacks.add (data) ->
-
     if data.qty > 0
       $('#tr_' + data.sku + '> td:nth-child(5)').html(data.qty)
       $('#tr_' + data.sku + '> td:nth-child(6)').html(data.subtotal)
     else
       $('#tr_' + data.sku).remove()
+
+  # Create a calendar which the user will use to select the delivery date
+  $('.schedule-picker').fullCalendar({
+      theme: true,
+      fixedWeekCount: false,
+      header: {
+        left: 'prev, next, today',
+        center: 'title',
+        right: ''
+      },
+      dayClick: (date, jsEvent, view) ->
+        currentDate = moment(moment().format("YYYY-MM-DD"))
+        selectedDate = moment(date.format())
+
+        if selectedDate.isBefore(currentDate)
+          swal("Invalid Date", "Cannot be before the current date", "error")
+          return
+
+        console.log(currentDate.isBefore(selectedDate))
+        console.log(currentDate.isSame(selectedDate))
+
+        return
+    })

@@ -1,9 +1,10 @@
 class Cart
   include Constants
-  attr_accessor :item_map
+  attr_accessor :item_map, :discount
 
   def initialize
     @item_map = {}
+    @discount = 0
   end
 
   def add_item(sku, qty=1)
@@ -68,6 +69,10 @@ class Cart
 
   def sub_total
     @item_map.inject(0) { |total, (k, v)| total += v.total_price }
+  end
+
+  def after_discount_amount
+    sub_total - @discount
   end
 
   def sales_tax

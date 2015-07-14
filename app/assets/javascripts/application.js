@@ -18,7 +18,6 @@
 //= require underscore
 //= require gmaps/google
 //= require bootstrap-datepicker
+//= require moment
+//= require fullcalendar
 //= require_tree .
-
-
-

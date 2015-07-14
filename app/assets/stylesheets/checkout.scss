@@ -24,6 +24,11 @@
   }
 }
 
+.discount-field {
+  color: #2B2938;
+  width: 100px;
+}
+
 .order-summary-table {
   .add-item {
     background: url(images/arrow-up.png) no-repeat 0px center;
@@ -49,22 +54,11 @@
   }
 }
 
-.pm-header-label {
-  border-bottom: 1px solid #fff;
 
-  .pm-choose-label {
-    font-size: 16px;
-  }
-
-  .pm-add-label {
-    font-size: 12px;
-    text-align: right;
-
-    a {
-      color: #fff;
-    }
-  }
+td.amount-lbl {
+  text-align: right;
 }
+
 
 .pm-options .row {
   margin-top: 10px;
@@ -148,10 +142,15 @@
 }
 
 .schedule-picker {
-  .schedule-table {
-    .title {
-      font-size: 14px;
-    }
+  margin-top: 20px;
+
+  .fc-center h2 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .fc-unthemed  .fc-today {
+    background-color: rgba(255,255,255,0.3)!important;
   }
 }
 

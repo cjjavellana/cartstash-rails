@@ -41,5 +41,5 @@ Rails.application.routes.draw do
   end
 
   get '/server-date', to: 'schedule_picker#current_datetime'
-
+  get '/delivery-time/:date', to: 'schedule_picker#available_time', as: 'delivery_time'
 end
