@@ -1,4 +1,4 @@
-class PaymentMethodController < ApplicationController
+class PaymentMethodController < CartController
   include ReturnUrlHelper
 
   before_filter :authenticate_user!

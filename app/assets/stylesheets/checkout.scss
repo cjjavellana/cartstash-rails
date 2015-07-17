@@ -271,3 +271,54 @@ a.link:hover {
     font-size: 12px;
   }
 }
+
+.widget-column .widget-window:not(:first-child) {
+  margin-top: 20px;
+}
+
+.widget-window {
+  border-radius: 5px;
+  min-height: 150px;
+  background: #F1EBF6;
+
+  .widget-header {
+    margin-top: 5px;
+    padding-left: 5px;
+    border-bottom: 1px solid #979797;
+    color: #535C67;
+
+    .label-header {
+      font-size: 14px;
+      color: #535C67;
+      padding: 0px 0px 0px 0px;
+      font-weight: bold;
+    }
+
+    .add-option {
+      text-align: right;
+      margin-top: 3px;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 0px 0px 0px 0px;
+    }
+  }
+
+  .payment-option {
+    color: #535C67;
+    margin-top: 5px;
+  }
+
+  .option-label {
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+
+.btn-save-row {
+  margin-top: 10px;
+  
+  .btn-save {
+    @extend .cartstash-btn2;
+    width: 100%;
+  }
+}

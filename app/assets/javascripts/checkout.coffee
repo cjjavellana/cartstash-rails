@@ -35,3 +35,20 @@ $(document).on 'page:change', ->
 
         return
     })
+
+  $('.iRadio').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue',
+    increaseArea: '20%',
+  })
+
+  $('.iRadio'). on 'ifChecked', (event) ->
+    console.log($(this))
+    #$(this).addClass('checked')
+
+  $('.iRadio'). on 'ifUnchecked', (event) ->
+    console.log($(this))
+    #$(this).removeClass('checked')
+
+  $('.iRadio').on 'click', ->
+    console.log('Clicked')

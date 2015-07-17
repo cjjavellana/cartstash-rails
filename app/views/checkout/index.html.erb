@@ -44,6 +44,43 @@
     <div class="schedule-picker">
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 widget-column">
+    <div class="widget-window row">
+      <div class="col-md-12 widget-header">
+        <div class="label-header col-md-8">Payment Options</div>
+        <div class="add-option col-md-4">
+          <%= link_to 'Add Option', new_payment_method_path %>
+        </div>
+      </div>
+      <div class="col-md-12 payment-option">
+        <input type="radio" name="payment_option" value="cod" class="iRadio">
+        <span class="option-label">Cash on delivery</span>
+      </div>
+      <% @payment_methods.each do |m| %>
+        <div class="col-md-12 payment-option">
+          <input type="radio" name="payment_option" value="1" class="iRadio">
+          <span class="option-label"><%= m.credit_card_type %> Ending <%= m.masked_credit_card[15  ..20] %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="widget-window row">
+      <div class="col-md-12 widget-header">
+        <div class="label-header col-md-8">Delivery Address</div>
+        <div class="add-option col-md-4">
+          <%= link_to 'Add Option', new_delivery_address_path %>
+        </div>
+      </div>
+      <% @delivery_addresses.each do |m| %>
+        <div class="col-md-12 payment-option">
+          <input type="radio" name="payment_option" value="<%= m.id %>" class="iRadio">
+          <span class="option-label"><%= m.full_address %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="row btn-save-row">
+      <%= button_tag 'Confirm Order', {class: 'btn btn-save'}%>
+    </div>
   </div>
 <% end %>

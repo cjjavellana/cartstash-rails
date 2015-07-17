@@ -32,7 +32,7 @@ describe "Check Out Process" do
 
   it 'can navigate to add new payment method' do
     visit checkout_index_path
-    click_link 'Add Payment Method'
+    click_link 'Add Option'
 
     expect(page).to have_selector('#return_url')
 
@@ -47,7 +47,6 @@ describe "Check Out Process" do
     find('#payment_method_country').find(:css, 'option[value="PH"]').select_option
 
     click_button 'Save'
-    expect(page).to have_selector(".review-order", text: "Review Order")
+    expect(page).to have_selector(".section-header", text: "Order Summary")
   end
 end
-
