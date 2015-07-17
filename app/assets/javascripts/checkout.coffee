@@ -27,13 +27,22 @@ $(document).on 'page:change', ->
         selectedDate = moment(date.format())
 
         if selectedDate.isBefore(currentDate)
-          swal("Invalid Date", "Cannot be before the current date", "error")
+          swal("Invalid Date", "Date cannot be before the present date", "error")
           return
 
-        console.log(currentDate.isBefore(selectedDate))
-        console.log(currentDate.isSame(selectedDate))
+        if selectedDate.isAfter(moment().add(14, 'days'))
+          swal("Invalid Date","We are not able to schedule beyond 14 days from now","error")
+          return
 
-        return
+        $.ajax
+          url: '/delivery-time/' + currentDate.format("YYYY-MM-DD")
+          type: 'get',
+          success: (data, status, response) ->
+            console.log(data)
+            return
+          error: (xhr) ->
+            swal("Invalid Date", JSON.parse(xhr.responseText).error, "error")
+            return
     })
 
   $('.iRadio').iCheck({

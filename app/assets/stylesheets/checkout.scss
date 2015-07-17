@@ -79,11 +79,6 @@ td.amount-lbl {
   width: 80px;
 }
 
-.confirm-order-btn {
-  @extend .cartstash-btn;
-  width: 100px;
-}
-
 .delivery-address-header {
   padding-bottom: 5px;
   border-bottom: 1px solid #fff;
@@ -314,10 +309,10 @@ a.link:hover {
   }
 }
 
-.btn-save-row {
+.confirm-order-btn {
   margin-top: 10px;
-  
-  .btn-save {
+
+  button {
     @extend .cartstash-btn2;
     width: 100%;
   }

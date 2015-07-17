@@ -22,9 +22,9 @@ class SchedulePickerController < ApplicationController
     param_date = Date.strptime(params[:date], '%Y-%m-%d')
     case
     when param_date <  Date.today
-      render json: {error: "Date cannot be less than current date"}
+      render json: {error: "Date cannot be less than current date"}, status: :unprocessable_entity
     when param_date >= ( Date.today + 2.weeks)
-      render json: {error: "Unable to schedule delivery two weeks in advance"}
+      render json: {error: "Unable to schedule delivery two weeks in advance"}, status: :unprocessable_entity
     else
       delivery_window = []
       starttime = DateTime.strptime("#{params[:date]} +08:00", '%Y-%m-%d %z').change({hour: 8})
@@ -42,8 +42,8 @@ class SchedulePickerController < ApplicationController
         starttime += 2.hours
       end
 
-      render json: {error: "No available slot for today"} if delivery_window.empty?
-      render json: {timeslot: delivery_window} unless delivery_window.empty?
+      render json: {error: "No available slot for today"}, status: :unprocessable_entity if delivery_window.empty?
+      render json: {timeslot: delivery_window}, status: :success unless delivery_window.empty?
     end #case
   end # available_time
 end #SchedulePickerController
