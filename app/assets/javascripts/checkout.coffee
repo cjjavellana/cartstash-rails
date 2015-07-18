@@ -35,10 +35,19 @@ $(document).on 'page:change', ->
           return
 
         $.ajax
-          url: '/delivery-time/' + currentDate.format("YYYY-MM-DD")
+          url: '/delivery-time/' + selectedDate.format("YYYY-MM-DD")
           type: 'get',
           success: (data, status, response) ->
-            console.log(data)
+
+            timeSlots = []
+            $.each data.timeslot, (idx, obj) ->
+              option = $('<option value="' + obj.starttime + '">' + obj.starttime + ' - ' +  obj.endtime + '</option>')
+              timeSlots.push option
+
+            $('#delivery-window .modal-body').html ""
+            $('#delivery-window .modal-body').append($('<select name="time-slot" class="selectpicker">').append(timeSlots))
+            $('#delivery-window').modal 'show'
+            $('.selectpicker').selectpicker()
             return
           error: (xhr) ->
             swal("Invalid Date", JSON.parse(xhr.responseText).error, "error")

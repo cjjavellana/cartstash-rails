@@ -36,14 +36,14 @@ class SchedulePickerController < ApplicationController
 
       while starttime < endtime
         delivery_window.push({
-          startime: starttime.strftime('%H:%M'),
+          starttime: starttime.strftime('%H:%M'),
           endtime:  (starttime + 2.hours).strftime('%H:%M')
         })
         starttime += 2.hours
       end
 
       render json: {error: "No available slot for today"}, status: :unprocessable_entity if delivery_window.empty?
-      render json: {timeslot: delivery_window}, status: :success unless delivery_window.empty?
+      render json: {timeslot: delivery_window} unless delivery_window.empty?
     end #case
   end # available_time
 end #SchedulePickerController

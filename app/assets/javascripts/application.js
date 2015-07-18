@@ -20,4 +20,7 @@
 //= require bootstrap-datepicker
 //= require moment
 //= require fullcalendar
+//= require bootstrap/alert
+//= require bootstrap/dropdown
+//= require bootstrap-select
 //= require_tree .
