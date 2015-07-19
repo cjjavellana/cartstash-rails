@@ -1,104 +1,105 @@
 <%= render layout: 'layouts/categories_sidebar' do %>
-  <div class="col-md-9">
-    <div class="section-header">
-      <h4>Order Summary</h4>
-    </div>
+  <%= form_for :form do |f| %>
+    <div class="col-md-9">
+      <div class="section-header">
+        <h4>Order Summary</h4>
+      </div>
 
-    <table class="table order-summary-table">
-      <thead>
-        <tr>
-          <th>Item No</th>
-          <th>Description</th>
-          <th>Unit</th>
-          <th>Unit Price</th>
-          <th>Quantity</th>
-          <th>Sub-Total</th>
-          <th>&nbsp;</th>
+      <table class="table order-summary-table">
+        <thead>
+          <tr>
+            <th>Item No</th>
+            <th>Description</th>
+            <th>Unit</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Sub-Total</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @cart.item_map.each do |key, value| %>
+          <tr id="tr_<%= value.sku %>">
+            <td><%= value.sku %></td>
+            <td><%= value.name %></td>
+            <td><%= value.uom %></td>
+            <td><%= number_to_currency value.price, unit: "$ ", precision: 2 %></td>
+            <td><%= value.quantity %></td>
+            <td><%= number_to_currency value.total_price, unit: "$ ", precision: 2 %></td>
+            <td><%= link_to '', update_cart_path(sku: value.sku, q: 'remove'), class: 'remove-item', method: :put, remote: true %></td>
+          </tr>
+        <% end %>
+        <tr id="total-row">
+          <td colspan="5" class="amount-lbl">Total</td>
+          <td class="grand-total">
+            <%= number_to_currency @cart.after_discount_amount, unit: '$ ', precision: 2 %>
+          </td>
+          <td>&nbsp;</td>
         </tr>
-      </thead>
-      <tbody>
-      <% @cart.item_map.each do |key, value| %>
-        <tr id="tr_<%= value.sku %>">
-          <td><%= value.sku %></td>
-          <td><%= value.name %></td>
-          <td><%= value.uom %></td>
-          <td><%= number_to_currency value.price, unit: "$ ", precision: 2 %></td>
-          <td><%= value.quantity %></td>
-          <td><%= number_to_currency value.total_price, unit: "$ ", precision: 2 %></td>
-          <td><%= link_to '', update_cart_path(sku: value.sku, q: 'remove'), class: 'remove-item', method: :put, remote: true %></td>
-        </tr>
-      <% end %>
-      <tr id="total-row">
-        <td colspan="5" class="amount-lbl">Total</td>
-        <td class="grand-total">
-          <%= number_to_currency @cart.after_discount_amount, unit: '$ ', precision: 2 %>
-        </td>
-        <td>&nbsp;</td>
-      </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
 
-    <div class="delivery-sched-section section-header">
-      <h4>Delivery Schedule</h4>
-    </div>
-    <div class="schedule-picker">
-    </div>
-  </div>
-  <div class="col-md-3 widget-column">
-    <div class="widget-window row">
-      <div class="col-md-12 widget-header">
-        <div class="label-header col-md-8">Payment Options</div>
-        <div class="add-option col-md-4">
-          <%= link_to 'Add Option', new_payment_method_path %>
-        </div>
+      <div class="delivery-sched-section section-header">
+        <h4>Delivery Schedule</h4>
       </div>
-      <div class="col-md-12 payment-option">
-        <input type="radio" name="payment_option" value="cod" class="iRadio">
-        <span class="option-label">Cash on delivery</span>
+      <div class="schedule-picker">
       </div>
-      <% @payment_methods.each do |m| %>
-        <div class="col-md-12 payment-option">
-          <input type="radio" name="payment_option" value="1" class="iRadio">
-          <span class="option-label"><%= m.credit_card_type %> Ending <%= m.masked_credit_card[15  ..20] %></span>
-        </div>
-      <% end %>
     </div>
-
-    <div class="widget-window row">
-      <div class="col-md-12 widget-header">
-        <div class="label-header col-md-8">Delivery Address</div>
-        <div class="add-option col-md-4">
-          <%= link_to 'Add Index', new_delivery_address_path %>
-        </div>
-      </div>
-      <% @delivery_addresses.each do |m| %>
-        <div class="col-md-12 payment-option">
-          <input type="radio" name="payment_option" value="<%= m.id %>" class="iRadio">
-          <span class="option-label"><%= m.full_address %></span>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="row confirm-order-btn">
-      <%= button_tag 'Confirm Order', {class: 'btn btn-save'}%>
-    </div>
-  </div>
-
-  <div class="delivery-window-modal">
-    <div class="modal fade" id="delivery-window">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Select Delivery Slot</h4>
+    <div class="col-md-3 widget-column">
+      <div class="widget-window row">
+        <div class="col-md-12 widget-header">
+          <div class="label-header col-md-8">Payment Options</div>
+          <div class="add-option col-md-4">
+            <%= link_to 'Add Option', new_payment_method_path %>
           </div>
-          <div class="modal-body">
-
-            <%= hidden_field_tag 'delivery-date' %>
-            <%= button_tag 'Confirm Time', {class: 'confirm-delivery-time'} %>
+        </div>
+        <div class="col-md-12 payment-option">
+          <%= f.radio_button :payment_option, "cod", {class: "iRadio"} %>
+          <span class="option-label">Cash on delivery</span>
+        </div>
+        <% @payment_methods.each do |m| %>
+          <div class="col-md-12 payment-option">
+            <%= f.radio_button :payment_option, m.id, {class: "iRadio"} %>
+            <span class="option-label"><%= m.credit_card_type %> Ending <%= m.masked_credit_card[15  ..20] %></span>
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-  </div>
+        <% end %>
+      </div>
+
+      <div class="widget-window row">
+        <div class="col-md-12 widget-header">
+          <div class="label-header col-md-8">Delivery Address</div>
+          <div class="add-option col-md-4">
+            <%= link_to 'Add Address', new_delivery_address_path %>
+          </div>
+        </div>
+        <% @delivery_addresses.each do |m| %>
+          <div class="col-md-12 payment-option">
+            <%= f.radio_button :delivery_address, m.id, {class: "iRadio"} %>
+            <span class="option-label"><%= m.full_address %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row confirm-order-btn">
+        <%= button_tag 'Confirm Order', {class: 'btn btn-save'}%>
+      </div>
+    </div>
+
+    <div class="delivery-window-modal">
+      <div class="modal fade" id="delivery-window">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Select Delivery Slot</h4>
+            </div>
+            <div class="modal-body">
+              <%= f.hidden_field :schedule %>
+              <%= button_tag 'Confirm Time', {class: 'confirm-delivery-time', type: 'button'} %>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+    </div>
+  <% end %>
 <% end %>

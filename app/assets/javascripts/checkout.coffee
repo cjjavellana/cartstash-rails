@@ -52,7 +52,7 @@ $(document).on 'page:change', ->
             # set new drop down box
             $('#delivery-window .modal-body').prepend($('<select name="time-slot" class="selectpicker">').append(timeSlots))
 
-            $('#delivery-date').val selectedDate.format("DD-MM-YYYY")
+            $('#form_schedule').val selectedDate.format("DD-MM-YYYY")
 
             # display modal window
             $('#delivery-window').modal 'show'
@@ -69,16 +69,24 @@ $(document).on 'page:change', ->
     radioClass: 'iradio_square-blue',
     increaseArea: '20%',
 
+
+  format = 'DD-MM-YYYY HH:mm'
+
   $('.confirm-delivery-time').on 'click', ->
-    dateComponent = $('#delivery-date').val()
+    dateComponent = $('#form_schedule').val()
     timeComponent = $('#delivery-window .modal-body select').find(':selected').val()
-    format = 'DD-MM-YYYY HH:mm'
+
+    # append the time component to form DD-MM-YYYY HH:mm
+    dateComponent += ' ' + timeComponent
+
+    #restore it back to the hidden field
+    $('#form_schedule').val(dateComponent)
 
     # remove temporary events first
     $('.schedule-picker').fullCalendar 'removeEvents', -1
 
     # set new event
-    deliveryDate = moment(dateComponent+ ' ' + timeComponent, format)
+    deliveryDate = moment(dateComponent, format)
     event = new Object()
     event.id = -1
     event.title = 'Delivery'
@@ -88,3 +96,13 @@ $(document).on 'page:change', ->
 
     $('#delivery-window').modal 'hide'
     return
+
+  if $('#form_schedule') != ""
+    date = $('#form_schedule').val()
+    deliveryDate = moment(date, format)
+    event = new Object()
+    event.id = -1
+    event.title = 'Delivery'
+    event.start = deliveryDate
+
+    $('.schedule-picker').fullCalendar 'renderEvent', event, true
