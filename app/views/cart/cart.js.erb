@@ -30,5 +30,5 @@ $('.cart-item .add-item, .cart-item .reduce-item, .cart-item .remove-item').on('
     }
 
     //execute event handlers subscribed to this callback queue
-    updatePurchaseOrderCallbacks.fire({'sku': data.sku, 'qty': data.qty, 'subtotal': data.subtotal});
+    updatePurchaseOrderCallbacks.fire({'sku': data.sku, 'qty': data.qty, 'subtotal': data.subtotal, 'carttotal': data.cart_total});
 });

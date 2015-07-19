@@ -139,7 +139,7 @@ td.amount-lbl {
 .schedule-picker {
   margin-top: 20px;
 
-  .fc-center h2 {
+  .fc-right h2 {
     font-size: 18px;
     font-weight: bold;
   }
@@ -319,5 +319,23 @@ a.link:hover {
 }
 
 #delivery-window .modal-content {
+  background-color: #F1EBF6;
   color: #535C67;
+  width: 300px;
+
+  .modal-title {
+    color: #6E49A4;
+    font-weight: bold;
+  }
+
+  .confirm-delivery-time {
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    width: 83%;
+    background-color: #88A4FF;
+    font-weight: bold;
+    color: #fff;
+  }
 }

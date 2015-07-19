@@ -8,8 +8,9 @@ $(document).on 'page:change', ->
   # when item quantity is updated from the popover menu
   updatePurchaseOrderCallbacks.add (data) ->
     if data.qty > 0
-      $('#tr_' + data.sku + '> td:nth-child(5)').html(data.qty)
-      $('#tr_' + data.sku + '> td:nth-child(6)').html(data.subtotal)
+      $('#tr_' + data.sku + '> td:nth-child(5)').html data.qty
+      $('#tr_' + data.sku + '> td:nth-child(6)').html data.subtotal
+      $('.grand-total').html data.carttotal
     else
       $('#tr_' + data.sku).remove()
 
@@ -19,8 +20,8 @@ $(document).on 'page:change', ->
       fixedWeekCount: false,
       header: {
         left: 'prev, next, today',
-        center: 'title',
-        right: ''
+        center: '',
+        right: 'title'
       },
       dayClick: (date, jsEvent, view) ->
         currentDate = moment(moment().format("YYYY-MM-DD"))
@@ -44,9 +45,18 @@ $(document).on 'page:change', ->
               option = $('<option value="' + obj.starttime + '">' + obj.starttime + ' - ' +  obj.endtime + '</option>')
               timeSlots.push option
 
-            $('#delivery-window .modal-body').html ""
-            $('#delivery-window .modal-body').append($('<select name="time-slot" class="selectpicker">').append(timeSlots))
+            # clean up drop down boxes
+            $('#delivery-window .modal-dialog .modal-content .modal-body select').remove()
+            $('#delivery-window .modal-dialog .modal-content .modal-body .bootstrap-select').remove()
+
+            # set new drop down box
+            $('#delivery-window .modal-body').prepend($('<select name="time-slot" class="selectpicker">').append(timeSlots))
+
+            $('#delivery-date').val selectedDate.format("DD-MM-YYYY")
+
+            # display modal window
             $('#delivery-window').modal 'show'
+
             $('.selectpicker').selectpicker()
             return
           error: (xhr) ->
@@ -54,19 +64,27 @@ $(document).on 'page:change', ->
             return
     })
 
-  $('.iRadio').iCheck({
+  $('.iRadio').iCheck
     checkboxClass: 'icheckbox_square-blue',
     radioClass: 'iradio_square-blue',
     increaseArea: '20%',
-  })
 
-  $('.iRadio'). on 'ifChecked', (event) ->
-    console.log($(this))
-    #$(this).addClass('checked')
+  $('.confirm-delivery-time').on 'click', ->
+    dateComponent = $('#delivery-date').val()
+    timeComponent = $('#delivery-window .modal-body select').find(':selected').val()
+    format = 'DD-MM-YYYY HH:mm'
 
-  $('.iRadio'). on 'ifUnchecked', (event) ->
-    console.log($(this))
-    #$(this).removeClass('checked')
+    # remove temporary events first
+    $('.schedule-picker').fullCalendar 'removeEvents', -1
 
-  $('.iRadio').on 'click', ->
-    console.log('Clicked')
+    # set new event
+    deliveryDate = moment(dateComponent+ ' ' + timeComponent, format)
+    event = new Object()
+    event.id = -1
+    event.title = 'Delivery'
+    event.start = deliveryDate
+
+    $('.schedule-picker').fullCalendar 'renderEvent', event, true
+
+    $('#delivery-window').modal 'hide'
+    return
