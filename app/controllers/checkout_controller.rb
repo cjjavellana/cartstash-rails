@@ -11,9 +11,16 @@ class CheckoutController < ShopController
   # /shop/checkout :post
   def create
     @form = CheckoutForm.new secure_params
-    @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ", current_user.id, Constants::PaymentMethod::ACTIVE)
-    @delivery_addresses = DeliveryAddress.where("user_id = ? and status = ?", current_user.id, "active")
-    render :index
+
+    if @form.valid? and @cart.sub_total > 0
+
+    else
+      @form.errors.add('Cart', "can't be empty" ) if @cart.sub_total == 0
+      
+      @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ", current_user.id, Constants::PaymentMethod::ACTIVE)
+      @delivery_addresses = DeliveryAddress.where("user_id = ? and status = ?", current_user.id, "active")
+      render :index
+    end
   end
 
   def confirm_order

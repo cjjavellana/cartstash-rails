@@ -1,6 +1,8 @@
 <%= render layout: 'layouts/categories_sidebar' do %>
   <%= form_for :form do |f| %>
+
     <div class="col-md-9">
+      <%= form_error_messages! @form %>
       <div class="section-header">
         <h4>Order Summary</h4>
       </div>
@@ -29,6 +31,11 @@
             <td><%= link_to '', update_cart_path(sku: value.sku, q: 'remove'), class: 'remove-item', method: :put, remote: true %></td>
           </tr>
         <% end %>
+        <% if @cart.sub_total == 0 %>
+          <tr>
+            <td colspan="7">Cart is empty. Nothing to display.</td>
+          </tr>
+        <% end %>
         <tr id="total-row">
           <td colspan="5" class="amount-lbl">Total</td>
           <td class="grand-total">
@@ -54,13 +61,21 @@
           </div>
         </div>
         <div class="col-md-12 payment-option">
-          <%= f.radio_button :payment_option, "cod", {class: "iRadio"} %>
-          <span class="option-label">Cash on delivery</span>
+          <div class="col-md-2">
+            <%= f.radio_button :payment_option, "cod", {class: "iRadio"} %>
+          </div>
+          <div class="col-md-10">
+            <span class="option-label">Cash on delivery</span>
+          </div>
         </div>
         <% @payment_methods.each do |m| %>
           <div class="col-md-12 payment-option">
-            <%= f.radio_button :payment_option, m.id, {class: "iRadio"} %>
-            <span class="option-label"><%= m.credit_card_type %> Ending <%= m.masked_credit_card[15  ..20] %></span>
+            <div class="col-md-2">
+              <%= f.radio_button :payment_option, m.id, {class: "iRadio"} %>
+            </div>
+            <div class="col-md-10">
+              <span class="option-label"><%= m.credit_card_type %> Ending <%= m.masked_credit_card[15  ..20] %></span>
+            </div>
           </div>
         <% end %>
       </div>
@@ -74,8 +89,12 @@
         </div>
         <% @delivery_addresses.each do |m| %>
           <div class="col-md-12 payment-option">
-            <%= f.radio_button :delivery_address, m.id, {class: "iRadio"} %>
-            <span class="option-label"><%= m.full_address %></span>
+            <div class="col-md-2">
+              <%= f.radio_button :delivery_address, m.id, {class: "iRadio"} %>
+            </div>
+            <div class="col-md-10">
+              <span class="option-label"><%= m.full_address %></span>
+            </div>
           </div>
         <% end %>
       </div>

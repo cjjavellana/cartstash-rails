@@ -12,4 +12,5 @@ class CheckoutForm
     form.order_ref = from_json["order_ref"]
     form
   end
+  
 end
