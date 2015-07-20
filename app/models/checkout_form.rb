@@ -7,10 +7,10 @@ class CheckoutForm
   validates :payment_option, :delivery_address, :schedule, :presence => true
 
   def self.restore(from_json)
-    form = CheckoutForm.new
-    form.payment_method = from_json["payment_option"]
-    form.order_ref = from_json["order_ref"]
-    form
+    CheckoutForm.new({
+      payment_option: from_json["payment_option"],
+      order_ref: from_json["order_ref"]
+    })
   end
-  
+
 end

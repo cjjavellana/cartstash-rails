@@ -1,5 +1,5 @@
 class CheckoutController < ShopController
-  before_action :authenticate_user!, :restore_checkout_form, :categories
+  before_action :authenticate_user!, :categories, :restore_cart
 
   # /shop/checkout :get
   def index
@@ -11,12 +11,11 @@ class CheckoutController < ShopController
   # /shop/checkout :post
   def create
     @form = CheckoutForm.new secure_params
-
     if @form.valid? and @cart.sub_total > 0
 
     else
       @form.errors.add('Cart', "can't be empty" ) if @cart.sub_total == 0
-      
+
       @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ", current_user.id, Constants::PaymentMethod::ACTIVE)
       @delivery_addresses = DeliveryAddress.where("user_id = ? and status = ?", current_user.id, "active")
       render :index
@@ -90,12 +89,6 @@ class CheckoutController < ShopController
 
     def restore_delivery_address
       @delivery_addresses = DeliveryAddress.where("user_id = ?", current_user.id)
-    end
-
-    def restore_checkout_form
-      @checkout_form = RedisClient.get("checkout_#{session.id}")
-      @checkout_form = @checkout_form.nil? ? CheckoutForm.new : CheckoutForm.restore(JSON.parse(@checkout_form))
-      generate_order_ref if @checkout_form.order_ref.nil?
     end
 
     def generate_order_ref

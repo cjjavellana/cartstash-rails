@@ -14,7 +14,7 @@ describe "Check Out Process" do
 
   it "requires atleast one payment method" do
     visit checkout_index_path
-    click_button 'checkout-next-btn'
+    click_button 'Confirm Order'
     expect(page).to have_selector(".alert-danger", text: "Please select a payment method")
   end
 

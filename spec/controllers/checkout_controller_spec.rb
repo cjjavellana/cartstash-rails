@@ -11,9 +11,9 @@ RSpec.describe CheckoutController, type: :controller do
       # mocks when values are being retrieved from fields
       allow(checkout_form).to receive(:valid?).and_return(true)
       allow(checkout_form).to receive(:delivery_address)
-      allow(checkout_form).to receive(:payment_method).and_return("cod")
+      allow(checkout_form).to receive(:payment_option).and_return("cod")
       allow(checkout_form).to receive(:order_ref).and_return("1234567890abcdef")
-      allow(checkout_form).to receive(:schedule).and_return("#{1.day.from_now.strftime("%d-%m-%Y")} 8:00-10:00")
+      allow(checkout_form).to receive(:schedule).and_return("#{1.day.from_now.strftime("%d-%m-%Y")} 8:00")
 
       # mocks for field assignments
       allow(checkout_form).to receive(:delivery_address=)
@@ -37,11 +37,6 @@ RSpec.describe CheckoutController, type: :controller do
       checkout_form
     }
 
-    before(:each) {
-      expect(RedisClient).to receive(:get).with("cart_#{session.id}").and_return(nil)
-      expect(RedisClient).to receive(:get).with("checkout_#{session.id}").and_return(nil)
-    }
-
     it "shows sales order items, payment methods" do
       ShopController.any_instance.stub(:categories)
 
@@ -50,26 +45,43 @@ RSpec.describe CheckoutController, type: :controller do
       get :index
       expect(assigns(:payment_methods)[0].credit_card_no).to eq("4539016690974009")
       expect(assigns(:delivery_addresses)[0].country).to eq("Philippines")
-
     end
 
     it "confirms an order" do
+      cart = double(Cart)
+      allow(cart).to receive(:sub_total).and_return(100)
+      expect(RedisClient).to receive(:get).with("cart_#{session.id}").and_return(nil)
+      expect(RedisClient).to receive(:get).with("menu_categories").and_return("{}")
+      expect(Cart).to receive(:new).and_return(cart)
       expect(CheckoutForm).to receive(:new).and_return(valid_checkout_form)
 
-      delivery_schedule = "#{3.days.from_now.strftime('%d-%m-%Y')} 8:00-10:00"
-      post :confirm_order, {delivery_address: delivery_address.id, delivery_schedule: delivery_schedule}
+      delivery_schedule = "#{3.days.from_now.strftime('%d-%m-%Y')} 8:00"
+
+      post :create, form: {
+        delivery_address: delivery_address.id,
+        schedule: delivery_schedule,
+        payment_option: build_stubbed(:foobar_visa).id
+      }
+
       expect(response).to have_http_status(:success)
-      expect(response).to render_template(:confirm_order)
+      expect(response).to render_template(:create)
     end
 
     it "prompts for error when form is invalid" do
-      expect(CheckoutForm).to receive(:new).and_return(invalid_checkout_form)
-      expect(DeliveryAddress).to receive(:where).and_return([delivery_address])
+      cart = double(Cart)
+      allow(cart).to receive(:sub_total).and_return(100)
+      expect(RedisClient).to receive(:get).with("cart_#{session.id}").and_return(nil)
+      expect(RedisClient).to receive(:get).with("menu_categories").and_return("{}")
+      expect(Cart).to receive(:new).and_return(cart)
 
-      delivery_schedule = "#{3.days.from_now.strftime('%d-%m-%Y')} 8:00-10:00"
-      post :confirm_order, {delivery_address: delivery_address.id, delivery_schedule: delivery_schedule}
+      delivery_schedule = "#{3.days.from_now.strftime('%d-%m-%Y')} 8:00"
+      post :create, form: {
+        schedule: delivery_schedule,
+        payment_option: build_stubbed(:foobar_visa).id
+      }
+
       expect(response).to have_http_status(:success)
-      expect(response).to render_template(:delivery_and_schedule)
+      expect(response).to render_template(:index)
     end
   end
 
