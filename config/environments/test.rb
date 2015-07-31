@@ -43,4 +43,5 @@ Rails.application.configure do
   config.redis_url = '192.168.1.21'
 
   config.allow_concurrency = false
+  config.active_record.schema_format = :sql  
 end

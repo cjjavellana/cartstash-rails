@@ -1,5 +1,5 @@
 # Allows the user to add / update / remove configured delivery addresses
-class DeliveryAddressController < ApplicationController
+class DeliveryAddressController < ShopController
   include ReturnUrlHelper
 
   before_action :authenticate_user!

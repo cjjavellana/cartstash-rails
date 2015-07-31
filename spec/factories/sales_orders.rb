@@ -3,6 +3,7 @@ FactoryGirl.define do
     order_date              DateTime.current
     order_amount            BigDecimal.new 1000.00, 2
     payment_type            Constants::PaymentType::CASH_ON_DELIVERY
+    transaction_ref         "abcdefghij"
     payment_method          nil
     delivery_date           1.day.from_now
     time_range              "8:00-10:00"
@@ -19,6 +20,7 @@ FactoryGirl.define do
     order_date              DateTime.current
     order_amount            nil
     payment_type            Constants::PaymentType::CREDIT_CARD
+    transaction_ref         "defabctry"
     delivery_date           1.day.from_now
     time_range              "8:00-10:00"
     received_date           nil

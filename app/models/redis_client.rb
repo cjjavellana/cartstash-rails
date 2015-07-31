@@ -9,6 +9,7 @@ class RedisClient
   # @key - A string, the cache key
   # @value - A string, the value to store
   def self.set(key, value)
+    byebug
     $redis.set key, value
   end
 

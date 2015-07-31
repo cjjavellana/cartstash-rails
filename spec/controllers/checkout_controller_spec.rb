@@ -49,7 +49,9 @@ RSpec.describe CheckoutController, type: :controller do
 
     it "confirms an order" do
       cart = double(Cart)
-      allow(cart).to receive(:sub_total).and_return(100)
+      allow(cart).to receive(:sub_total).and_return 100
+      allow(cart).to receive_message_chain(:item_map, :length).and_return 5
+
       expect(RedisClient).to receive(:get).with("cart_#{session.id}").and_return(nil)
       expect(RedisClient).to receive(:get).with("menu_categories").and_return("{}")
       expect(Cart).to receive(:new).and_return(cart)

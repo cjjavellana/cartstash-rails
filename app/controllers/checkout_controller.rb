@@ -1,10 +1,9 @@
 class CheckoutController < ShopController
-  before_action :authenticate_user!, :categories, :restore_cart
+  before_action :authenticate_user!, :categories
 
   # /shop/checkout :get
   def index
-    @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ", current_user.id, Constants::PaymentMethod::ACTIVE)
-    @delivery_addresses = DeliveryAddress.where("user_id = ? and status = ?", current_user.id, "active")
+    restore_defaults
     @form = CheckoutForm.new
   end
 
@@ -13,11 +12,18 @@ class CheckoutController < ShopController
     @form = CheckoutForm.new secure_params
     if @form.valid? and @cart.sub_total > 0
 
+      # check if sales order already exist, maybe user resubmitted the form or something
+      unless SalesOrder.exists?(order_ref)
+        # TODO - Implement checkout
+      else
+        @form.errors.add('Order', 'already exist')
+        restore_defaults
+        render index
+      end
+
     else
       @form.errors.add('Cart', "can't be empty" ) if @cart.sub_total == 0
-
-      @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ", current_user.id, Constants::PaymentMethod::ACTIVE)
-      @delivery_addresses = DeliveryAddress.where("user_id = ? and status = ?", current_user.id, "active")
+      restore_defaults
       render :index
     end
   end
@@ -41,6 +47,11 @@ class CheckoutController < ShopController
   end
 
   private
+    def restore_defaults
+      @payment_methods = PaymentMethod.where("user_id = ? AND status = ? ", current_user.id, Constants::PaymentMethod::ACTIVE)
+      @delivery_addresses = DeliveryAddress.where("user_id = ? and status = ?", current_user.id, "active")
+    end
+
     def secure_params
       params.require(:form).permit :payment_option, :delivery_address, :schedule
     end
@@ -72,13 +83,11 @@ class CheckoutController < ShopController
       items = []
       @cart.item_map.map.each do |k, v|
         product = Product.find_by_cs_sku(v.sku)
-        sales_item = SalesOrderItem.new
-        sales_item.sku = product.cs_sku
-        sales_item.name = product.name
-        sales_item.price = product.price
-        sales_item.quantity = v.quantity
-        sales_item.discount = product.discount
-        items.push(sales_item)
+        items.push(SalesOrderItem.new(
+                        sku: product.cs_sku,
+                        name: product.name,
+                        price: product.price,
+                        quantity: v.quantity))
       end
       items
     end
@@ -91,11 +100,11 @@ class CheckoutController < ShopController
       @delivery_addresses = DeliveryAddress.where("user_id = ?", current_user.id)
     end
 
-    def generate_order_ref
+    def order_ref
       item_count = @cart.item_map.length
       cart_amount = @cart.sub_total
-      current_time = DateTime.current.strftime("%d/%m/%Y %H:%M")
-      @checkout_form.order_ref = Digest::SHA2.hexdigest("#{current_user.email}-#{cart_amount}-#{item_count}-#{current_time}")[0..20]
+      current_time = DateTime.current.strftime("%d-%m-%Y")
+      @form.order_ref = Digest::SHA2.hexdigest("#{current_user.email}-#{cart_amount}-#{item_count}-#{current_time}")[0..20]
     end
 
     def sales_order_exists?

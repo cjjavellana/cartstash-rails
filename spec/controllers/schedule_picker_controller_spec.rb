@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe SchedulePickerController, type: :controller do
 
   describe "get" do
-    
+
     it "returns an error when parameter date is less than current date" do
       expected_response = {error: "Date cannot be less than current date"}.to_json
 
@@ -21,8 +21,8 @@ RSpec.describe SchedulePickerController, type: :controller do
     it "returns the available delivery slots for the current date" do
       expected_response = {
         timeslot: [
-          {startime: "18:00", endtime: "20:00"},
-          {startime: "20:00", endtime: "22:00"}
+          {starttime: "18:00", endtime: "20:00"},
+          {starttime: "20:00", endtime: "22:00"}
         ]
       }.to_json
 
@@ -34,13 +34,13 @@ RSpec.describe SchedulePickerController, type: :controller do
     it "returns timeslots from 8am to 10pm" do
       expected_response = {
         timeslot: [
-          {startime: "08:00", endtime: "10:00"},
-          {startime: "10:00", endtime: "12:00"},
-          {startime: "12:00", endtime: "14:00"},
-          {startime: "14:00", endtime: "16:00"},
-          {startime: "16:00", endtime: "18:00"},
-          {startime: "18:00", endtime: "20:00"},
-          {startime: "20:00", endtime: "22:00"}
+          {starttime: "08:00", endtime: "10:00"},
+          {starttime: "10:00", endtime: "12:00"},
+          {starttime: "12:00", endtime: "14:00"},
+          {starttime: "14:00", endtime: "16:00"},
+          {starttime: "16:00", endtime: "18:00"},
+          {starttime: "18:00", endtime: "20:00"},
+          {starttime: "20:00", endtime: "22:00"}
         ]
       }.to_json
 

@@ -15,19 +15,19 @@ describe "Check Out Process" do
   it "requires atleast one payment method" do
     visit checkout_index_path
     click_button 'Confirm Order'
-    expect(page).to have_selector(".alert-danger", text: "Please select a payment method")
+    expect(page).to have_selector(".alert-danger")
   end
 
   it 'confirms the order using COD' do
+    date = Date.today
+
     delivery_address = create(:foobar_delivery_address)
     visit checkout_index_path
-    find(:css, '.pm-checkbox:last-child').set(true)
-    click_button 'checkout-next-btn'
-    expect(page).to have_selector('.checkout-section-header', text: 'Choose Delivery Address')
-    find(:css, '#delivery_address').set delivery_address.id
-    find(:css, '#delivery_schedule').set '27-04-2015 8:00-10:00'
-    click_button 'Place Order'
-    expect(page).to have_selector('.order-placed-msg')
+    find(:css, '#form_payment_option_cod').set(true)
+    find(:css, '#form_delivery_address_1').set(true)
+    find(:css, '#form_schedule').set "#{date.strftime("%d-%m-%Y")} 08:00"
+    click_button 'Confirm Order'
+    #expect(page).to have_selector('.order-placed-msg')
   end
 
   it 'can navigate to add new payment method' do

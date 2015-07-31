@@ -57,7 +57,7 @@
         <div class="col-md-12 widget-header">
           <div class="label-header col-md-8">Payment Options</div>
           <div class="add-option col-md-4">
-            <%= link_to 'Add Option', new_payment_method_path %>
+            <%= link_to 'Add Option', new_payment_method_path(return_url: create_return_url('/shop/checkout')) %>
           </div>
         </div>
         <div class="col-md-12 payment-option">
