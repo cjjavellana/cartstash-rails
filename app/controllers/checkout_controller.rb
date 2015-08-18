@@ -1,4 +1,5 @@
 class CheckoutController < ShopController
+  include Constants::PaymentType
   before_action :authenticate_user!, :categories
 
   # /shop/checkout :get
@@ -65,10 +66,10 @@ class CheckoutController < ShopController
       sales_order.order_date = DateTime.current
       sales_order.transaction_ref = @checkout_form.order_ref
 
-      if @checkout_form.payment_method.downcase == Constants::PaymentType::CASH_ON_DELIVERY.downcase
-        sales_order.payment_type = Constants::PaymentType::CASH_ON_DELIVERY
+      if @checkout_form.payment_method.downcase == CASH_ON_DELIVERY.downcase
+        sales_order.payment_type = CASH_ON_DELIVERY
       else
-        sales_order.payment_type = Constants::PaymentType::CREDIT_CARD
+        sales_order.payment_type = CREDIT_CARD
         sales_order.payment_method = PaymentMethod.where('user_id = ? and id = ?',
                                                          current_user.id,
                                                          @checkout_form.payment_method).first

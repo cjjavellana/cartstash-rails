@@ -61,7 +61,7 @@
             <div class="form-group col-md-8">
               <label for="country">Country</label>
               <%= f.select :country,
-                           options_for_select(@countries.collect {|c| [ c['name'], c['short_name'] ]}, 'PH'),
+                           options_for_select(@countries.collect {|c| [ c['name'], c['country_code'] ]}, 'PH'),
                            {:include_blank => false},
                            {:class => 'form-control'}
               %>

@@ -1,7 +1,7 @@
 class Country < ActiveRecord::Base
 
   def self.get_countries
-    countries = RedisClient.get("countries")
+    countries = RedisClient.get "countries"
     if countries.nil? or countries == "[]"
       countries = Country.all.to_json
       begin

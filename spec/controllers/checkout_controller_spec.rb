@@ -60,6 +60,7 @@ RSpec.describe CheckoutController, type: :controller do
       delivery_schedule = "#{3.days.from_now.strftime('%d-%m-%Y')} 8:00"
 
       post :create, form: {
+        
         delivery_address: delivery_address.id,
         schedule: delivery_schedule,
         payment_option: build_stubbed(:foobar_visa).id

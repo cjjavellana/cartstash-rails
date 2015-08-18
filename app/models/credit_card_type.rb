@@ -2,7 +2,7 @@ class CreditCardType < ActiveRecord::Base
 
   def self.get_credit_card_types
     types = RedisClient.get 'cc_types'
-
+    
     if types.nil?
       types = CreditCardType.all.to_json
 

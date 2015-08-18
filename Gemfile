@@ -70,4 +70,6 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'brakeman', :require => false
+  gem 'fakeredis', :require => 'fakeredis/rspec'
+  gem 'webmock'
 end

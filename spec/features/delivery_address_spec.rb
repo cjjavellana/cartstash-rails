@@ -7,6 +7,12 @@ describe 'Manage delivery address' do
     login_as(user, :scope => :user)
 
     create(:foobar_delivery_address)
+
+    countries = [
+      build_stubbed(:ph)
+    ]
+
+    RedisClient.set("countries", countries.to_json)    
   end
 
   it 'lists all delivery addresses of the user' do
