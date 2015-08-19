@@ -14,8 +14,8 @@ describe "Check Out Process" do
       build_stubbed(:visa)
     ]
 
-    RedisClient.set("countries", countries.to_json)
-    RedisClient.set("cc_types", credit_card_types.to_json)
+    RedisClient.set "countries", countries.to_json
+    RedisClient.set "cc_types", credit_card_types.to_json
   end
 
   it "allows the user to view the checkout page" do
