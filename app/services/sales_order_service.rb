@@ -26,7 +26,7 @@ class SalesOrderService
 
     def credit_card_payment(sales_order, purchased_items)
       payment_id = PaymentService.process_sales_order!(sales_order.payment_method,
-                      line_items,
+                      purchased_items,
                       "Payment for #{sales_order.transaction_ref}",
                       "USD")
       sales_order.payment_ref = payment_id
