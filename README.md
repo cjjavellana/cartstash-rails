@@ -17,6 +17,10 @@ The next gen ecommerce platform
     ```
 4. Capybara-webkit gem requires the qt library to be installed. Refer to the installation guide [here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit)
 
+### Omniauth Integration
+1. Navigate to https://developers.facebook.com and get yourself an App Id and App Secret
+2. Set your app id in initializers/devise.rb
+3. Set your application's secret in your environment variable to prevent it from being checked in to github or public repo.
 
 
 ### Ruby version

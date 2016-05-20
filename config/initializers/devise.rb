@@ -261,6 +261,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   Rails.application.config.to_prepare do
+
     Devise::SessionsController.layout "prelaunch"
     # This layout is to be used once live
     # Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? "application" : "prelaunch" }

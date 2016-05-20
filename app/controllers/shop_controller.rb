@@ -24,7 +24,7 @@ class ShopController < CartController
       add2cart!
       result = { sku: params[:sku],
                  qty: @cart.order_qty(params[:sku]),
-                 total: number_to_currency(@cart.sub_total, precision: 2, unit: '$ ')}
+                 total: number_to_currency(@cart.sub_total, precision: 2, unit: 'Php ')}
       respond_to do |format|
         format.json { render :json => result }
       end
@@ -67,8 +67,8 @@ class ShopController < CartController
       {
         sku: params[:sku],
         qty: Float(@cart.order_qty(params[:sku])),
-        subtotal: number_to_currency(subtotal, unit: '$ ', precision: 2),
-        cart_total: number_to_currency(cart_total, unit: '$ ', precision: 2)
+        subtotal: number_to_currency(subtotal, unit: 'Php ', precision: 2),
+        cart_total: number_to_currency(cart_total, unit: 'Php ', precision: 2)
       }
     end
 

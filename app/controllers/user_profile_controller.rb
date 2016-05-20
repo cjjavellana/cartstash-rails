@@ -1,4 +1,4 @@
-class UserProfileController < ApplicationController
+class UserProfileController < CartController
 
   before_filter :authenticate_user!
   before_action :set_countries

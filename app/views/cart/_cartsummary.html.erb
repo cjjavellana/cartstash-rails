@@ -3,7 +3,7 @@
       <div class="col-md-12 col-xs-12">
         <div class="col-md-2 col-xs-2"><%= image_tag value.image_front, size: '50x65' %></div>
         <div class="col-md-3 col-xs-3">Price:
-          <div><%= number_to_currency value.price, unit: "$ ", precision: 2 %></div>
+          <div><%= number_to_currency value.price, unit: "Php ", precision: 2 %></div>
         </div>
         <div class="col-md-2 col-xs-2">Qty:
           <div class="qty"><%= value.quantity %></div>
@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="col-md-3 col-xs-3 sub-total">Sub-Total:
-          <div><%= number_to_currency value.total_price, unit: '$ ', precision: 2 %></div>
+          <div><%= number_to_currency value.total_price, unit: 'Php ', precision: 2 %></div>
         </div>
         <div class="col-md-1 col-xs-1">
           <%= link_to '', update_cart_path(sku: value.sku, q: 'remove'), class: 'remove-item', method: :put, remote: true %>

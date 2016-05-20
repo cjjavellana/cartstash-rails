@@ -1,5 +1,20 @@
+
+@media screen and (min-width: 991px) {
+
+  .product-search-header .product-search {
+    width: 300px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   #md-menu {
     display: none;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+
+  .product-search-header .product-search {
+    width: 250px;
   }
 }

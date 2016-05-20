@@ -117,7 +117,6 @@ body {
     background: #EFF1F7;
     border-radius: 8px;
     height: 45px;
-    width: 300px;
     padding-left: 5px;
     border: none;
   }
@@ -138,7 +137,7 @@ a.order-summary:hover {
 .order-summary {
 
   button[type="submit"] {
-    margin: 15px 0px 0px 300px;
+    margin: 15px 0px 0px 10px;
     width: 150px;
     height: 45px;
     background: #EFF1F7;

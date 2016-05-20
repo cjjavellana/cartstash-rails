@@ -32,7 +32,7 @@
                               <%= @cart.order_qty(item[:cs_sku]) %>
                             </div>
                             <div class="col-md-3 col-xs-3 add2cart">
-                              <%= button_to "#{number_to_currency item[:price], unit: '$ '}", add2cart_path, form_class: 'add2cart',remote: true, form: { data: { type: 'json' } }, params: { sku: item[:cs_sku] } %>
+                              <%= button_to "#{number_to_currency item[:price], unit: 'Php '}", add2cart_path, form_class: 'add2cart',remote: true, form: { data: { type: 'json' } }, params: { sku: item[:cs_sku] } %>
                             </div>
                         </div>
                     </div>

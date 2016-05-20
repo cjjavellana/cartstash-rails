@@ -42,7 +42,7 @@
           </ul>
         <% end %>
       <%= button_to  :order_summary, remote: true, form_class: 'order-summary', method: :get do %>
-          <span class="amount-summary"><%= number_to_currency(@cart.sub_total, unit: '$ ') %></span>
+          <span class="amount-summary"><%= number_to_currency(@cart.sub_total, unit: 'Php ') %></span>
           <span class="down-arrow"></span>
       <% end %>
 
