@@ -10,10 +10,10 @@
         </div>
         <div class="col-md-1 col-xs-1">
           <div>
-            <%= link_to '', update_cart_path(sku: value.sku, q: 'add'), class: 'add-item', method: :put, remote: true %>
+            <%= link_to '<span class="glyphicon glyphicon-triangle-top qty-arrow" aria-hidden="true"></span>'.html_safe, update_cart_path(sku: value.sku, q: 'add'), class: 'add-item', method: :put, remote: true %>
           </div>
           <div>
-            <%= link_to '', update_cart_path(sku: value.sku, q: 'reduce'), class: 'reduce-item', method: :put, remote: true %>
+            <%= link_to '<span class="glyphicon glyphicon-triangle-bottom qty-arrow" aria-hidden="true"></span>'.html_safe, update_cart_path(sku: value.sku, q: 'reduce'), class: 'reduce-item', method: :put, remote: true %>
           </div>
         </div>
         <div class="col-md-3 col-xs-3 sub-total">Sub-Total:
