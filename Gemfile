@@ -55,6 +55,16 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'bootstrap-select-rails'
 
+# the aws ruby sdk
+gem 'aws-sdk', '~> 2'
+
+# allow reading of uploaded spreadsheet
+gem 'spreadsheet'
+
+# For file attachments
+#gem 'paperclip', '~> 4.3'
+gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -71,5 +81,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'brakeman', :require => false
   gem 'fakeredis', :require => 'fakeredis/rspec'
+end
+
+group :test do
   gem 'webmock'
 end

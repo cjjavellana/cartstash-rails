@@ -19,16 +19,18 @@ class SalesOrderService
     sales_order.save
 
     # Charge credit card (if selected)
-    credit_card_payment(sales_order, line_items) if sales_order.payment_type == Constants::PaymentType::CREDIT_CARD
+    credit_card_payment(sales_order, line_items) \
+      if sales_order.payment_type == Constants::PaymentType::CREDIT_CARD
+
   end
 
   private
-
     def credit_card_payment(sales_order, purchased_items)
-      payment_id = PaymentService.process_sales_order!(sales_order.payment_method,
-                      purchased_items,
-                      "Payment for #{sales_order.transaction_ref}",
-                      "USD")
+      payment_id = PaymentService.process_sales_order!(
+        sales_order.payment_method,
+        purchased_items,
+        "Payment for #{sales_order.transaction_ref}",
+        "USD")
       sales_order.payment_ref = payment_id
       sales_order.paid = true
       sales_order.save
