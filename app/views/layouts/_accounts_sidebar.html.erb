@@ -1,15 +1,11 @@
 <div class="main">
   <div class="row">
-    <div class="col-md-2 account-sidebar">
-      <div class="col-md-12 account-sidebar-menu">
-        <%= link_to 'Account Info', user_profile_index_path %>
-      </div>
-      <div class="col-md-12 account-sidebar-menu">
-        <%= link_to 'Payment Method', payment_method_index_path %>
-      </div>
-      <div class="col-md-12 account-sidebar-menu">
-        <%= link_to 'Delivery Address', delivery_address_index_path %>
-      </div>
+    <div class="col-md-2 categories-sidebar left-menu">
+      <ul>
+        <li><%= link_to 'Account Info', user_profile_index_path %></li>
+        <li><%= link_to 'Payment Method', payment_method_index_path %></li>
+        <li><%= link_to 'Delivery Address', delivery_address_index_path %></li>
+      </ul>
     </div>
     <div class="col-md-10">
       <%= yield %>
