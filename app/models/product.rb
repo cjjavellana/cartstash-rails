@@ -11,6 +11,9 @@ class Product < ActiveRecord::Base
   # Callbacks
   before_save :generate_slug
 
+  has_attached_file :image_url, styles: {medium: "300x300>", thumb: "100x100>"}, storage: :s3, default_url: "/images/:style/defaultitem.png"
+  validates_attachment_content_type :image_url, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
   # Retrieves the list of products under a given
   # category or subcategory
   def self.products_by_category(category_slug)

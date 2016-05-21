@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160520181001) do
+ActiveRecord::Schema.define(version: 20160521061146) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "country_code"
@@ -139,17 +139,21 @@ ActiveRecord::Schema.define(version: 20160520181001) do
     t.string   "right_image"
     t.string   "additional_info"
     t.string   "packaging"
-    t.decimal  "price",               precision: 10, scale: 2
-    t.decimal  "promo_price",         precision: 10, scale: 2
+    t.decimal  "price",                  precision: 10, scale: 2
+    t.decimal  "promo_price",            precision: 10, scale: 2
     t.string   "tags"
     t.string   "cs_sku"
     t.string   "slug"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "uom"
     t.float    "discount"
-    t.decimal  "qty",                 precision: 10, scale: 2
-    t.decimal  "max_order",           precision: 10, scale: 2
+    t.decimal  "qty",                    precision: 10, scale: 2
+    t.decimal  "max_order",              precision: 10, scale: 2
+    t.string   "image_url_file_name"
+    t.string   "image_url_content_type"
+    t.integer  "image_url_file_size"
+    t.datetime "image_url_updated_at"
   end
 
   add_index "products", ["product_category_id"], name: "index_products_on_product_category_id"
@@ -282,7 +286,7 @@ ActiveRecord::Schema.define(version: 20160520181001) do
     t.string   "invitation_token"
     t.string   "gender"
     t.date     "birthdate"
-    t.boolean  "is_admin",                default: false
+    t.boolean  "is_admin"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
