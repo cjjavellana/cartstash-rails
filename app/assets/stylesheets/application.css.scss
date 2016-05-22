@@ -439,6 +439,20 @@ a.order-summary:hover {
   }
 }
 
+.btn-onpage-checkout {
+  background-color: #84FFCC;
+  color: #2B2938;
+  border: none;
+  width: 100%;
+  font-weight: bold;
+  height: 40px;
+  padding-top: 10px;
+}
+
+.btn.nohover:hover {
+  cursor:default !important;
+}
+
 .ajax-login-form {
   background-color: #F1EBF6;
 

@@ -30,6 +30,7 @@ class CheckoutController < ShopController
   end
 
   def confirm_order
+    byebug
     @checkout_form.delivery_address = params[:delivery_address]
     @checkout_form.schedule = params[:delivery_schedule]
 
