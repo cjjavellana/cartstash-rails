@@ -42,4 +42,9 @@ Rails.application.routes.draw do
 
   get '/server-date', to: 'schedule_picker#current_datetime'
   get '/delivery-time/:date', to: 'schedule_picker#available_time', as: 'delivery_time'
+
+  namespace :orders do
+    get 'selectdeliveryaddress' => 'select_delivery_address#index'
+    post 'selectdeliveryschedule' => 'select_delivery_address#select_schedule'
+  end
 end

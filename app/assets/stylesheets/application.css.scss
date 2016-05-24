@@ -34,7 +34,6 @@ body {
   z-index:    10;
   top:        0;
   left:       0;
-  font-family: "Century Gothic";
   padding-top: 75px;
   padding-bottom: 70px;
 }
@@ -489,4 +488,9 @@ a.order-summary:hover {
     margin-top: 10px;
     text-align: center;
   }
+}
+
+.delivery-address-title {
+  margin-top: 10px;
+  font-size: 24px;
 }
