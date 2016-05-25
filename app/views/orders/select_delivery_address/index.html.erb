@@ -1,13 +1,13 @@
 <%= render layout: 'layouts/categories_sidebar' do %>
     <div class="col-md-10">
       <%= image_tag "checkout_stage_1.png" %>
-      <div class="row">
-        <div class="col-md-9 centered">
+      <div class="row margin-top-15">
+        <div class="col-md-9 col-xs-8 centered">
           <span class="delivery-address-title">Select Delivery Address</span>
         </div>
-        <div class="col-md-2">
-          <%= link_to "", {:action => "select_schedule"}, class: "btn btn-default" do %>
-
+        <div class="col-md-3 col-xs-4">
+          <%= button_tag class: "btn btn-checkout-primary" do %>
+            <span>Next</span> <span class="glyphicon glyphicon-chevron-right"></span>
           <% end %>
         </div>
       </div>
