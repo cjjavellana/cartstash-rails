@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       def #{provider}
         @user = User.find_for_oauth(env["omniauth.auth"], current_user)
         session[:auth] = "#{provider}"
-        session.options[:bypass] = true
+
         if @user.persisted?
           sign_in @user, {event: :authentication, bypass: true}
           set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
