@@ -69,3 +69,15 @@
     text-decoration: none;
   }
 }
+
+#addNewAddress {
+  display: block;
+  position: fixed;
+  background-color: #fff;
+  border-radius: 8px;
+  top: 420px;
+  left: 595px;
+  z-index: 10000;
+  width: 333px;
+  padding-top: 30px;
+}

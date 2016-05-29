@@ -35,10 +35,7 @@
 
 
             <%= link_to "#", {class: "add-delivery-address-link"} do %>
-                <%
-                  additional_class = "margin10px" if @addresses.length % 2 == 0
-                %>
-                <div class="col-md-5 col-xs-6 add-new-delivery-address <%= additional_class %>">
+                <div class="col-md-5 col-xs-6 add-new-delivery-address <%= "margin10px" if @addresses.length % 2 == 0 %>">
                   <%= image_tag "newaddressicon.png" %>
                   <span>ADD NEW ADDRESS</span>
                 </div>
@@ -46,7 +43,45 @@
           </div>
           </div>
       <% end %>
+      <div id="addNewAddress">
+        <%= form_for @delivery_address, url: orders_adddeliveryaddress_path, method: :post do |f| %>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= f.text_field :recipient_name, { class: "form-control", placeholder: "Recipient's name" } %>
+              </div>
+
+              <div class="form-group">
+                <%= f.text_field :address_line_1, { class: "form-control", placeholder: "Address Line 1" } %>
+              </div>
+
+              <div class="form-group">
+                <%= f.text_field :address_line_2, { class: "form-control", placeholder: "Address Line 2" } %>
+              </div>
+
+              <div class="form-group">
+                <%= f.text_field :city, { class: "form-control", placeholder: "City" } %>
+              </div>
+
+              <div class="form-group">
+                <%= f.text_field :zip_code, { class: "form-control", placeholder: "Zip Code" } %>
+              </div>
+
+              <div class="form-group">
+                <%= f.select :country,
+                             options_for_select(@countries.collect {|c| [ c['name'], c['country_code'] ]}, 'PH'),
+                             {:include_blank => false},
+                             {:class => 'form-control'}
+                %>
+              </div>
+            </div>
+
+
+        <% end %>
+      </div>
+
       <div class="col-md-2">
 
       </div>
+
 <% end %>

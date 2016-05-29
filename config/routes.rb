@@ -46,5 +46,6 @@ Rails.application.routes.draw do
   namespace :orders do
     get 'selectdeliveryaddress' => 'select_delivery_address#index'
     post 'selectdeliveryschedule' => 'select_delivery_address#select_schedule'
+    post 'adddeliveryaddress' => 'select_delivery_address#add_delivery_address'
   end
 end
