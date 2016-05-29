@@ -1,8 +1,13 @@
 $(document).on 'page:change', ->
-  $('.delivery-address-option').click (event) ->
+  $('div.delivery-address-option').click (event) ->
     $hiddenField = $('#checkout_selected_address')[0]
+    $clickedElement = $(event.target)
     currentValue = $hiddenField.value
-    selectedValue = $(event.target).attr('data')
+    selectedValue = $clickedElement.attr('data')
+
+    if selectedValue == undefined
+      $clickedElement = $clickedElement.parent('[data]')
+      selectedValue = $clickedElement.attr('data')
 
     # If toggling out
     if currentValue == selectedValue
