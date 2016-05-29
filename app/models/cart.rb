@@ -63,8 +63,13 @@ class Cart
   # of the items ordered and the partial total
   def order_qty(sku)
     purchased_item = @item_map[sku.to_sym]
-    return 0 if purchased_item.nil?
-    return purchased_item.quantity
+
+    if purchased_item.nil?
+      0
+    else
+      purchased_item.quantity
+    end
+
   end
 
   def sub_total

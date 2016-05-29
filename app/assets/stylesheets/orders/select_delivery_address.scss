@@ -1,3 +1,71 @@
 // Place all the styles related to the Orders::SelectDeliveryAddress controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.address-choices-row {
+  padding-top: 20px;
+}
+
+.margin10px {
+  margin-left: 10px;
+}
+
+.delivery-address-option {
+  border: 1px solid #EBEBEB;
+  height: 180px;
+  border-radius: 8px;
+  margin-left: 10px;
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+
+  .address-details {
+    padding-top: 20px!important;
+    color: #979797;
+  }
+
+  .panel-heading {
+    background-color: #fff!important;
+  }
+
+  .edit-action {
+    border-left: 1px solid #979797;
+
+    span {
+      color: #979797;
+
+      &:hover {
+        color: #2B2938;
+      }
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    cursor: hand;
+  }
+}
+
+.add-new-delivery-address {
+  border: 4px dashed #EBEBEB;
+  height: 180px;
+  border-radius: 8px;
+  line-height: 50px;
+  text-align: center;
+  padding-top: 25px;
+
+  &:hover {
+    border: 4px dashed #2B2938;
+
+    span {
+      color: #2B2938;
+    }
+  }
+
+  span {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+  }
+}

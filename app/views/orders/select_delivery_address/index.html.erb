@@ -7,12 +7,46 @@
         </div>
         <div class="col-md-3 col-xs-4">
           <%= button_tag class: "btn btn-checkout-primary" do %>
-            <span>Next</span> <span class="glyphicon glyphicon-chevron-right"></span>
+              <span>Next</span> <span class="glyphicon glyphicon-chevron-right"></span>
           <% end %>
         </div>
       </div>
-    </div>
-    <div class="col-md-2">
+      <%= form_tag orders_selectdeliveryschedule_path, method: :post do %>
+          <%= hidden_field :checkout, :selected_address %>
 
-    </div>
+          <div class="row address-choices-row">
+            <% @addresses.each do |address| %>
+                    <div class="col-md-5 col-xs-6 panel panel-default delivery-address-option" data="<%= address.id %>">
+                      <div class="panel-heading col-md-10 col-xs-10">
+                        <%= image_tag "address-icon-28.png", size: "16x18" %>
+                        <%= address.recipient_name %>
+                      </div>
+                      <div class="panel-heading col-md-2 col-xs-2 edit-action">
+                        <%= link_to "#", { class: "edit-address", remote: true} do %>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        <% end %>
+                      </div>
+
+                      <div class="panel-body address-details">
+                        <%= address.full_address %>
+                      </div>
+                    </div>
+            <% end %>
+
+
+            <%= link_to "#", {class: "add-delivery-address-link"} do %>
+                <%
+                  additional_class = "margin10px" if @addresses.length % 2 == 0
+                %>
+                <div class="col-md-5 col-xs-6 add-new-delivery-address <%= additional_class %>">
+                  <%= image_tag "newaddressicon.png" %>
+                  <span>ADD NEW ADDRESS</span>
+                </div>
+            <% end %>
+          </div>
+          </div>
+      <% end %>
+      <div class="col-md-2">
+
+      </div>
 <% end %>
