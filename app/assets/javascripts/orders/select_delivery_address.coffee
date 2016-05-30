@@ -18,3 +18,14 @@ $(document).on 'page:change', ->
       $("[data='" + selectedValue + "']").css('border', '3px solid #EF912D')
       if currentValue != ''
         $("[data='" + currentValue + "']").css('border', '1px solid #EBEBEB')
+
+  $('.add-delivery-address-link').click (event) ->
+    $this = $('.add-new-delivery-address')
+
+    $('#addNewAddress').css('top', $this.position().top)
+    $('#addNewAddress').css('left', $this.position().left + 25)
+    $('#addNewAddress').css('width', $this.width() + 40)
+    $('#addNewAddress').fadeIn()
+
+  $('div#addNewAddress .cancel').click ->
+    $('#addNewAddress').fadeOut()

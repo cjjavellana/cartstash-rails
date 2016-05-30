@@ -71,8 +71,8 @@
 }
 
 #addNewAddress {
-  display: block;
-  position: fixed;
+  display: none;
+  position: absolute;
   background-color: #fff;
   border-radius: 8px;
   top: 420px;
