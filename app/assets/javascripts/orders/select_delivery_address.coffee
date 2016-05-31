@@ -29,3 +29,9 @@ $(document).on 'page:change', ->
 
   $('div#addNewAddress .cancel').click ->
     $('#addNewAddress').fadeOut()
+
+  $('#new_delivery_address').on("ajax:success", (e, data, status, xhr) ->
+      console.log('success')
+      $('#addNewAddress').fadeOut()
+    ).on "ajax:error", (e, data, status, xhr) ->
+      console.log('fail')
