@@ -1,7 +1,10 @@
 class Orders::SelectDeliveryAddressController < ShopController
+  before_action :authenticate_user!
 
   def index
-    init
+    @addresses = DeliveryAddress.where('status = ? and user_id = ?', 'active', current_user.id)
+    @countries = Country.get_countries
+    @delivery_address = DeliveryAddress.new
   end
 
   # Sets the selected delivery address and displays the
@@ -21,20 +24,17 @@ class Orders::SelectDeliveryAddressController < ShopController
                                    address_line_2: secure_address_params[:address_line_2],
                                    city: secure_address_params[:city],
                                    zip_code: secure_address_params[:zip_code],
-                                   country: secure_address_params[:country])
-
+                                   country: secure_address_params[:country],
+                                   user: current_user)
     if @address.valid?
       @address.save
-      render :'orders/select_delivery_address/index'
+
+      respond_to do |format|
+        format.js { render 'add_delivery_address' }
+      end
+
     end
-  end
 
-  private
-
-  def init
-    @addresses = DeliveryAddress.where('status = ?', 'active')
-    @countries = Country.get_countries
-    @delivery_address = DeliveryAddress.new
   end
 
   protected
