@@ -3,7 +3,7 @@ class DeliveryAddress < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :recipient_name, :address_line_1, :contact_no, presence: true
+  validates :recipient_name, :address_line_1, presence: true
   validates :zip_code, :country, presence: true
 
 end

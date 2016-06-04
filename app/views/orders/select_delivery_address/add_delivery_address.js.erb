@@ -1,4 +1,4 @@
-<% if @address.errors.nil? %>
+<% if @address.errors.messages.empty? %>
   $('.add-delivery-address-link').before("<%= escape_javascript render(partial: 'orders/select_delivery_address/new_address_panel') %>")
 <% else %>
 

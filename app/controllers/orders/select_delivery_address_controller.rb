@@ -18,14 +18,14 @@ class Orders::SelectDeliveryAddressController < ShopController
   #
   # POST /orders/adddeliveryaddress
   def add_delivery_address
-    byebug
     @address = DeliveryAddress.new(recipient_name: secure_address_params[:recipient_name],
                                    address_line_1: secure_address_params[:address_line_1],
                                    address_line_2: secure_address_params[:address_line_2],
                                    city: secure_address_params[:city],
                                    zip_code: secure_address_params[:zip_code],
                                    country: secure_address_params[:country],
-                                   user: current_user)
+                                   user: current_user,
+                                   status: 'active')
     if @address.valid?
       @address.save
 
