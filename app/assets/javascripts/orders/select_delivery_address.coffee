@@ -1,5 +1,5 @@
 $(document).on 'page:change', ->
-  $('div.delivery-address-option').click (event) ->
+  onDeliveryAddressSelect = (event) ->
     $hiddenField = $('#checkout_selected_address')[0]
     $clickedElement = $(event.target)
     currentValue = $hiddenField.value
@@ -19,6 +19,9 @@ $(document).on 'page:change', ->
       if currentValue != ''
         $("[data='" + currentValue + "']").css('border', '1px solid #EBEBEB')
 
+  $('div.delivery-address-option').click (event) ->
+    onDeliveryAddressSelect(event)
+
   $('.add-delivery-address-link').click (event) ->
     $this = $('.add-new-delivery-address')
 
@@ -31,7 +34,11 @@ $(document).on 'page:change', ->
     $('#addNewAddress').fadeOut()
 
   $('#new_delivery_address').on("ajax:success", (e, data, status, xhr) ->
-      console.log('success')
       $('#addNewAddress').fadeOut()
+
+      $('.delivery-address-option').unbind 'click'
+      $('.delivery-address-option').click (event) ->
+        onDeliveryAddressSelect(event)
+
     ).on "ajax:error", (e, data, status, xhr) ->
-      console.log('fail')
+      console.log(e)
