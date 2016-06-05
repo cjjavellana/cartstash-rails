@@ -2,7 +2,7 @@
     <div class="col-md-10">
       <%= image_tag "checkout_stage_1.png" %>
       <div class="row margin-top-15">
-        <div class="col-md-9 col-xs-8 centered">
+        <div class="col-md-9 col-xs-12 centered">
           <span class="delivery-address-title">Select Delivery Address</span>
         </div>
         <div class="col-md-3 col-xs-4">
@@ -16,7 +16,7 @@
 
           <div class="row address-choices-row">
             <% @addresses.each do |address| %>
-                    <div class="col-md-5 col-xs-6 panel panel-default delivery-address-option" data="<%= address.id %>">
+                    <div class="col-md-5 col-xs-11 panel panel-default delivery-address-option" data="<%= address.id %>">
                       <div class="panel-heading col-md-10 col-xs-10">
                         <%= image_tag "address-icon-28.png", size: "16x18" %>
                         <%= address.recipient_name %>
@@ -35,7 +35,7 @@
 
 
             <%= link_to "#", {class: "add-delivery-address-link"} do %>
-                <div class="col-md-5 col-xs-6 add-new-delivery-address <%= "margin10px" if @addresses.length % 2 == 0 %>">
+                <div class="col-md-5 col-xs-11 add-new-delivery-address <%= "margin10px" if @addresses.length % 2 == 0 %>">
                   <%= image_tag "newaddressicon.png" %>
                   <span>ADD NEW ADDRESS</span>
                 </div>
@@ -43,20 +43,33 @@
           </div>
 
           <div class="row address-choices-row">
-            <div class="col-md-5">
-              <span class="just-for-this-delivery">JUST FOR THIS DELIVERY</span>
+            <div class="col-md-5 just-for-this-delivery">
+              <span>JUST FOR THIS DELIVERY</span>
             </div>
             <div class="col-md-5 delivery-address-addtl-details">
               <div class="form-group">
                 <label for="contactno">CONTACT NUMBER: <span class="required">*</span></label>
                 <%= f.text_field :contact_number, { class: "form-control" } %>
               </div>
+              <div class="form-group">
+                <label for="instruction">SPECIAL INSTRUCTION: </label>
+                <%= f.text_area :delivery_instruction, { class: "form-control", placeholder: "Please give me a call once you arrive" } %>
+              </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-md-offset-9 col-md-3 col-xs-4">
+              <%= button_tag class: "btn btn-checkout-primary" do %>
+                  <span>Next</span> <span class="glyphicon glyphicon-chevron-right"></span>
+              <% end %>
+            </div>
+          </div>
+
           </div>
       <% end %>
       <div id="addNewAddress">
-        <%= form_for @delivery_address, url: orders_adddeliveryaddress_path, method: :post, remote: true do |f| %>
+        <%= form_for @delivery_address, url: users_deliveryaddress_path, method: :post, remote: true do |f| %>
 
             <div class="col-md-12">
               <div class="form-group">
@@ -95,7 +108,6 @@
                   <span>Create</span>
               <% end %>
             </div>
-
         <% end %>
       </div>
 

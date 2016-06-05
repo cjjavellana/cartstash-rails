@@ -1,0 +1,5 @@
+<% if @address.errors.messages.empty? %>
+  $('.add-delivery-address-link').before("<%= escape_javascript render(partial: 'users/delivery_address/new_address_panel') %>");
+<% else %>
+
+<% end %>

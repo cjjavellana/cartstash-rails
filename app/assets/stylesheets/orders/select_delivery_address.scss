@@ -45,11 +45,16 @@
   }
 }
 
-span.just-for-this-delivery {
-  color: #fff;
-  font-size: 22px;
-  font-weight: bold;
-  text-decoration: none;
+.just-for-this-delivery {
+
+  padding-top: 25px;
+
+  span {
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+  }
 }
 
 .add-new-delivery-address {

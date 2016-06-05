@@ -48,4 +48,11 @@ Rails.application.routes.draw do
     post 'selectdeliveryschedule' => 'select_delivery_address#select_schedule'
     post 'adddeliveryaddress' => 'select_delivery_address#add_delivery_address'
   end
+
+  namespace :users do
+    post 'deliveryaddress', to: 'delivery_address#create'
+    get 'deliveryaddress/:id', to: 'delivery_address#edit'
+    patch 'deliveryaddress/:id', to: 'delivery_address#update'
+    delete 'deliveryaddress/:id', to: 'delivery_address#destroy'
+  end
 end
