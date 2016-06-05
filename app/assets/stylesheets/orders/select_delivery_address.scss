@@ -45,6 +45,13 @@
   }
 }
 
+span.just-for-this-delivery {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 .add-new-delivery-address {
   border: 4px dashed #EBEBEB;
   height: 180px;
@@ -93,4 +100,14 @@
     margin-bottom: 10px;
   }
 
+}
+
+.delivery-address-addtl-details {
+  label {
+    display: block;
+  }
+}
+
+.required {
+  color: #FF0000;
 }

@@ -11,8 +11,8 @@
           <% end %>
         </div>
       </div>
-      <%= form_tag orders_selectdeliveryschedule_path, method: :post do %>
-          <%= hidden_field :checkout, :selected_address %>
+      <%= form_for :selected_address, html: { url: orders_selectdeliveryschedule_path, method: :post,  role: "form" } do |f| %>
+          <%= f.hidden_field :delivery_address %>
 
           <div class="row address-choices-row">
             <% @addresses.each do |address| %>
@@ -40,6 +40,18 @@
                   <span>ADD NEW ADDRESS</span>
                 </div>
             <% end %>
+          </div>
+
+          <div class="row address-choices-row">
+            <div class="col-md-5">
+              <span class="just-for-this-delivery">JUST FOR THIS DELIVERY</span>
+            </div>
+            <div class="col-md-5 delivery-address-addtl-details">
+              <div class="form-group">
+                <label for="contactno">CONTACT NUMBER: <span class="required">*</span></label>
+                <%= f.text_field :contact_number, { class: "form-control" } %>
+              </div>
+            </div>
           </div>
           </div>
       <% end %>

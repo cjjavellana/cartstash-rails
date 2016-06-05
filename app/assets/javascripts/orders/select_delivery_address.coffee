@@ -1,6 +1,6 @@
 $(document).on 'page:change', ->
   onDeliveryAddressSelect = (event) ->
-    $hiddenField = $('#checkout_selected_address')[0]
+    $hiddenField = $('#selected_address_delivery_address')[0]
     $clickedElement = $(event.target)
     currentValue = $hiddenField.value
     selectedValue = $clickedElement.attr('data')

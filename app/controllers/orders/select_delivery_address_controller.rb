@@ -5,6 +5,7 @@ class Orders::SelectDeliveryAddressController < ShopController
     @addresses = DeliveryAddress.where('status = ? and user_id = ?', 'active', current_user.id)
     @countries = Country.get_countries
     @delivery_address = DeliveryAddress.new
+    @selected_address = SelectedAddress.new
   end
 
   # Sets the selected delivery address and displays the
@@ -38,6 +39,10 @@ class Orders::SelectDeliveryAddressController < ShopController
   end
 
   protected
+
+  def address_selected_params
+
+  end
 
   def secure_address_params
     params.require(:delivery_address).permit(:recipient_name,
