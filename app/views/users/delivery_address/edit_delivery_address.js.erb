@@ -1,0 +1,4 @@
+$('#addNewAddress').before("<%= escape_javascript render(partial: 'users/delivery_address/edit_delivery_address')%>");
+$('.edit-cancel').click(function() {
+  $('#editDeliveryAddress').fadeOut();
+});

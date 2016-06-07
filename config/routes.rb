@@ -51,8 +51,8 @@ Rails.application.routes.draw do
 
   namespace :users do
     post 'deliveryaddress', to: 'delivery_address#create'
-    get 'deliveryaddress/:id', to: 'delivery_address#edit'
-    patch 'deliveryaddress/:id', to: 'delivery_address#update'
-    delete 'deliveryaddress/:id', to: 'delivery_address#destroy'
+    get 'deliveryaddress/:id', to: 'delivery_address#edit', as: 'deliveryaddress_edit'
+    patch 'deliveryaddress/:id', to: 'delivery_address#update', as: 'deliveryaddress_update'
+    delete 'deliveryaddress/:id', to: 'delivery_address#destroy', as: 'deliveryaddress_delete'
   end
 end

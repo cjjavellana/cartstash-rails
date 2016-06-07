@@ -25,6 +25,7 @@ class Users::DeliveryAddressController < ApplicationController
   #
   # GET /users/deliveryaddress/:id
   def edit
+    @countries = Country.get_countries
     @address = DeliveryAddress.find(params[:id])
 
     respond_to do |format|

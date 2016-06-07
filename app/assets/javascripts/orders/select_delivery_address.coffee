@@ -42,3 +42,10 @@ $(document).on 'page:change', ->
 
     ).on "ajax:error", (e, data, status, xhr) ->
       console.log(e)
+
+  $('.edit-address').on 'ajax:success', (e, data, status, xhr) ->
+    $addrBox = $(e.currentTarget.closest('.delivery-address-option'))
+    $('#editDeliveryAddress').css('top', $addrBox.position().top)
+    $('#editDeliveryAddress').css('left', $addrBox.position().left + 25)
+    $('#editDeliveryAddress').css('width', $addrBox.width())
+    $('#editDeliveryAddress').fadeIn();
